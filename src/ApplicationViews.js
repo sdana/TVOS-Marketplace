@@ -8,6 +8,10 @@ import MainPage from "./Components/MainPage"
 import Register from "./Components/Registration"
 
 export default class ApplicationViews extends Component {
+    state = {
+        auth: false
+    }
+
     isAuthenticated = () => {
         return sessionStorage.getItem("credentials")
     }

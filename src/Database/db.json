@@ -1,34 +1,5 @@
 {
-  "users": [
-    {
-      "username": "sd",
-      "email": "seth.dana@gmail.com",
-      "password": "aoiejfa",
-      "region": "east",
-      "id": 1
-    },
-    {
-      "username": "bob",
-      "email": "dole@dole.com",
-      "password": "oaiejfaij",
-      "region": "east",
-      "id": 2
-    },
-    {
-      "username": "aoiefjaeioj",
-      "email": "aioejf@iaoejg.com",
-      "password": "aoiejfoiaj",
-      "region": "east",
-      "id": 3
-    },
-    {
-      "username": "aiejfaoiejfaioefj",
-      "email": "oiajefoiajwefoiaje@aoiefjaoei.com",
-      "password": "oiaejfaiojefioaje",
-      "region": "west",
-      "id": 4
-    }
-  ],
+  "users": [],
   "posts": [],
   "categories": [
     {
