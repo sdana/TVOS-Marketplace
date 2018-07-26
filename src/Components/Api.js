@@ -23,6 +23,25 @@ class Api {
             })
         }).then(e => e.json());
     }
+    ////////////////////////////////////////////////////////////////////// POSTS /////////////////////////////////////////////
+    postItem(userId, title, price, location, category, description, region){
+        return fetch("http://localhost:5002/posts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                userId: userId,
+                title: title,
+                price: price,
+                location: location,
+                categorieId: category,
+                description: description,
+                regionId: region,
+                photo: ""
+            })
+        }).then(e => e.json());
+    }
 }
 
 const ApiManager = new Api()

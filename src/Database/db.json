@@ -15,7 +15,19 @@
       "id": 2
     }
   ],
-  "posts": [],
+  "posts": [
+    {
+      "userId": 1,
+      "title": "thing",
+      "price": "ten",
+      "location": "nash",
+      "category": "4",
+      "description": "aoiejfaoiejagoiegjag",
+      "region": "middle",
+      "photo": "",
+      "id": 1
+    }
+  ],
   "categories": [
     {
       "id": 1,
@@ -31,11 +43,11 @@
     },
     {
       "id": 4,
-      "cat": "request"
+      "cat": "wine"
     },
     {
       "id": 5,
-      "cat": "wine"
+      "cat": "request"
     }
   ],
   "locations": [
