@@ -26,7 +26,7 @@ export default class Registration extends Component {
                 if (nameResponse.length === 0 && emailResponse.length === 0) {
                     //if not, then register the user
                     api.registerUser(this.state.username, this.state.email, this.state.password, this.state.region).then((response) => {
-                        sessionStorage.setItem("credentials", response.id)
+                        // sessionStorage.setItem("credentials", response.id)
                         this.setState({redirect: true})
                         //Call login function to set state in parent component
                         // this.props.logUserIn()

@@ -6,6 +6,13 @@
       "password": "pass",
       "region": "middle",
       "id": 1
+    },
+    {
+      "username": "bob",
+      "email": "bob@dole.com",
+      "password": "dole",
+      "region": "east",
+      "id": 2
     }
   ],
   "posts": [],
