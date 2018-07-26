@@ -1,5 +1,13 @@
 {
-  "users": [],
+  "users": [
+    {
+      "username": "sd",
+      "email": "seth.dana@gmail.com",
+      "password": "pass",
+      "region": "middle",
+      "id": 1
+    }
+  ],
   "posts": [],
   "categories": [
     {

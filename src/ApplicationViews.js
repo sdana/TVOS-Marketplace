@@ -12,6 +12,10 @@ export default class ApplicationViews extends Component {
         auth: false
     }
 
+    loginUser = (userId) => {
+        this.setState({auth: true})
+    }
+
     isAuthenticated = () => {
         return sessionStorage.getItem("credentials")
     }
@@ -30,7 +34,14 @@ export default class ApplicationViews extends Component {
         else {
             return (
                 <React.Fragment>
-                    <Route exact path="/" component={Login} />
+                    <Route exact path="/" render={props => {
+                        return (
+                            <Login loginUser={this.loginUser} />
+                        )
+                        }
+
+                    }
+                    />
                     <Route exact path="/register" component={Register} />
                 </React.Fragment>
             )

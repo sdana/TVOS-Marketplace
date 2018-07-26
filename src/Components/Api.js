@@ -2,11 +2,11 @@ class Api {
     getUsers() {
         return fetch("http://localhost:5002/users").then(e => e.json());
     }
-    checkName(username) {
-        return fetch(`http://localhost:5002/users/?username=${username}`).then(e => e.json())
+    checkUserThing(thing, otherThing) {
+        return fetch(`http://localhost:5002/users/?${thing}=${otherThing}`).then(e => e.json())
     }
     checkEmail(email) {
-        return fetch(`http://localhost:5002/users/?username=${email}`).then(e => e.json())
+        return fetch(`http://localhost:5002/users/?email=${email}`).then(e => e.json())
     }
 
     registerUser (name, email, password, region) {

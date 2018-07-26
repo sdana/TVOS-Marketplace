@@ -20,8 +20,8 @@ export default class Registration extends Component {
     registerUser = (e) => {
         e.preventDefault()
         console.log("func called")
-        api.checkName(this.state.username).then(nameResponse => {
-            api.checkEmail(this.state.email).then(emailResponse => {
+        api.checkUserThing("username", this.state.username).then(nameResponse => {
+            api.checkUserThing("email", this.state.email).then(emailResponse => {
                 //Check to see if username or email are already registered
                 if (nameResponse.length === 0 && emailResponse.length === 0) {
                     //if not, then register the user
