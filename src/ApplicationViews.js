@@ -9,11 +9,11 @@ import Register from "./Components/Registration"
 
 export default class ApplicationViews extends Component {
     state = {
-        auth: false
+        auth: 0
     }
 
     loginUser = (userId) => {
-        this.setState({auth: true})
+        this.setState({auth: userId})
     }
 
     isAuthenticated = () => {
@@ -26,7 +26,13 @@ export default class ApplicationViews extends Component {
                 <React.Fragment>
                     <Route path="/" component={Nav} />
                     <Route exact path="/" component={MainPage} />
-                    <Route exact path="/post" component={PostItem} />
+                    <Route exact path="/post" render={props => {
+                        return (
+                            <PostItem userId={this.state.auth} />
+                        )
+                        }
+                        }
+                    />
                     <Route exact path="/dashboard" component={Dashboard} />
                 </React.Fragment>
             )

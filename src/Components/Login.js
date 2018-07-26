@@ -30,8 +30,8 @@ export default class Login extends Component {
                         alert("Username, Email, or Password incorrect")
                     }
                     else {
-                        sessionStorage.setItem("credentials", String(emailResponse[0].id))
-                        this.props.loginUser(emailResponse.id)
+                        sessionStorage.setItem("credentials", emailResponse[0].id)
+                        this.props.loginUser(emailResponse[0].id)
                     }
                 })
             })
