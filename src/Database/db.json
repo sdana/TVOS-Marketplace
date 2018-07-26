@@ -13,6 +13,13 @@
       "password": "dole",
       "region": "east",
       "id": 2
+    },
+    {
+      "username": "sdana",
+      "email": "test@test.com",
+      "password": "pass",
+      "region": "west",
+      "id": 3
     }
   ],
   "posts": [

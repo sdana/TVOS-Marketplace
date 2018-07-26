@@ -9,11 +9,18 @@ import Register from "./Components/Registration"
 
 export default class ApplicationViews extends Component {
     state = {
-        auth: 0
+        // auth: 0
     }
 
     loginUser = (userId) => {
         this.setState({auth: userId})
+    }
+
+    componentDidMount(){
+        if (sessionStorage.getItem("credentials")){
+            const userId = sessionStorage.getItem("credentials")
+            this.setState({auth: userId})
+        }
     }
 
     isAuthenticated = () => {
@@ -40,7 +47,7 @@ export default class ApplicationViews extends Component {
         else {
             return (
                 <React.Fragment>
-                    <Route exact path="/" render={props => {
+                    <Route path="/" render={props => {
                         return (
                             <Login loginUser={this.loginUser} />
                         )

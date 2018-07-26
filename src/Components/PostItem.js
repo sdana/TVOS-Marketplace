@@ -58,7 +58,7 @@ export default class PostItem extends Component {
                     <label htmlFor="location">Specific Location</label>
                     <input onChange={this.handleFieldChange} id="location" type="text" required />
                     <select ref="category" id="category">
-                        <option value="" required selected disabled hidden>Category</option>
+                        <option value="" required defaultValue disabled hidden>Category</option>
                         <option value="1">Free</option>
                         <option value="2">Produce</option>
                         <option value="3">Farm Equipment</option>
