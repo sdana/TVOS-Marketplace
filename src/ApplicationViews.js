@@ -19,6 +19,7 @@ export default class ApplicationViews extends Component {
     componentDidMount(){
         if (sessionStorage.getItem("credentials")){
             const userId = sessionStorage.getItem("credentials")
+            console.log(userId)
             this.setState({auth: userId})
         }
     }
@@ -40,7 +41,13 @@ export default class ApplicationViews extends Component {
                         }
                         }
                     />
-                    <Route exact path="/dashboard" component={Dashboard} />
+                    <Route exact path="/dashboard" render={props =>{
+                        return(
+                            <Dashboard userId={this.state.auth}/>
+                        )
+                        }
+                        }
+                    />
                 </React.Fragment>
             )
         }

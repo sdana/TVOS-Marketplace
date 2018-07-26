@@ -44,7 +44,7 @@ export default class PostItem extends Component {
     render() {
         if (this.state.redirect){
             return (
-                <Redirect to={"/"} />
+                <Redirect to={"/Dashboard"} />
             )
         }
         return (

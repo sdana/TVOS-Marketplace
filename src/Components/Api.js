@@ -42,6 +42,10 @@ class Api {
             })
         }).then(e => e.json());
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    getUserPosts(userId){
+        return fetch(`http://localhost:5002/posts?userId=${userId}`).then(e => e.json())
+    }
 }
 
 const ApiManager = new Api()
