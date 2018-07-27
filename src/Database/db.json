@@ -58,6 +58,17 @@
       "regionId": "middle",
       "photo": "",
       "id": 5
+    },
+    {
+      "userId": 1,
+      "title": "Wine stuff",
+      "price": "a millino",
+      "location": "nashville",
+      "categorieId": "4",
+      "description": "get drunk",
+      "regionId": "middle",
+      "photo": "",
+      "id": 6
     }
   ],
   "categories": [
