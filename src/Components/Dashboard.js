@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from "./Api"
+import PostCard from "./CreatePostCard"
 
 export default class Dashboard extends Component {
     state = {
@@ -7,9 +8,9 @@ export default class Dashboard extends Component {
     }
 
     componentDidMount() {
+        const userId = sessionStorage.getItem("credentials")
         console.log(`items for ${this.props.userId}`)
-//change this to get userId directly from session storage instead of props SAYS JISSIE
-        api.getUserPosts(this.props.userId).then(posts => {
+        api.getUserPosts(userId).then(posts => {
             console.log(posts)
             this.setState({posts: posts})
         })
@@ -17,7 +18,15 @@ export default class Dashboard extends Component {
 
     render () {
         return (
-            <h1>My Items</h1>
+            <React.Fragment>
+                <h1>My Items</h1>
+                <ul>
+                    {this.state.posts.map(post => {
+                       return <PostCard key={post.id} post={post} />
+                        console.log(post)
+                    })}
+                </ul>
+            </React.Fragment>
         )
     }
 }
