@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Link, Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./nav.css"
 
 export default class Nav extends Component {
