@@ -50,17 +50,6 @@
     },
     {
       "userId": 1,
-      "title": "New Item",
-      "price": "60",
-      "location": "West Side",
-      "categorieId": "5",
-      "description": "Give me stuff",
-      "regionId": "middle",
-      "photo": "",
-      "id": 5
-    },
-    {
-      "userId": 1,
       "title": "Wine stuff",
       "price": "a millino",
       "location": "nashville",
@@ -69,6 +58,28 @@
       "regionId": "middle",
       "photo": "",
       "id": 6
+    },
+    {
+      "userId": 1,
+      "title": "jens stuff",
+      "price": "Free",
+      "location": "nss",
+      "categorieId": "1",
+      "description": "its not ten, its free",
+      "regionId": "middle",
+      "photo": "",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "title": "newest item",
+      "price": "oiajef",
+      "location": "oiajeifoj",
+      "categorieId": "3",
+      "description": "aeoifjaoiejf",
+      "regionId": "middle",
+      "photo": "",
+      "id": 8
     }
   ],
   "categories": [
