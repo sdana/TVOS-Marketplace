@@ -46,6 +46,13 @@ class Api {
     getUserPosts(userId){
         return fetch(`http://localhost:5002/posts?userId=${userId}&_expand=categorie`).then(e => e.json())
     }
+
+    deleteUserPost(postId){
+        return fetch(`http://localhost:5002/posts/${postId}`,
+            {
+            method: "DELETE"
+        })
+    }
 }
 
 const ApiManager = new Api()

@@ -38,39 +38,6 @@
   ],
   "posts": [
     {
-      "userId": 1,
-      "title": "thing",
-      "price": "ten",
-      "location": "nash",
-      "categorieId": "1",
-      "description": "get this ten thing",
-      "regionId": "middle",
-      "photo": "",
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "title": "another",
-      "price": "five",
-      "location": "mars",
-      "categorieId": "3",
-      "description": "farm mars",
-      "regionId": "middle",
-      "photo": "",
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "title": "third thing",
-      "price": "$50",
-      "location": "burnside",
-      "categorieId": "5",
-      "description": "wanna pay 50 for burnside",
-      "regionId": "middle",
-      "photo": "",
-      "id": 3
-    },
-    {
       "userId": 4,
       "title": "user 4",
       "price": "6",
@@ -83,11 +50,11 @@
     },
     {
       "userId": 1,
-      "title": "aoiejfaoiefj",
-      "price": "oiajefoiajef",
-      "location": "oiajefiajef",
-      "categorieId": "1",
-      "description": "aoiejfiaoejf",
+      "title": "thingnash",
+      "price": "ten",
+      "location": "ville",
+      "categorieId": "2",
+      "description": "apples and oranges",
       "regionId": "middle",
       "photo": "",
       "id": 5
