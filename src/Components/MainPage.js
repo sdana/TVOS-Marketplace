@@ -25,7 +25,7 @@ getSpecRegionPosts = (region, order) => {
     console.log(region, order)
     this.setState({region: region})
     if (region === "all"){
-        api.getAllPosts().then(response => this.setState({allPosts: response}))
+        api.getAllPosts(order).then(response => this.setState({allPosts: response, order: order}))
     }
     else {
         api.getRegionalPosts(region, order).then(response => this.setState({ allPosts: response, order: order }))
@@ -38,7 +38,7 @@ getSpecRegionPosts = (region, order) => {
                 <h1>Main Page</h1>
                 <h2>{`All Posts from ${this.state.region} TN`}</h2>
                 <label htmlFor="region">Select Region:</label>
-                <select onChange={(e) => this.getSpecRegionPosts(e.target.value)} value={this.state.region}>
+                <select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={this.state.region}>
                     <option value="east">East</option>
                     <option value="middle">Middle</option>
                     <option value="west">West</option>

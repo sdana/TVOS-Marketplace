@@ -42,8 +42,8 @@ class Api {
             })
         }).then(e => e.json());
     }
-    getAllPosts(){
-        return fetch("http://localhost:5002/posts?_expand=categorie&_sort=id&_order=desc").then(e => e.json())
+    getAllPosts(order){
+        return fetch(`http://localhost:5002/posts?_expand=categorie&_sort=id&_order=${order}`).then(e => e.json())
     }
 
     getRegionalPosts(regionId, order){
