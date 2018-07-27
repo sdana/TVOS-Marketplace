@@ -23,7 +23,7 @@ class Api {
             })
         }).then(e => e.json());
     }
-    ////////////////////////////////////////////////////////////////////// POSTS /////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////          GENERAL POSTS              /////////////////////////////////////////////
     postItem(userId, title, price, location, category, description, region){
         return fetch("http://localhost:5002/posts", {
             method: "POST",
@@ -42,7 +42,11 @@ class Api {
             })
         }).then(e => e.json());
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    getRegionalPosts(regionId){
+        return fetch(`http://localhost:5002/posts?regionId=${regionId}&_expand=categorie`).then(e => e.json())
+    }
+    ///////////////////////////////////////////////////////////////////          USERS POSTS                //////////////////////////////////////////////////
     getUserPosts(userId){
         return fetch(`http://localhost:5002/posts?userId=${userId}&_expand=categorie&_sort=id&_order=desc`).then(e => e.json())
     }

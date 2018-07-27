@@ -24,6 +24,10 @@ export default class EnableEdit extends Component {
         })
     }
 
+    cancel = () => {
+        this.setState({editMode: false})
+    }
+
     deletePost = (e) => {
         console.log(e.target.parentNode.id)
         const postId = e.target.parentNode.id
@@ -49,9 +53,13 @@ export default class EnableEdit extends Component {
                 <React.Fragment key={this.props.post.id}>
                     <div id={this.props.post.id}>
                         <div className="post-card" id={this.props.post.id}>
+                            <label htmlFor="title">Title</label>
                             <input onChange={this.handleFieldChange} id="title" type="text" placeholder={this.props.post.title}></input>
+                            <label htmlFor="price">Price</label>
                             <input onChange={this.handleFieldChange} id="price" type="text" placeholder={this.props.post.price}></input>
+                            <label htmlFor="location">Location</label>
                             <input onChange={this.handleFieldChange} id="location" type="text" placeholder={this.props.post.location}></input>
+                            <label htmlFor="category">Category</label>
                             <select ref="category" id="category" defaultValue={`${this.props.post.categorie.id}`}>
                                 <option value="1">Free</option>
                                 <option value="2">Produce</option>
@@ -59,8 +67,9 @@ export default class EnableEdit extends Component {
                                 <option value="4">Wine</option>
                                 <option value="5">Request</option>
                             </select>
+                            <label htmlFor="description">Description</label>
                             <textarea onChange={this.handleFieldChange} id="description" placeholder={this.props.post.description}></textarea>
-                            <button onClick={()=>{this.setState({editMode: false}); this.editPost(this.props.post.id, this.state.title, this.state.price, this.state.location, this.refs.category.value, this.state.description)}}>Submit</button>
+                            <button onClick={()=>{this.setState({editMode: false}); this.editPost(this.props.post.id, this.state.title, this.state.price, this.state.location, this.refs.category.value, this.state.description)}}>Save</button><button onClick={this.cancel}>Cancel</button>
                         </div>
                     </div>
                 </React.Fragment>
