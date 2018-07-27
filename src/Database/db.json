@@ -1,40 +1,55 @@
 {
-    "users": [],
-    "posts": [],
-    "categories": [
-        {
-            "id": 1,
-            "cat": "free"
-        },
-        {
-            "id": 2,
-            "cat": "produce"
-        },
-        {
-            "id": 3,
-            "cat": "farm"
-        },
-        {
-            "id": 4,
-            "cat": "request"
-        },
-        {
-            "id": 5,
-            "cat": "wine"
-        }
-    ],
-    "locations": [
-        {
-            "id": 1,
-            "loc": "east"
-        },
-        {
-            "id": 2,
-            "loc": "middle"
-        },
-        {
-            "id": 3,
-            "loc": "west"
-        }
-    ]
+  "users": [
+    {
+      "username": "sd",
+      "email": "seth.dana@gmail.com",
+      "password": "pass",
+      "region": "middle",
+      "id": 1
+    },
+    {
+      "username": "bob",
+      "email": "bob@dole.com",
+      "password": "dole",
+      "region": "east",
+      "id": 2
+    }
+  ],
+  "posts": [],
+  "categories": [
+    {
+      "id": 1,
+      "cat": "free"
+    },
+    {
+      "id": 2,
+      "cat": "produce"
+    },
+    {
+      "id": 3,
+      "cat": "farm"
+    },
+    {
+      "id": 4,
+      "cat": "request"
+    },
+    {
+      "id": 5,
+      "cat": "wine"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "loc": "east"
+    },
+    {
+      "id": 2,
+      "loc": "middle"
+    },
+    {
+      "id": 3,
+      "loc": "west"
+    }
+  ]
 }
