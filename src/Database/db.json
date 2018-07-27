@@ -58,6 +58,17 @@
       "regionId": "middle",
       "photo": "",
       "id": 5
+    },
+    {
+      "userId": 1,
+      "title": "aoijefoaijefioaj",
+      "price": "aoijewoiajeoiaj",
+      "location": "aoijewfioajwefioaj",
+      "categorieId": "2",
+      "description": "aeifjaoiejfiajwe",
+      "regionId": "middle",
+      "photo": "",
+      "id": 6
     }
   ],
   "categories": [

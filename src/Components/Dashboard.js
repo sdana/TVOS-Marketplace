@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import PostCard from "./CreatePostCard"
+import EnableEdit from "./EnableEdit"
 
 export default class Dashboard extends Component {
     state = {
@@ -28,19 +29,23 @@ export default class Dashboard extends Component {
     }
 
     render () {
+        // console.log(this.state.posts)
         return (
+            // <React.Fragment>
+            //     <h1>My Items</h1>
+            //         {this.state.posts.map(post => {
+            //            return (
+            //                 <React.Fragment key={post.id}>
+            //                 <div id={post.id}>
+            //                     <PostCard key={post.id} post={post}/>
+            //                    <button>Edit Post</button><button onClick={this.deletePost}>Delete Post</button>
+            //                 </div>
+            //                 </React.Fragment>
+            //            )
+            //         })}
+            // </React.Fragment>
             <React.Fragment>
-                <h1>My Items</h1>
-                    {this.state.posts.map(post => {
-                       return (
-                            <React.Fragment key={post.id}>
-                            <div id={post.id}>
-                                <PostCard key={post.id} post={post}/>
-                               <button>Edit Post</button><button onClick={this.deletePost}>Delete Post</button>
-                            </div>
-                            </React.Fragment>
-                       )
-                    })}
+            {this.state.posts.map(post => <EnableEdit post={this.state.posts} />)}
             </React.Fragment>
         )
     }
