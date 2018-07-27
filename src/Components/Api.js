@@ -44,7 +44,7 @@ class Api {
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     getUserPosts(userId){
-        return fetch(`http://localhost:5002/posts?userId=${userId}&_expand=categorie`).then(e => e.json())
+        return fetch(`http://localhost:5002/posts?userId=${userId}&_expand=categorie&_sort=id&_order=desc`).then(e => e.json())
     }
 
     deleteUserPost(postId){
@@ -52,6 +52,23 @@ class Api {
             {
             method: "DELETE"
         })
+    }
+
+    editPost(postId, title, price, location, category, description) {
+        return fetch(`http://localhost:5002/posts/${postId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title: title,
+                price: price,
+                location: location,
+                categorieId: category,
+                description: description,
+                photo: ""
+            })
+        }).then(e => e.json());
     }
 }
 

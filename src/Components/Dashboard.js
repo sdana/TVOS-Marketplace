@@ -18,13 +18,10 @@ export default class Dashboard extends Component {
         })
     }
 
-    deletePost = (e) => {
-        console.log(e.target.parentNode.id)
-        const postId = e.target.parentNode.id
-        api.deleteUserPost(postId).then(() =>{
-            api.getUserPosts(this.state.userId).then(response => {
-                this.setState({posts: response})
-            })
+    updatePostList = (userId) => {
+        api.getUserPosts(userId).then(posts => {
+            console.log(posts)
+            this.setState({ posts: posts })
         })
     }
 
@@ -45,7 +42,7 @@ export default class Dashboard extends Component {
             //         })}
             // </React.Fragment>
             <React.Fragment>
-            {this.state.posts.map(post => <EnableEdit post={this.state.posts} />)}
+            {this.state.posts.map(post => <EnableEdit post={post} updatePostList={this.updatePostList}/>)}
             </React.Fragment>
         )
     }
