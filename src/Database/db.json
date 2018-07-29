@@ -34,42 +34,16 @@
       "password": "test",
       "region": "east",
       "id": 5
+    },
+    {
+      "username": "newGuy",
+      "email": "new@new.com",
+      "password": "pass",
+      "region": "west",
+      "id": 6
     }
   ],
   "posts": [
-    {
-      "userId": 1,
-      "title": "thing",
-      "price": "ten",
-      "location": "nash",
-      "categorieId": "1",
-      "description": "get this ten thing",
-      "regionId": "middle",
-      "photo": "",
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "title": "another",
-      "price": "five",
-      "location": "mars",
-      "categorieId": "3",
-      "description": "farm mars",
-      "regionId": "middle",
-      "photo": "",
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "title": "third thing",
-      "price": "$50",
-      "location": "burnside",
-      "categorieId": "5",
-      "description": "wanna pay 50 for burnside",
-      "regionId": "middle",
-      "photo": "",
-      "id": 3
-    },
     {
       "userId": 4,
       "title": "user 4",
@@ -83,14 +57,58 @@
     },
     {
       "userId": 1,
-      "title": "aoiejfaoiefj",
-      "price": "oiajefoiajef",
-      "location": "oiajefiajef",
-      "categorieId": "1",
-      "description": "aoiejfiaoejf",
+      "title": "Wine stuff",
+      "price": "a millino",
+      "location": "nashville",
+      "categorieId": "4",
+      "description": "get drunk",
       "regionId": "middle",
       "photo": "",
-      "id": 5
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "title": "jens stuff",
+      "price": "Free",
+      "location": "nss",
+      "categorieId": "1",
+      "description": "its not ten, its free",
+      "regionId": "middle",
+      "photo": "",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "title": "newest item",
+      "price": "oiajef",
+      "location": "oiajeifoj",
+      "categorieId": "3",
+      "description": "aeoifjaoiejf",
+      "regionId": "middle",
+      "photo": "",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "title": "Newer than new",
+      "price": "very new, very expensive",
+      "location": "ca$hville",
+      "categorieId": "1",
+      "description": "",
+      "regionId": "middle",
+      "photo": "",
+      "id": 9
+    },
+    {
+      "userId": 6,
+      "title": "West TN STUFFFFFF",
+      "price": "your life",
+      "location": "MAMPHIS",
+      "categorieId": "3",
+      "description": "uyguyguyg",
+      "regionId": "west",
+      "photo": "",
+      "id": 10
     }
   ],
   "categories": [

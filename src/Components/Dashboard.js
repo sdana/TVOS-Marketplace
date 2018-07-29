@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import PostCard from "./CreatePostCard"
+import EnableEdit from "./EnableEdit"
 
 export default class Dashboard extends Component {
     state = {
@@ -9,6 +10,7 @@ export default class Dashboard extends Component {
 
     componentDidMount() {
         const userId = sessionStorage.getItem("credentials")
+        this.setState({userId: userId})
         console.log(`items for ${this.props.userId}`)
         api.getUserPosts(userId).then(posts => {
             console.log(posts)
@@ -16,16 +18,18 @@ export default class Dashboard extends Component {
         })
     }
 
+    updatePostList = (userId) => {
+        api.getUserPosts(userId).then(posts => {
+            console.log(posts)
+            this.setState({ posts: posts })
+        })
+    }
+
     render () {
+        // console.log(this.state.posts)
         return (
             <React.Fragment>
-                <h1>My Items</h1>
-                <ul>
-                    {this.state.posts.map(post => {
-                       return <PostCard key={post.id} post={post} />
-                        console.log(post)
-                    })}
-                </ul>
+            {this.state.posts.map(post => <EnableEdit key={post.id} post={post} updatePostList={this.updatePostList}/>)}
             </React.Fragment>
         )
     }

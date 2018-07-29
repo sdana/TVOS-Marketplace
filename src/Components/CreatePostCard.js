@@ -1,27 +1,18 @@
 
-import React from 'react'
-function MakePostCard (post) {
-    console.log("Im working")
-    console.log("post", post)
-    return (
-            <li className="post-post">
-                <h3>{post.post.title}</h3>
-                <h4>{post.post.price}</h4>
-                <h4>{post.post.location}</h4>
-                <h5>{post.post.categorie.cat}</h5>
-                <h5>{post.post.description}</h5>
-            </li>
-    )
+import React, { Component } from 'react'
+
+export default class MakePostCard extends Component {
+    render() {
+        console.log("card thing", this.props.card)
+        // return(<h1>TEST</h1>)
+            return (
+                <div className="post-card" id={this.props.card.id}>
+                    <h3>{this.props.card.title}</h3>
+                    <h4>{this.props.card.price}</h4>
+                    <h4>{this.props.card.location}</h4>
+                    <h5>{this.props.card.categorie.cat}</h5>
+                    <p>{this.props.card.description}</p>
+                </div>
+            )
+    }
 }
-
-export default MakePostCard
-
-// "userId": 1,
-//       "title": "thing",
-//       "price": "ten",
-//       "location": "nash",
-//       "categorieId": "1",
-//       "description": "get this ten thing",
-//       "regionId": "middle",
-//       "photo": "",
-//       "id": 1
