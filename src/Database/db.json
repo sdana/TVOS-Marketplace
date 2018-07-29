@@ -34,6 +34,13 @@
       "password": "test",
       "region": "east",
       "id": 5
+    },
+    {
+      "username": "newGuy",
+      "email": "new@new.com",
+      "password": "pass",
+      "region": "west",
+      "id": 6
     }
   ],
   "posts": [
@@ -80,6 +87,28 @@
       "regionId": "middle",
       "photo": "",
       "id": 8
+    },
+    {
+      "userId": 1,
+      "title": "Newer than new",
+      "price": "very new, very expensive",
+      "location": "ca$hville",
+      "categorieId": "1",
+      "description": "",
+      "regionId": "middle",
+      "photo": "",
+      "id": 9
+    },
+    {
+      "userId": 6,
+      "title": "West TN STUFFFFFF",
+      "price": "your life",
+      "location": "MAMPHIS",
+      "categorieId": "3",
+      "description": "uyguyguyg",
+      "regionId": "west",
+      "photo": "",
+      "id": 10
     }
   ],
   "categories": [

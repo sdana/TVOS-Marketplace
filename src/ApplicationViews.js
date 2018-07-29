@@ -54,7 +54,7 @@ export default class ApplicationViews extends Component {
         else {
             return (
                 <React.Fragment>
-                    <Route path="/" render={props => {
+                    <Route exact path="/" render={props => {
                         return (
                             <Login loginUser={this.loginUser} />
                         )
