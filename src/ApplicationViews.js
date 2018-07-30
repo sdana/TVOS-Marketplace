@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Route} from "react-router-dom"
 import Login from "./Components/Login"
-import Nav from "./Nav/Nav"
+import Nav from "./Components/Nav"
 import PostItem from "./Components/PostItem"
 import Dashboard from "./Components/Dashboard"
 import MainPage from "./Components/MainPage"

@@ -20,13 +20,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import api from "./Api"
 
 const styles = {
     root: {
@@ -45,7 +45,13 @@ class MenuAppBar extends React.Component {
     state = {
         auth: true,
         anchorEl: null,
+        user: {name: ""}
     };
+
+    componentDidMount() {
+        const userId = sessionStorage.getItem("credentials")
+        api.checkUserThing("id", userId).then(response => this.setState({user: response[0]}))
+    }
 
     handleChange = (event, checked) => {
         this.setState({ auth: checked });
@@ -69,10 +75,11 @@ class MenuAppBar extends React.Component {
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="title" color="inherit" className={classes.flex}>
-                            <Link to="/">Welcome To TVOS Marketplace</Link>
+                            <Link to="/" style={{ textDecoration: "none", color: "white" }}>Welcome To TVOS Marketplace</Link>
             </Typography>
 
                             <div>
+                            <Typography variant="subheading" style={{display: "inline-block"}} color="inherit">{this.state.user.username}</Typography>
                                 <IconButton
                                     aria-owns={open ? 'menu-appbar' : null}
                                     aria-haspopup="true"
