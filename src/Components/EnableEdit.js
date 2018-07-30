@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import PostCard from "./CreatePostCard"
+import Button from '@material-ui/core/Button';
+import Input from "@material-ui/core/Input"
+import InputAdornment from "@material-ui/core/InputAdornment"
 
 export default class EnableEdit extends Component {
     state = {
@@ -43,7 +46,7 @@ export default class EnableEdit extends Component {
                 <React.Fragment key={this.props.post.id}>
                     <div id={this.props.post.id}>
                         <PostCard key={this.props.post.id} card={this.props.post} />
-                        <button onClick={this.editModeEnable}>Edit Post</button><button onClick={this.deletePost}>Delete Post</button>
+                        <Button onClick={this.editModeEnable} variant="raised" color="primary">Edit Post</Button><Button onClick={this.deletePost} variant="raised" color="secondary">Delete Post</Button>
                     </div>
                 </React.Fragment>
             )
@@ -53,8 +56,8 @@ export default class EnableEdit extends Component {
                 <React.Fragment key={this.props.post.id}>
                     <div id={this.props.post.id}>
                         <div className="post-card" id={this.props.post.id}>
-                            <label htmlFor="title">Title</label>
-                            <input onChange={this.handleFieldChange} id="title" type="text" placeholder={this.props.post.title}></input>
+                            <InputAdornment htmlFor="title" position="top">Title</InputAdornment>
+                            <Input onChange={this.handleFieldChange} id="title" type="text" placeholder={this.props.post.title}></Input>
                             <label htmlFor="price">Price</label>
                             <input onChange={this.handleFieldChange} id="price" type="text" placeholder={this.props.post.price}></input>
                             <label htmlFor="location">Location</label>

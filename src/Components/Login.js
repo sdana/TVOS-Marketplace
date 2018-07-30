@@ -1,6 +1,26 @@
 import React, { Component } from "react"
 import { Link, Redirect } from "react-router-dom"
 import api from "./Api"
+import Button from "@material-ui/core/Button"
+import Input from "@material-ui/core/Input"
+import InputAdornment from "@material-ui/core/InputAdornment"
+import Grid from "@material-ui/core/Grid"
+import { Typography } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const style = {
+    input: {
+        marginBottom: 40,
+        },
+    Link: {
+        textDecoration: "none",
+    },
+    button: {
+        marginRight: 50,
+    }
+}
 
 export default class Login extends Component {
     // Set initial state
@@ -44,36 +64,47 @@ export default class Login extends Component {
         } else {
             return (
                 <React.Fragment>
+                    <Grid container direction="column" alignContent="center" alignItems="center" grid-xs-12 justify="space-between">
                     <form onSubmit={this.handleLogin}>
-                        <h1>Please sign in</h1>
-                        <label htmlFor="username">Username</label>
-                        <input
+                        <Typography variant="display4" align="center" color="default" gutterBottom={true}>Please sign in</Typography>
+                        <Grid item align="center">
+                        <Input
                             onChange={this.handleFieldChange}
                             type="text"
                             id="username"
                             placeholder="Username"
                             required
                             autoFocus
+                            style={style.input}
                         />
-                        <label htmlFor="email">E-mail</label>
-                        <input
+                        </Grid>
+                        {/* <label htmlFor="email">E-mail</label> */}
+                        <Grid item align="center">
+                        <Input
                             onChange={this.handleFieldChange}
                             type="email"
                             id="email"
                             placeholder="Email"
                             required
+                            style={style.input}
                         />
-                        <label htmlFor="password">Password</label>
-                        <input
+                        </Grid>
+                        {/* <label htmlFor="password">Password</label> */}
+                        <Grid item align="center">
+                        <Input
                             onChange={this.handleFieldChange}
                             type="password"
                             id="password"
                             placeholder="Password"
                             required
+                            style={style.input}
                         />
-                        <button type="submit">Sign in</button>
+                        </Grid>
+                        <Grid item align="center">
+                            <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="text" size="small"><h4>New User?</h4></Button></Link>
+                        </Grid>
                     </form>
-                    <Link to="/register"><h4>New User?</h4></Link>
+                    </Grid>
                 </React.Fragment>
             )
         }

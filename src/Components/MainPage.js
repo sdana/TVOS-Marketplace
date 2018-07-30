@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import CreatePostCard from "./CreatePostCard"
+import { Grid } from "@material-ui/core"
 
 export default class MainPage extends Component {
     state = {
@@ -49,7 +50,9 @@ getSpecRegionPosts = (region, order) => {
                     <option value="desc">Newest First</option>
                     <option value="asc">Oldest First</option>
                 </select>
-                {this.state.allPosts.map(post => <CreatePostCard key={post.id} card={post} />)}
+                <Grid container>
+                    {this.state.allPosts.map(post => <CreatePostCard key={post.id} card={post} />)}
+                </Grid>
             </React.Fragment>
         )
     }

@@ -1,6 +1,24 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import {Redirect} from "react-router-dom"
+import Button from "@material-ui/core/Button"
+import Input from "@material-ui/core/Input"
+import InputAdornment from "@material-ui/core/InputAdornment"
+import Grid from "@material-ui/core/Grid"
+import { Typography } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
+import InputLabel from "@material-ui/core/InputLabel"
+import Select from "@material-ui/core/Select"
+
+const style = {
+    input: {
+        marginBottom: 30,
+    },
+    select: {
+        marginLeft: 30,
+        marginBottom: 30,
+    }
+}
 
 export default class Registration extends Component {
     state = {
@@ -50,21 +68,48 @@ export default class Registration extends Component {
         }
         return (
             <React.Fragment>
-                <h1>Register for TVOS Marketplace</h1>
+            <Grid container direction="column" alignContent="center" justify="center">
+                <Grid item sm align="center">
+                    <Typography variant="display3" style={{marginBottom:40}}>Register for TVOS Marketplace</Typography>
+                </Grid>
                 <form onSubmit={(e) => {this.registerUser(e)}}>
-                    <label htmlFor="username">Desired Username<input onChange={this.handleFieldChange} id="username" type="text" placeholder="Username" required autoFocus/></label>
-                    <label htmlFor="email">Email Address<input onChange={this.handleFieldChange} id="email" type="email" placeholder="E-mail Address" required/></label>
-                    <label htmlFor="password">Password<input onChange={this.handleFieldChange} id="password" type="password" placeholder="Password" required /></label>
-                    <label htmlFor="region">
+                    <Grid item align="center" style={style.input}>
+                        <Input onChange={this.handleFieldChange} id="username" type="text" placeholder="Username" required autoFocus autoComplete="off"/>
+                    </Grid>
+                        <Grid item align="center" style={style.input}>
+                            <Input onChange={this.handleFieldChange} id="email" type="email" placeholder="E-mail Address" required autoComplete="off"/>
+                    </Grid>
+                        <Grid item align="center" style={style.input}>
+                            <Input onChange={this.handleFieldChange} id="password" type="password" placeholder="Password" required autoComplete="off" />
+                    </Grid>
+                    {/* <label htmlFor="region">
                         Region
                         <select ref="select" id="region" onChange={this.handleFieldChange}>
                             <option value="east">East</option>
                             <option value="middle">Middle</option>
                             <option value="west">West</option>
                         </select>
-                    </label>
-                    <button>Register</button>
+                    </label> */}
+                        <Grid item align="center">
+                        <InputLabel htmlFor="age-native-simple">Select Region: </InputLabel>
+                        <Select
+                            ref="select"
+                            id="region"
+                            native
+                            value={this.state.region}
+                            onChange={this.handleFieldChange}
+                            style={style.select}
+                        >
+                            <option value={"east"}>East</option>
+                            <option value={"middle"}>Middle</option>
+                            <option value={"west"}>West</option>
+                        </Select>
+                        </Grid>
+                        <Grid item align="center">
+                    <Button variant="contained" color="primary" type="submit">Register</Button>
+                    </Grid>
                 </form>
+                </Grid>
             </React.Fragment>
         )
     }

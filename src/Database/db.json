@@ -41,6 +41,13 @@
       "password": "pass",
       "region": "west",
       "id": 6
+    },
+    {
+      "username": "new test",
+      "email": "new@test.com",
+      "password": "testing",
+      "region": "east",
+      "id": 7
     }
   ],
   "posts": [
