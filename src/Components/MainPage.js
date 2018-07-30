@@ -55,7 +55,7 @@ getSpecRegionPosts = (region, order) => {
                 </Select>
                 </Grid>
                 <Grid container>
-                    {this.state.allPosts.map(post => <CreatePostCard key={post.id} card={post} />)}
+                    {this.state.allPosts.map(post => <Grid item sm><CreatePostCard key={post.id} card={post} /></Grid>)}
                 </Grid>
             </React.Fragment>
         )

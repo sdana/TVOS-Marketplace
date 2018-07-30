@@ -7,13 +7,18 @@ import InputAdornment from "@material-ui/core/InputAdornment"
 import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 
+const styles = {
+    card: {
+        margin: 20,
+    },
+}
 export default class EnableEdit extends Component {
     state = {
         editMode: false
     }
 
     editModeEnable = () => {
-        this.setState({editMode: true})
+        this.setState({ editMode: true })
     }
 
     handleFieldChange = evt => {
@@ -23,14 +28,14 @@ export default class EnableEdit extends Component {
     }
 
     editPost = (postId, title, price, location, category, description) => {
-        api.editPost(postId, title, price, location, category, description).then(response =>{
-            this.setState({editMode: false})
+        api.editPost(postId, title, price, location, category, description).then(response => {
+            this.setState({ editMode: false })
             this.props.updatePostList(this.props.post.userId)
         })
     }
 
     cancel = () => {
-        this.setState({editMode: false})
+        this.setState({ editMode: false })
     }
 
     deletePost = (e) => {
@@ -43,20 +48,27 @@ export default class EnableEdit extends Component {
 
     render() {
         console.log(this.props.post)
-        if (!this.state.editMode){
+        if (!this.state.editMode) {
             return (
                 <React.Fragment key={this.props.post.id}>
-                <Grid container>
-                    <div id={this.props.post.id}>
-                        <PostCard key={this.props.post.id} card={this.props.post} />
-                        <Button onClick={this.editModeEnable} variant="raised" color="primary">Edit Post</Button><Button onClick={this.deletePost} variant="raised" color="secondary">Delete Post</Button>
-                    </div>
-                    </Grid>
+                    <Card style={styles.card}>
+                        <div id={this.props.post.id}>
+                            <PostCard key={this.props.post.id} card={this.props.post} />
+                            <Grid container direction="row" justify="space-evenly">
+                                <Grid item>
+                                    <Button style={styles.button} onClick={this.editModeEnable} variant="raised" color="primary">Edit Post</Button>
+                                </Grid>
+                                <Grid item>
+                                    <Button style={styles.button} onClick={this.deletePost} variant="raised" color="secondary">Delete Post</Button>
+                                </Grid>
+                            </Grid>
+                        </div>
+                    </Card>
                 </React.Fragment>
             )
         }
         else {
-            return(
+            return (
                 <React.Fragment key={this.props.post.id}>
                     <div id={this.props.post.id}>
                         <div className="post-card" id={this.props.post.id}>
@@ -76,7 +88,7 @@ export default class EnableEdit extends Component {
                             </select>
                             <label htmlFor="description">Description</label>
                             <textarea onChange={this.handleFieldChange} id="description" placeholder={this.props.post.description}></textarea>
-                            <button onClick={()=>{this.setState({editMode: false}); this.editPost(this.props.post.id, this.state.title, this.state.price, this.state.location, this.refs.category.value, this.state.description)}}>Save</button><button onClick={this.cancel}>Cancel</button>
+                            <button onClick={() => { this.setState({ editMode: false }); this.editPost(this.props.post.id, this.state.title, this.state.price, this.state.location, this.refs.category.value, this.state.description) }}>Save</button><button onClick={this.cancel}>Cancel</button>
                         </div>
                     </div>
                 </React.Fragment>

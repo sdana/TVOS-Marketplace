@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import api from "./Api"
 import PostCard from "./CreatePostCard"
 import EnableEdit from "./EnableEdit"
+import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
 
 export default class Dashboard extends Component {
     state = {
@@ -29,7 +31,10 @@ export default class Dashboard extends Component {
         // console.log(this.state.posts)
         return (
             <React.Fragment>
-            {this.state.posts.map(post => <EnableEdit key={post.id} post={post} updatePostList={this.updatePostList}/>)}
+            <Typography variant="display3" align="center">My Items</Typography>
+            <Grid container direction="row" justify="flex-start">
+            {this.state.posts.map(post => <Grid item sm><EnableEdit key={post.id} post={post} updatePostList={this.updatePostList}/></Grid>)}
+            </Grid>
             </React.Fragment>
         )
     }

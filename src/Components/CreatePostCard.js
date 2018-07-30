@@ -53,7 +53,7 @@ export default class MakePostCard extends Component {
         //     </Grid>
         // )
         return (
-            <Grid item>
+            // <Grid item>
             <div id={this.props.card.id}>
                 <Card style={styles.card}>
                         <CardMedia style={styles.image} image="http://www4.pictures.zimbio.com/mp/xLY3uqp5MGax.jpg" />
@@ -76,7 +76,7 @@ export default class MakePostCard extends Component {
                     </CardContent>
                 </Card>
             </div >
-            </Grid>
+            // </Grid>
         )
     }
 }
