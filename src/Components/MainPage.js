@@ -3,6 +3,14 @@ import api from "./Api"
 import CreatePostCard from "./CreatePostCard"
 import { Grid, Typography, Select } from "@material-ui/core"
 
+const style= {
+    card: {
+        minWidth: 275,
+        margin: 40,
+        maxHeight: 361
+    }
+}
+
 export default class MainPage extends Component {
     state = {
         allPosts: [],
@@ -54,8 +62,8 @@ getSpecRegionPosts = (region, order) => {
                     <option value="asc">Oldest First</option>
                 </Select>
                 </Grid>
-                <Grid container>
-                    {this.state.allPosts.map(post => <Grid item sm><CreatePostCard key={post.id} card={post} /></Grid>)}
+                <Grid container lg={12} direction="row" justify="flex-start">
+                    {this.state.allPosts.map(post => <Grid item xs={3}><CreatePostCard key={post.id} card={post} /></Grid>)}
                 </Grid>
             </React.Fragment>
         )

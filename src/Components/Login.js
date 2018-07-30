@@ -66,13 +66,14 @@ export default class Login extends Component {
                 <React.Fragment>
                     <Grid container direction="column" alignContent="center" alignItems="center" grid-xs-12 justify="space-between">
                     <form onSubmit={this.handleLogin}>
-                        <Typography variant="display4" align="center" color="default" gutterBottom={true}>Please sign in</Typography>
+                        <Typography variant="display3" align="center" color="inherit" gutterBottom={true}>Welcome to TVOS Marketplace</Typography>
+                        <Typography variant="display1" align="center" color="default" gutterBottom={true}>Please sign in</Typography>
                         <Grid item align="center">
-                        <Input
+                        <TextField
                             onChange={this.handleFieldChange}
                             type="text"
                             id="username"
-                            placeholder="Username"
+                            label="Username"
                             required
                             autoFocus
                             style={style.input}
@@ -80,22 +81,22 @@ export default class Login extends Component {
                         </Grid>
                         {/* <label htmlFor="email">E-mail</label> */}
                         <Grid item align="center">
-                        <Input
+                        <TextField
                             onChange={this.handleFieldChange}
                             type="email"
                             id="email"
-                            placeholder="Email"
+                            label="Email"
                             required
                             style={style.input}
                         />
                         </Grid>
                         {/* <label htmlFor="password">Password</label> */}
                         <Grid item align="center">
-                        <Input
+                        <TextField
                             onChange={this.handleFieldChange}
                             type="password"
                             id="password"
-                            placeholder="Password"
+                            label="Password"
                             required
                             style={style.input}
                         />

@@ -5,6 +5,15 @@ import EnableEdit from "./EnableEdit"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 
+// const styles = {
+//     card: {
+//         minWidth: 275,
+//         margin: 40,
+//         maxHeight: 361,
+//         overflow: "hidden"
+//     }
+// }
+
 export default class Dashboard extends Component {
     state = {
         posts: []
@@ -32,8 +41,8 @@ export default class Dashboard extends Component {
         return (
             <React.Fragment>
             <Typography variant="display3" align="center">My Items</Typography>
-            <Grid container direction="row">
-            {this.state.posts.map(post => <Grid item sm><EnableEdit key={post.id} post={post} updatePostList={this.updatePostList}/></Grid>)}
+            <Grid container direction="row" xs={12}>
+            {this.state.posts.map(post => <Grid item xs={3}><EnableEdit key={post.id} post={post} updatePostList={this.updatePostList}/></Grid>)}
             </Grid>
             </React.Fragment>
         )

@@ -39,6 +39,9 @@ const styles = {
         marginLeft: -12,
         marginRight: 20,
     },
+    noLink: {
+        textDecoration: "none"
+    }
 };
 
 class MenuAppBar extends React.Component {
@@ -102,8 +105,8 @@ class MenuAppBar extends React.Component {
                                     open={open}
                                     onClose={this.handleClose}
                                 >
-                                    <MenuItem onClick={this.handleClose}><Link to="/post">Post New Item</Link></MenuItem>
-                                    <MenuItem onClick={this.handleClose}><Link to="/dashboard">My Items</Link></MenuItem>
+                                    <MenuItem onClick={this.handleClose}><Link to="/post" style={styles.noLink}>Post New Item</Link></MenuItem>
+                                    <MenuItem onClick={this.handleClose}><Link to="/dashboard" style={styles.noLink}>My Items</Link></MenuItem>
                                 </Menu>
                             </div>
 

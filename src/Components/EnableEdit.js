@@ -9,10 +9,15 @@ import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 
 const styles = {
-    card: {
-        margin: 20,
-        maxWidth: 400,
+    div: {
+        minWidth: 275,
+        margin: 40,
+        marginBottom: 60,
+        maxHeight: 400
     },
+    card: {
+        maxHeight: 200,
+    }
 }
 export default class EnableEdit extends Component {
     state = {
@@ -53,8 +58,8 @@ export default class EnableEdit extends Component {
         if (!this.state.editMode) {
             return (
                 <React.Fragment key={this.props.post.id}>
-                    <div style={styles.card}>
-                        <div id={this.props.post.id}>
+                    <div>
+                        <div style={styles.div} id={this.props.post.id}>
                             <PostCard key={this.props.post.id} card={this.props.post} />
                             <Grid container direction="row" justify="space-evenly">
                                 <Grid item>
