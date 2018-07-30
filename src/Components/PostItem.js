@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import {Redirect} from "react-router-dom"
+import { TextField, Typography, InputLabel, Grid, Select, MenuItem } from "@material-ui/core"
 
 export default class PostItem extends Component {
     state = {
@@ -9,14 +10,17 @@ export default class PostItem extends Component {
         price: "",
         description: "",
         location: "",
-        redirect: false
+        redirect: false,
+        category: "1"
     }
 
     handleFieldChange = evt => {
+        console.log(evt.target)
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
+
 
     componentDidMount() {
         if (!sessionStorage.getItem("credentials")){
@@ -49,32 +53,41 @@ export default class PostItem extends Component {
         }
         return (
             <React.Fragment>
-                <h1>Post A New Item</h1>
+                <Typography variant="display3" align="center">Post A New Item</Typography>
+                <Grid container xs={12} direction="column" justify="center">
                 <form onSubmit={(e) => this.submitPost(e)}>
-                    <label htmlFor="title">Title</label>
-                    <input onChange={this.handleFieldChange} id="title" type="text" required autoFocus />
-                    <label htmlFor="price">Price: $</label>
-                    <input onChange={this.handleFieldChange} id="price" type="text" required />
-                    <label htmlFor="location">Specific Location</label>
-                    <input onChange={this.handleFieldChange} id="location" type="text" required />
-                    <select ref="category" id="category" defaultValue="">
-                        <option value="" required disabled hidden>Category</option>
-                        <option value="1">Free</option>
-                        <option value="2">Produce</option>
-                        <option value="3">Farm Equipment</option>
-                        <option value="4">Wine</option>
-                        <option value="5">Request</option>
-                    </select>
-                    {/* <label htmlFor="region">Region</label>
+                        <Grid item sm align="center">
+                    <InputLabel htmlFor="title">Title: </InputLabel>
+                    <TextField onChange={this.handleFieldChange} id="title" type="text" required autoFocus />
+                    </Grid>
+                        <Grid item sm align="center">
+                    <InputLabel htmlFor="price">Price: $</InputLabel>
+                    <TextField onChange={this.handleFieldChange} id="price" type="text" required />
+                    </Grid>
+                        <Grid item sm align="center">
+                    <InputLabel htmlFor="location">Specific Location: </InputLabel>
+                    <TextField onChange={this.handleFieldChange} id="location" type="text" required />
+                    </Grid>
+                    <InputLabel htmlFor="category">Item Category: </InputLabel>
+                    <Select ref="category" id="category" onChange={e => this.setState({category: e.target.value})} defaultValue={this.state.category} value={this.state.category}>
+                        {/* <MenuItem value="" required disabled hidden>Category</MenuItem> */}
+                        <MenuItem value="1">Free</MenuItem>
+                        <MenuItem value="2">Produce</MenuItem>
+                        <MenuItem value="3">Farm Equipment</MenuItem>
+                        <MenuItem value="4">Wine</MenuItem>
+                        <MenuItem value="5">Request</MenuItem>
+                    </Select>
+                    {/* <InputLabel htmlFor="region">Region</InputLabel>
                     <select id="region">
                         <option value="1">East</option>
                         <option value="2">Middle</option>
                         <option value="3">West</option>
                     </select> */}
-                    <label htmlFor="description">Description</label>
-                    <textarea onChange={this.handleFieldChange} id="description" rows="10" cols="150" />
+                    <InputLabel htmlFor="description">Description</InputLabel>
+                    <TextField onChange={this.handleFieldChange} id="description" rows="10" />
                     <button><h3>Post Item</h3></button>
                 </form>
+                </Grid>
             </React.Fragment>
         )
     }

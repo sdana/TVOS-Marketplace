@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import CreatePostCard from "./CreatePostCard"
-import { Grid, Typography, Select } from "@material-ui/core"
+import { Grid, Typography, Select, InputLabel, MenuItem } from "@material-ui/core"
 
 const style= {
     card: {
@@ -45,21 +45,21 @@ getSpecRegionPosts = (region, order) => {
         return(
             <React.Fragment>
             <Grid item align="center">
-                <Typography variant="display3">Main Page</Typography>
-                <Typography variant="headline">{`All Posts from ${this.state.region} TN`}</Typography>
+                <Typography variant="display3">TVOS Marketplace</Typography>
+                <Typography variant="headline">{`All posts from ${this.state.region} TN`}</Typography>
             </Grid>
             <Grid item align="center">
-                <label htmlFor="region" style={{marginRight:20}}>Select Region:</label>
+                <InputLabel htmlFor="region" style={{marginRight:20}}>Select Region:</InputLabel>
                 <Select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={this.state.region}>
-                    <option value="east">East</option>
-                    <option value="middle">Middle</option>
-                    <option value="west">West</option>
-                    <option value="all">All</option>
+                    <MenuItem value="east">East</MenuItem>
+                    <MenuItem value="middle">Middle</MenuItem>
+                    <MenuItem value="west">West</MenuItem>
+                    <MenuItem value="all">All</MenuItem>
                 </Select>
-                <label htmlFor="order" style={{marginRight:20, marginLeft: 30}}>Show:</label>
+                <InputLabel htmlFor="order" style={{marginRight:20, marginLeft: 30}}>Show:</InputLabel>
                 <Select id="order" onChange={(e) => this.getSpecRegionPosts(this.state.region, e.target.value)} defaultValue="desc" value={this.state.order}>
-                    <option value="desc">Newest First</option>
-                    <option value="asc">Oldest First</option>
+                    <MenuItem value="desc">Newest First</MenuItem>
+                    <MenuItem value="asc">Oldest First</MenuItem>
                 </Select>
                 </Grid>
                 <Grid container lg={12} direction="row" justify="flex-start">

@@ -8,6 +8,7 @@ import MainPage from "./Components/MainPage"
 import Register from "./Components/Registration"
 import ViewPost from "./Components/viewPost"
 
+
 export default class ApplicationViews extends Component {
     state = {
         // auth: 0

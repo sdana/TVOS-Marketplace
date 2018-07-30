@@ -15,7 +15,7 @@ const styles = {
     card: {
         minWidth: 275,
         margin: 40,
-        maxHeight: 313
+        maxHeight: 320
     },
     bullet: {
         display: 'inline-block',
@@ -63,7 +63,7 @@ export default class MakePostCard extends Component {
             <Link to={`/viewPost/${this.props.card.id}`} style={{textDecoration:"none"}}>
             <div id={this.props.card.id}>
                 <Card style={styles.card}>
-                        <CardMedia style={styles.image} image="http://www4.pictures.zimbio.com/mp/xLY3uqp5MGax.jpg" />
+                        <CardMedia style={styles.image} image="https://images.unsplash.com/photo-1491924778227-f225b115dd5f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9cf2d396b2e5cb94bc449e2d91412ffe&auto=format&fit=crop&w=1350&q=80" />
                     <CardContent>
                         <Typography variant="headline" style={styles.hideOver}>
                             {this.props.card.title}
