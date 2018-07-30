@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import CreatePostCard from "./CreatePostCard"
-import { Grid } from "@material-ui/core"
+import { Grid, Typography, Select } from "@material-ui/core"
 
 export default class MainPage extends Component {
     state = {
@@ -36,20 +36,24 @@ getSpecRegionPosts = (region, order) => {
     render() {
         return(
             <React.Fragment>
-                <h1>Main Page</h1>
-                <h2>{`All Posts from ${this.state.region} TN`}</h2>
-                <label htmlFor="region">Select Region:</label>
-                <select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={this.state.region}>
+            <Grid item align="center">
+                <Typography variant="display3">Main Page</Typography>
+                <Typography variant="headline">{`All Posts from ${this.state.region} TN`}</Typography>
+            </Grid>
+            <Grid item align="center">
+                <label htmlFor="region" style={{marginRight:20}}>Select Region:</label>
+                <Select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={this.state.region}>
                     <option value="east">East</option>
                     <option value="middle">Middle</option>
                     <option value="west">West</option>
                     <option value="all">All</option>
-                </select>
-                <label htmlFor="order">Show:</label>
-                <select id="order" onChange={(e) => this.getSpecRegionPosts(this.state.region, e.target.value)} defaultValue="desc">
+                </Select>
+                <label htmlFor="order" style={{marginRight:20, marginLeft: 30}}>Show:</label>
+                <Select id="order" onChange={(e) => this.getSpecRegionPosts(this.state.region, e.target.value)} defaultValue="desc" value={this.state.order}>
                     <option value="desc">Newest First</option>
                     <option value="asc">Oldest First</option>
-                </select>
+                </Select>
+                </Grid>
                 <Grid container>
                     {this.state.allPosts.map(post => <CreatePostCard key={post.id} card={post} />)}
                 </Grid>
