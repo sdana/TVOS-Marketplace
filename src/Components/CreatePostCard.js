@@ -32,6 +32,10 @@ const styles = {
     image: {
         height: 0,
         paddingTop: '56.25%', // 16:9
+    },
+    hideOver: {
+        overflow: "hidden",
+        whiteSpace: "nowrap"
     }
 };
 
@@ -61,13 +65,13 @@ export default class MakePostCard extends Component {
                 <Card style={styles.card}>
                         <CardMedia style={styles.image} image="http://www4.pictures.zimbio.com/mp/xLY3uqp5MGax.jpg" />
                     <CardContent>
-                        <Typography variant="headline">
+                        <Typography variant="headline" style={styles.hideOver}>
                             {this.props.card.title}
                         </Typography>
-                        <Typography variant="title" component="h2">
+                            <Typography variant="title" component="h2" style={styles.hideOver}>
                             ${this.props.card.price}
                         </Typography>
-                        <Typography color="textSecondary">
+                            <Typography color="textSecondary" style={styles.hideOver}>
                             {this.props.card.location}
                         </Typography>
                         <Typography color="textSecondary">
