@@ -10,6 +10,7 @@ import Card from "@material-ui/core/Card"
 const styles = {
     card: {
         margin: 20,
+        maxWidth: 400
     },
 }
 export default class EnableEdit extends Component {
@@ -39,7 +40,7 @@ export default class EnableEdit extends Component {
     }
 
     deletePost = (e) => {
-        console.log(e.target.parentNode.id)
+        console.log("PARENT", e.target.parentNode)
         const postId = e.target.parentNode.id
         api.deleteUserPost(postId).then(() => {
             this.props.updatePostList(this.props.post.userId)
@@ -59,7 +60,7 @@ export default class EnableEdit extends Component {
                                     <Button style={styles.button} onClick={this.editModeEnable} variant="raised" color="primary">Edit Post</Button>
                                 </Grid>
                                 <Grid item>
-                                    <Button style={styles.button} onClick={this.deletePost} variant="raised" color="secondary">Delete Post</Button>
+                                    <Button id={this.props.post.id} style={styles.button} onClick={this.deletePost} variant="raised" color="secondary">Delete Post</Button>
                                 </Grid>
                             </Grid>
                         </div>

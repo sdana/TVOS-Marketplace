@@ -53,7 +53,7 @@ export default class PostItem extends Component {
                 <form onSubmit={(e) => this.submitPost(e)}>
                     <label htmlFor="title">Title</label>
                     <input onChange={this.handleFieldChange} id="title" type="text" required autoFocus />
-                    <label htmlFor="price">Price</label>
+                    <label htmlFor="price">Price: $</label>
                     <input onChange={this.handleFieldChange} id="price" type="text" required />
                     <label htmlFor="location">Specific Location</label>
                     <input onChange={this.handleFieldChange} id="location" type="text" required />
