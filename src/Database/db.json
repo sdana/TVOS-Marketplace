@@ -83,6 +83,39 @@
       "regionId": "middle",
       "photo": "",
       "id": 11
+    },
+    {
+      "userId": 1,
+      "title": "Post #2",
+      "price": "2",
+      "location": "Ohio",
+      "categorieId": "3",
+      "description": "This is a tractor. You can't see it, but it's a tractor. Buy this tractor for $2",
+      "regionId": "middle",
+      "photo": "",
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "title": "third post",
+      "price": "0",
+      "location": "test",
+      "categorieId": "1",
+      "description": "this thing cost nothing",
+      "regionId": "middle",
+      "photo": "",
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "title": "aefaoiejafoij",
+      "price": "oijaweoifjaoeigj",
+      "location": "oijaeoifjaeoigj",
+      "categorieId": "3",
+      "description": "aoiejfoaijegoiajeoiajeoigjaij",
+      "regionId": "middle",
+      "photo": "",
+      "id": 15
     }
   ],
   "categories": [

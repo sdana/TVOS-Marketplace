@@ -5,12 +5,13 @@ import Button from '@material-ui/core/Button';
 import Input from "@material-ui/core/Input"
 import InputAdornment from "@material-ui/core/InputAdornment"
 import Grid from "@material-ui/core/Grid"
-import Card from "@material-ui/core/Card"
+// import Card from "@material-ui/core/Card"
+import Paper from "@material-ui/core/Paper"
 
 const styles = {
     card: {
         margin: 20,
-        maxWidth: 400
+        maxWidth: 400,
     },
 }
 export default class EnableEdit extends Component {
@@ -52,7 +53,7 @@ export default class EnableEdit extends Component {
         if (!this.state.editMode) {
             return (
                 <React.Fragment key={this.props.post.id}>
-                    <Card style={styles.card}>
+                    <div style={styles.card}>
                         <div id={this.props.post.id}>
                             <PostCard key={this.props.post.id} card={this.props.post} />
                             <Grid container direction="row" justify="space-evenly">
@@ -64,7 +65,7 @@ export default class EnableEdit extends Component {
                                 </Grid>
                             </Grid>
                         </div>
-                    </Card>
+                    </div>
                 </React.Fragment>
             )
         }

@@ -8,12 +8,14 @@ import CardMedia from "@material-ui/core/CardMedia"
 import { withStyles } from '@material-ui/core/styles';
 import Icon from "@material-ui/core/Icon"
 import AttachMoney from "@material-ui/icons/AttachMoney"
+import { Link } from "react-router-dom"
 
 
 const styles = {
     card: {
         minWidth: 275,
         margin: 40,
+        maxHeight: 361
     },
     bullet: {
         display: 'inline-block',
@@ -54,6 +56,7 @@ export default class MakePostCard extends Component {
         // )
         return (
             // <Grid item>
+            <Link to={`/viewPost/${this.props.card.id}`} style={{textDecoration:"none"}}>
             <div id={this.props.card.id}>
                 <Card style={styles.card}>
                         <CardMedia style={styles.image} image="http://www4.pictures.zimbio.com/mp/xLY3uqp5MGax.jpg" />
@@ -70,12 +73,13 @@ export default class MakePostCard extends Component {
                         <Typography color="textSecondary">
                             {this.props.card.category}
                         </Typography>
-                        <Typography component="p">
+                        <Typography component="p" style={{overflow: "wrap"}}>
                             {this.props.card.description}
                         </Typography>
                     </CardContent>
                 </Card>
             </div >
+            </Link>
             // </Grid>
         )
     }
