@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core"
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
+import CardMedia from "@material-ui/core/CardMedia"
 import { withStyles } from '@material-ui/core/styles';
 import Icon from "@material-ui/core/Icon"
 import AttachMoney from "@material-ui/icons/AttachMoney"
@@ -26,6 +27,10 @@ const styles = {
     pos: {
         marginBottom: 12,
     },
+    image: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+    }
 };
 
 export default class MakePostCard extends Component {
@@ -51,6 +56,7 @@ export default class MakePostCard extends Component {
             <Grid item>
             <div id={this.props.card.id}>
                 <Card style={styles.card}>
+                        <CardMedia style={styles.image} image="http://www4.pictures.zimbio.com/mp/xLY3uqp5MGax.jpg" />
                     <CardContent>
                         <Typography variant="headline">
                             {this.props.card.title}
