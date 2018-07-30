@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import {Redirect} from "react-router-dom"
-import { TextField, Typography, InputLabel, Grid, Select, MenuItem } from "@material-ui/core"
+import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button } from "@material-ui/core"
 
 export default class PostItem extends Component {
     state = {
@@ -68,6 +68,7 @@ export default class PostItem extends Component {
                     <InputLabel htmlFor="location">Specific Location: </InputLabel>
                     <TextField onChange={this.handleFieldChange} id="location" type="text" required />
                     </Grid>
+                    <Grid item sm align="center">
                     <InputLabel htmlFor="category">Item Category: </InputLabel>
                     <Select ref="category" id="category" onChange={e => this.setState({category: e.target.value})} defaultValue={this.state.category} value={this.state.category}>
                         {/* <MenuItem value="" required disabled hidden>Category</MenuItem> */}
@@ -77,15 +78,20 @@ export default class PostItem extends Component {
                         <MenuItem value="4">Wine</MenuItem>
                         <MenuItem value="5">Request</MenuItem>
                     </Select>
+                    </Grid>
                     {/* <InputLabel htmlFor="region">Region</InputLabel>
                     <select id="region">
                         <option value="1">East</option>
                         <option value="2">Middle</option>
                         <option value="3">West</option>
                     </select> */}
+                    <Grid item sm align="center">
                     <InputLabel htmlFor="description">Description</InputLabel>
                     <TextField onChange={this.handleFieldChange} id="description" rows="10" />
-                    <button><h3>Post Item</h3></button>
+                    </Grid>
+                    <Grid item sm align="center">
+                    <Button variant="raised" color="primary"><Typography variant="headline">Post Item</Typography></Button>
+                    </Grid>
                 </form>
                 </Grid>
             </React.Fragment>
