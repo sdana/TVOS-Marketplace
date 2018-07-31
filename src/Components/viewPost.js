@@ -1,28 +1,49 @@
 import React, { Component } from 'react'
+import { render } from "react-dom"
+import { Carousel } from 'react-responsive-carousel'
 import api from "./Api"
 import Typography from "@material-ui/core/Typography"
+import ReturnImg from "./ReturnImg"
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
+import Grid from "@material-ui/core/Grid"
 
 
 export default class ViewPost extends Component {
     state = {
-        post: {}
+        post: {
+            photo: []
+        }
     }
 
     componentDidMount() {
         api.getPost(this.props.match.params.postId).then(response => this.setState({post: response}))
     }
 
+
     render() {
         console.log("working")
         return(
             <React.Fragment>
-                <div style={{ backgroundColor:"rgba(255, 255, 255, .5)", width:"90vw", margin:"auto", padding:50}}>
+                <Grid container xs={24}>
+                <div style={{ backgroundColor:"rgba(255, 255, 255, .5)", width:"95vw",height:"auto", margin:"auto", padding:50}}>
                 <Typography variant="display3">{this.state.post.title}</Typography>
                 <Typography variant="display2">${this.state.post.price}</Typography>
-                <img src={this.state.post.photo} style={{height:500}}/>
-                <Typography variant="display2">{this.state.post.location}, {this.state.post.regionId} TN</Typography>
-                <Typography variant="body2">{this.state.post.description}</Typography>
+                <Typography variant="display2" style={{marginBottom:50}}>{this.state.post.location}, {this.state.post.regionId} TN</Typography>
+
+                    <Grid item sm align="center">
+                            <Carousel width="50vw" swipeable emulateTouch infiniteLoop interval={3000} autoPlay useKeyboardArrows showStatus={false} >
+                    {this.state.post.photo.map(photo => {
+                        return (
+                            <div>
+                                <img src={photo}/>
+                            </div>
+                        )
+                    })}
+                </Carousel>
+                </Grid>
+                <Typography variant="display2">{this.state.post.description}</Typography>
             </div>
+            </Grid>
             </React.Fragment>
         )
     }
