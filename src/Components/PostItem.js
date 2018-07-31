@@ -60,6 +60,12 @@ export default class PostItem extends Component {
 
     submitPost = (e) => {
         e.preventDefault()
+        if (this.state.category === "1"){
+            let price = "Free"
+        }
+        else {
+            let price = this.state.price
+        }
         api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.photoArray, this.state.email, this.state.phone).then(response => {
             alert("Post Successful!")
             this.setState({ redirect: true })
