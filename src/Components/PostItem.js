@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import api from "./Api"
 import { Redirect } from "react-router-dom"
 import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button } from "@material-ui/core"
+import Dropzone from 'react-dropzone'
+import request from 'superagent'
+
+const cloudUpPreset = "qamybs5i"
+const cloudUpAddr = "https://api.cloudinary.com/v1_1/tvos-marketplace/upload"
 
 export default class PostItem extends Component {
     state = {
@@ -11,11 +16,11 @@ export default class PostItem extends Component {
         description: "",
         location: "",
         redirect: false,
-        category: "1"
+        category: "1",
+        pictureURL: ""
     }
 
     handleFieldChange = evt => {
-        console.log(evt.target)
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
@@ -37,13 +42,40 @@ export default class PostItem extends Component {
         }
     }
 
-    submitPost(e) {
+    submitPost = (e) => {
         e.preventDefault()
-        api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.refs.category.value, this.state.description, this.state.user.region).then(response => {
+        api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.pictureURL).then(response => {
             alert("Post Successful!")
             this.setState({ redirect: true })
         })
     }
+
+    onImageDrop(files) {
+        this.setState({
+            pictureURL: files[0]
+        })
+
+        this.handleImageUpload(files[0])
+    }
+
+    handleImageUpload(file) {
+        let upload = request.post(cloudUpAddr)
+            .field('upload_preset', cloudUpPreset)
+            .field('file', file);
+
+        upload.end((err, response) => {
+            if (err) {
+                console.error(err);
+            }
+
+            if (response.body.secure_url !== '') {
+                this.setState({
+                    pictureURL: response.body.secure_url
+                });
+            }
+        });
+    }
+
 
     render() {
         if (this.state.redirect) {
@@ -82,8 +114,22 @@ export default class PostItem extends Component {
                             <InputLabel htmlFor="description">Description</InputLabel>
                             <TextField onChange={this.handleFieldChange} id="description" rows="10" />
                         </Grid>
+                        <Grid item md align="center">
+                            <Dropzone style={{height:100, width:200, border:"1px dashed grey"}}
+                                multiple={false}
+                                accept="image/*"
+                                onDrop={this.onImageDrop.bind(this)}>
+                                <Typography variant="caption">Drop an image or click to select a file to upload.</Typography>
+                            </Dropzone>
+                            <div>
+                                {this.state.pictureURL === '' ? null :
+                                    <div>
+                                        <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/>
+                                    </div>}
+                            </div>
+                        </Grid>
                         <Grid item sm align="center">
-                            <Button variant="raised" color="primary"><Typography variant="headline">Post Item</Typography></Button>
+                            <Button variant="raised" color="primary" onClick={this.submitPost} ><Typography variant="headline">Post Item</Typography></Button>
                         </Grid>
                     </form>
                 </Grid>

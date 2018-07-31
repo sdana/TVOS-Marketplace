@@ -110,7 +110,7 @@ export default class Login extends Component {
                         />
                         </Grid>
                         <Grid item align="center">
-                            <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="text" size="small"><h4>New User?</h4></Button></Link>
+                            <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="flat" size="small"><h4>New User?</h4></Button></Link>
                         </Grid>
                     </form>
                     </Grid>

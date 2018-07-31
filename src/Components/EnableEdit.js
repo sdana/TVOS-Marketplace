@@ -66,7 +66,7 @@ export default class EnableEdit extends Component {
                                     <Button style={styles.button} onClick={this.editModeEnable} variant="raised" color="primary">Edit Post</Button>
                                 </Grid>
                                 <Grid item>
-                                    <Button id={this.props.post.id} style={styles.button} onClick={this.deletePost} variant="raised" color="secondary">Delete Post</Button>
+                                    <Button id={this.props.post.id} style={styles.button} onClick={this.deletePost} variant="flat" color="secondary">Delete Post</Button>
                                 </Grid>
                             </Grid>
                         </div>

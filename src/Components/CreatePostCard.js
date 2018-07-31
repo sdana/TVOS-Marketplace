@@ -45,25 +45,12 @@ export default class MakePostCard extends Component {
         const { classes } = props;
     }
     render() {
-        console.log("card thing", this.props.card)
-        // return(<h1>TEST</h1>)
-        // return (
-        //     <Grid item sm>
-        //     <div className="post-card" id={this.props.card.id}>
-        //         <h3>{this.props.card.title}</h3>
-        //         <h4>{this.props.card.price}</h4>
-        //         <h4>{this.props.card.location}</h4>
-        //         <h5>{this.props.card.categorie.cat}</h5>
-        //         <p>{this.props.card.description}</p>
-        //     </div>
-        //     </Grid>
-        // )
         return (
             // <Grid item>
             <Link to={`/viewPost/${this.props.card.id}`} style={{textDecoration:"none"}}>
             <div id={this.props.card.id}>
                 <Card style={styles.card}>
-                        <CardMedia style={styles.image} image="https://images.unsplash.com/photo-1491924778227-f225b115dd5f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9cf2d396b2e5cb94bc449e2d91412ffe&auto=format&fit=crop&w=1350&q=80" />
+                        <CardMedia style={styles.image} image={(this.props.card.photo) ? this.props.card.photo : "https://images.unsplash.com/photo-1491924778227-f225b115dd5f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9cf2d396b2e5cb94bc449e2d91412ffe&auto=format&fit=crop&w=1350&q=80"} />
                     <CardContent>
                         <Typography variant="headline" style={styles.hideOver}>
                             {this.props.card.title}

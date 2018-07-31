@@ -24,7 +24,7 @@ class Api {
         }).then(e => e.json());
     }
     //////////////////////////////////////////////////////////////////////          GENERAL POSTS              /////////////////////////////////////////////
-    postItem(userId, title, price, location, category, description, region){
+    postItem(userId, title, price, location, category, description, region, photoURL){
         return fetch("http://localhost:5002/posts", {
             method: "POST",
             headers: {
@@ -38,7 +38,7 @@ class Api {
                 categorieId: category,
                 description: description,
                 regionId: region,
-                photo: ""
+                photo: photoURL
             })
         }).then(e => e.json());
     }
