@@ -45,6 +45,7 @@ export default class MakePostCard extends Component {
         const { classes } = props;
     }
     render() {
+
         return (
             // <Grid item>
             <Link to={`/viewPost/${this.props.card.id}`} style={{textDecoration:"none"}}>
