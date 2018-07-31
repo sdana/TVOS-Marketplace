@@ -25,7 +25,9 @@ export default class PostItem extends Component {
         redirect: false,
         category: "1",
         pictureURL: [],
-        photoArray: []
+        photoArray: [],
+        email: "",
+        phone: ""
     }
 
     handleFieldChange = evt => {
@@ -58,7 +60,7 @@ export default class PostItem extends Component {
 
     submitPost = (e) => {
         e.preventDefault()
-        api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.photoArray).then(response => {
+        api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.photoArray, this.state.email, this.state.phone).then(response => {
             alert("Post Successful!")
             this.setState({ redirect: true })
         })
@@ -133,11 +135,10 @@ export default class PostItem extends Component {
                         </Grid>
                         <Grid item sm align="center" style={style.bottomMargin}>
                             {/* <InputLabel htmlFor="description">Description</InputLabel> */}
-                            <FormControl>
-                                <div >
-                                    <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "80%" }} />
-                                </div>
-                            </FormControl>
+                                    <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "60%" }} />
+                        </Grid>
+                        <Grid item sm align="center" style={style.bottomMargin}>
+                            <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" style={{marginRight:40}} /><TextField onChange={this.handleFieldChange} id="phone" label="Phone Number" type="phone" />
                         </Grid>
                         <Grid item md align="center" style={style.bottomMargin}>
                             <Dropzone style={{ height: 100, width: 200, border: "1px dashed grey" }}
