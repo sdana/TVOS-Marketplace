@@ -13,7 +13,7 @@ const styles = {
         minWidth: 275,
         margin: 40,
         marginBottom: 60,
-        maxHeight: 400
+        maxHeight: 400,
     },
     card: {
         maxHeight: 200,

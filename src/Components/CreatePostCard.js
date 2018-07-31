@@ -74,12 +74,12 @@ export default class MakePostCard extends Component {
                             <Typography color="textSecondary" style={styles.hideOver}>
                             {this.props.card.location}
                         </Typography>
-                        <Typography color="textSecondary">
+                        {/* <Typography color="textSecondary">
                             {this.props.card.category}
                         </Typography>
                         <Typography component="p" style={{overflow: "wrap"}}>
                             {this.props.card.description}
-                        </Typography>
+                        </Typography> */}
                     </CardContent>
                 </Card>
             </div >

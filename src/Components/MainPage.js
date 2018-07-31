@@ -63,7 +63,7 @@ getSpecRegionPosts = (region, order) => {
                 </Select>
                 </Grid>
                 <Grid container lg={12} direction="row" justify="flex-start">
-                    {this.state.allPosts.map(post => <Grid item xs={3}><CreatePostCard key={post.id} card={post} /></Grid>)}
+                    {this.state.allPosts.map(post => <Grid item xs={12} sm={6} lg={4} xl={2}><CreatePostCard key={post.id} card={post} /></Grid>)}
                 </Grid>
             </React.Fragment>
         )

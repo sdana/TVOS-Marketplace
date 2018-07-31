@@ -48,6 +48,20 @@
       "password": "testing",
       "region": "east",
       "id": 7
+    },
+    {
+      "username": "skgilmore",
+      "email": "skg.gilmore@gmail.com",
+      "password": "password",
+      "region": "middle",
+      "id": 8
+    },
+    {
+      "username": "cardkd12",
+      "email": "cardkeisha@gmail.com",
+      "password": "Offtherails0",
+      "region": "middle",
+      "id": 9
     }
   ],
   "posts": [
@@ -108,28 +122,6 @@
     },
     {
       "userId": 1,
-      "title": "this better work",
-      "price": "TEN",
-      "location": "nashville",
-      "categorieId": "1",
-      "description": "what the fuck is goign on?????",
-      "regionId": "middle",
-      "photo": "",
-      "id": 16
-    },
-    {
-      "userId": 1,
-      "title": "The title of this thing is stupid",
-      "price": "oiajefoijaeoigjae",
-      "location": "oiajeoifjaweoigjaewo",
-      "categorieId": "2",
-      "description": "I just edited this post!",
-      "regionId": "middle",
-      "photo": "",
-      "id": 17
-    },
-    {
-      "userId": 1,
       "title": "A POST",
       "price": "POST",
       "location": "POST",
@@ -138,17 +130,6 @@
       "regionId": "middle",
       "photo": "",
       "id": 18
-    },
-    {
-      "userId": 1,
-      "title": "eijraeoirj",
-      "price": "oijaerija",
-      "location": "oiajweoiaje",
-      "categorieId": "1",
-      "description": "aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf aiejf aoiefja aoiejf ",
-      "regionId": "middle",
-      "photo": "",
-      "id": 19
     }
   ],
   "categories": [
