@@ -188,7 +188,7 @@
     {
       "userId": 1,
       "title": "Free Thing",
-      "price": "$dollar",
+      "price": "dollar",
       "location": "nashville",
       "categorieId": "1",
       "description": "free thing",
@@ -199,7 +199,7 @@
     {
       "userId": 1,
       "title": "This is damn good wine!",
-      "price": "$$45",
+      "price": "45",
       "location": "Nashville",
       "categorieId": "4",
       "description": "Good wine to drink to get drunk on",

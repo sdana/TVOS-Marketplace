@@ -78,7 +78,7 @@ class MenuAppBar extends React.Component {
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="title" color="inherit" className={classes.flex}>
-                            <Link to="/" style={{ textDecoration: "none", color: "white" }}>Welcome To TVOS Marketplace</Link>
+                            <Link to="/" style={{ textDecoration: "none", color: "white" }}>Home</Link>
             </Typography>
 
                             <div>
