@@ -33,7 +33,7 @@ class Api {
             body: JSON.stringify({
                 userId: userId,
                 title: title,
-                price: "$" + price,
+                price: price,
                 location: location,
                 categorieId: category,
                 description: description,

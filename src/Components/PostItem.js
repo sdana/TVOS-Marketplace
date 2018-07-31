@@ -50,8 +50,8 @@ export default class PostItem extends Component {
         }
     }
 
-    componentDidUpdate(){
-        if (this.state.categorie === "1"){
+    componentDidUpdate() {
+        if (this.state.categorie === "1") {
             let disablePrice = true
         }
     }
@@ -74,7 +74,7 @@ export default class PostItem extends Component {
     uploadImages = () => {
         this.state.pictureURL.map(photo => {
             console.log("MAPPING")
-           this.handleImageUpload(photo)
+            this.handleImageUpload(photo)
         })
     }
 
@@ -106,21 +106,21 @@ export default class PostItem extends Component {
         return (
             <React.Fragment>
                 <div style={{ backgroundColor: "rgba(255, 255, 255, .5)", width: "60vw", height: "auto", margin: "auto", padding: 50 }}>
-                <Typography variant="display3" align="center">Post A New Item</Typography>
-                <Grid container xs={12} direction="column" justify="center">
-                    <form onSubmit={(e) => this.submitPost(e)}>
-                        <Grid item sm align="center" style={style.bottomMargin}>
-                            {/* <InputLabel htmlFor="title">Title: </InputLabel> */}
-                            <TextField onChange={this.handleFieldChange} id="title" type="text" required autoFocus label="Title" />
-                        </Grid>
+                    <Typography variant="display3" align="center">Post A New Item</Typography>
+                    <Grid container xs={12} direction="column" justify="center">
+                        <form onSubmit={(e) => this.submitPost(e)}>
                             <Grid item sm align="center" style={style.bottomMargin}>
-                            {/* <InputLabel htmlFor="price">Price: $</InputLabel> */}
-                            <TextField onChange={this.handleFieldChange} id="price" type="text" label="Price" />
-                        </Grid>
+                                {/* <InputLabel htmlFor="title">Title: </InputLabel> */}
+                                <TextField onChange={this.handleFieldChange} id="title" type="text" required autoFocus label="Title" />
+                            </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
-                            {/* <InputLabel htmlFor="location">Specific Location: </InputLabel> */}
-                            <TextField onChange={this.handleFieldChange} id="location" type="text" required label="Specific Location"/>
-                        </Grid>
+                                {/* <InputLabel htmlFor="price">Price: $</InputLabel> */}
+                                <TextField onChange={this.handleFieldChange} id="price" type="text" label="Price" />
+                            </Grid>
+                            <Grid item sm align="center" style={style.bottomMargin}>
+                                {/* <InputLabel htmlFor="location">Specific Location: </InputLabel> */}
+                                <TextField onChange={this.handleFieldChange} id="location" type="text" required label="Specific Location" />
+                            </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
                                 <InputLabel htmlFor="category" style={style.bottomMargin, {marginRight: 40}}>Item Category: </InputLabel>
                             <Select ref="category" id="category" onChange={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} value={this.state.category}>
@@ -131,37 +131,37 @@ export default class PostItem extends Component {
                                 <MenuItem value="5">Request</MenuItem>
                             </Select>
                         </Grid>
-                            <Grid item sm align="center" style={style.bottomMargin}>
+                        <Grid item sm align="center" style={style.bottomMargin}>
                             {/* <InputLabel htmlFor="description">Description</InputLabel> */}
                             <FormControl>
                                 <div >
-                                    <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "80%"}}/>
-                            </div>
+                                    <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "80%" }} />
+                                </div>
                             </FormControl>
                         </Grid>
-                            <Grid item md align="center" style={style.bottomMargin}>
-                            <Dropzone style={{height:100, width:200, border:"1px dashed grey"}}
+                        <Grid item md align="center" style={style.bottomMargin}>
+                            <Dropzone style={{ height: 100, width: 200, border: "1px dashed grey" }}
                                 multiple
                                 accept="image/*"
                                 onDrop={this.onImageDrop.bind(this)}>
-                                <Typography variant="caption" style={{paddingTop:"15%"}}>Drop an image or click to select a file to upload.</Typography>
+                                <Typography variant="caption" style={{ paddingTop: "15%" }}>Drop an image or click to select a file to upload.</Typography>
                             </Dropzone>
                             <div>
                                 {this.state.pictureURL === [] ? null :
                                     <div>
                                         {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
-                                        {this.state.pictureURL.map(photo => {return <div style={{marginTop:30}}><PhotoPreview url={photo.preview}/></div>})}
+                                        {this.state.pictureURL.map(photo => { return <div style={{ marginTop: 30 }}><PhotoPreview url={photo.preview} /></div> })}
                                     </div>}
-                                    <Button variant="outlined" onClick={this.uploadImages} style={{marginTop:20}, style.bottomMargin}>Upload Photos</Button>
+                                <Button variant="outlined" onClick={this.uploadImages} style={{ marginTop: 20 }, style.bottomMargin}>Upload Photos</Button>
                             </div>
-                        </Grid>
-                        <Grid item sm align="center">
-                            <Button variant="raised" color="primary" onClick={this.submitPost} ><Typography variant="headline" style={{color:"white"}}>Post Item</Typography></Button>
-                        </Grid>
+                    </Grid>
+                    <Grid item sm align="center">
+                        <Button variant="raised" color="primary" onClick={this.submitPost} ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
+                    </Grid>
                     </form>
                 </Grid>
-                </div>
-            </React.Fragment>
+                </div >
+            </React.Fragment >
         )
     }
 }

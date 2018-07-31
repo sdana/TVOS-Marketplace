@@ -6,8 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardMedia from "@material-ui/core/CardMedia"
 import { withStyles } from '@material-ui/core/styles';
-import Icon from "@material-ui/core/Icon"
+import SvgIcon from "@material-ui/core/SvgIcon"
 import AttachMoney from "@material-ui/icons/AttachMoney"
+import Done from "@material-ui/icons/Done"
 import { Link } from "react-router-dom"
 
 
@@ -88,7 +89,7 @@ export default class MakePostCard extends Component {
                                     {this.props.card.title}
                                 </Typography>
                                 <Typography variant="title" component="h2" style={styles.hideOver}>
-                                    {this.props.card.price}
+                                    ${this.props.card.price}
                         </Typography>
                                 <Typography color="textSecondary" style={styles.hideOver}>
                                     {this.props.card.location}
