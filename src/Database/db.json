@@ -195,6 +195,19 @@
       "regionId": "middle",
       "photo": [],
       "id": 26
+    },
+    {
+      "userId": 1,
+      "title": "This is damn good wine!",
+      "price": "$$45",
+      "location": "Nashville",
+      "categorieId": "4",
+      "description": "Good wine to drink to get drunk on",
+      "regionId": "middle",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533063761/nkdwuhuefzsodlbwv3qp.jpg"
+      ],
+      "id": 27
     }
   ],
   "categories": [

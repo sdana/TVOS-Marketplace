@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import { Redirect } from "react-router-dom"
-import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button } from "@material-ui/core"
+import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button, FormControl } from "@material-ui/core"
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
 import PhotoPreview from "./PhotoPreview"
 
 const cloudUpPreset = "qamybs5i"
 const cloudUpAddr = "https://api.cloudinary.com/v1_1/tvos-marketplace/upload"
+
+const style = {
+    bottomMargin: {
+        marginBottom: 40
+    }
+}
 
 export default class PostItem extends Component {
     state = {
@@ -44,6 +50,12 @@ export default class PostItem extends Component {
         }
     }
 
+    componentDidUpdate(){
+        if (this.state.categorie === "1"){
+            let disablePrice = true
+        }
+    }
+
     submitPost = (e) => {
         e.preventDefault()
         api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.photoArray).then(response => {
@@ -57,7 +69,6 @@ export default class PostItem extends Component {
         this.setState(({ pictureURL }) => ({
             pictureURL: this.state.pictureURL.concat(files)
         }))
-        // this.state.pictureURL.map(picture => {this.handleImageUpload(picture)})
     }
 
     uploadImages = () => {
@@ -94,23 +105,24 @@ export default class PostItem extends Component {
         }
         return (
             <React.Fragment>
+                <div style={{ backgroundColor: "rgba(255, 255, 255, .5)", width: "60vw", height: "auto", margin: "auto", padding: 50 }}>
                 <Typography variant="display3" align="center">Post A New Item</Typography>
                 <Grid container xs={12} direction="column" justify="center">
                     <form onSubmit={(e) => this.submitPost(e)}>
-                        <Grid item sm align="center">
-                            <InputLabel htmlFor="title">Title: </InputLabel>
-                            <TextField onChange={this.handleFieldChange} id="title" type="text" required autoFocus />
+                        <Grid item sm align="center" style={style.bottomMargin}>
+                            {/* <InputLabel htmlFor="title">Title: </InputLabel> */}
+                            <TextField onChange={this.handleFieldChange} id="title" type="text" required autoFocus label="Title" />
                         </Grid>
-                        <Grid item sm align="center">
-                            <InputLabel htmlFor="price">Price: $</InputLabel>
-                            <TextField onChange={this.handleFieldChange} id="price" type="text" required />
+                            <Grid item sm align="center" style={style.bottomMargin}>
+                            {/* <InputLabel htmlFor="price">Price: $</InputLabel> */}
+                            <TextField onChange={this.handleFieldChange} id="price" type="text" label="Price" />
                         </Grid>
-                        <Grid item sm align="center">
-                            <InputLabel htmlFor="location">Specific Location: </InputLabel>
-                            <TextField onChange={this.handleFieldChange} id="location" type="text" required />
+                            <Grid item sm align="center" style={style.bottomMargin}>
+                            {/* <InputLabel htmlFor="location">Specific Location: </InputLabel> */}
+                            <TextField onChange={this.handleFieldChange} id="location" type="text" required label="Specific Location"/>
                         </Grid>
-                        <Grid item sm align="center">
-                            <InputLabel htmlFor="category">Item Category: </InputLabel>
+                            <Grid item sm align="center" style={style.bottomMargin}>
+                                <InputLabel htmlFor="category" style={style.bottomMargin, {marginRight: 40}}>Item Category: </InputLabel>
                             <Select ref="category" id="category" onChange={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} value={this.state.category}>
                                 <MenuItem value="1">Free</MenuItem>
                                 <MenuItem value="2">Produce</MenuItem>
@@ -119,11 +131,15 @@ export default class PostItem extends Component {
                                 <MenuItem value="5">Request</MenuItem>
                             </Select>
                         </Grid>
-                        <Grid item sm align="center">
-                            <InputLabel htmlFor="description">Description</InputLabel>
-                            <TextField onChange={this.handleFieldChange} id="description" rows="10" />
+                            <Grid item sm align="center" style={style.bottomMargin}>
+                            {/* <InputLabel htmlFor="description">Description</InputLabel> */}
+                            <FormControl>
+                                <div >
+                                    <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "80%"}}/>
+                            </div>
+                            </FormControl>
                         </Grid>
-                        <Grid item md align="center">
+                            <Grid item md align="center" style={style.bottomMargin}>
                             <Dropzone style={{height:100, width:200, border:"1px dashed grey"}}
                                 multiple
                                 accept="image/*"
@@ -134,16 +150,17 @@ export default class PostItem extends Component {
                                 {this.state.pictureURL === [] ? null :
                                     <div>
                                         {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
-                                        {this.state.pictureURL.map(photo => {return <PhotoPreview url={photo.preview}/>})}
+                                        {this.state.pictureURL.map(photo => {return <div style={{marginTop:30}}><PhotoPreview url={photo.preview}/></div>})}
                                     </div>}
-                                    <Button variant="outlined" onClick={this.uploadImages}>Upload Photos</Button>
+                                    <Button variant="outlined" onClick={this.uploadImages} style={{marginTop:20}, style.bottomMargin}>Upload Photos</Button>
                             </div>
                         </Grid>
                         <Grid item sm align="center">
-                            <Button variant="raised" color="primary" onClick={this.submitPost} ><Typography variant="headline">Post Item</Typography></Button>
+                            <Button variant="raised" color="primary" onClick={this.submitPost} ><Typography variant="headline" style={{color:"white"}}>Post Item</Typography></Button>
                         </Grid>
                     </form>
                 </Grid>
+                </div>
             </React.Fragment>
         )
     }
