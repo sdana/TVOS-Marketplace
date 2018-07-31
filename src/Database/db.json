@@ -73,7 +73,7 @@
       "categorieId": "1",
       "description": "oaiejfoiajef",
       "regionId": "east",
-      "photo": "",
+      "photo": [],
       "id": 4
     },
     {
@@ -84,7 +84,7 @@
       "categorieId": "3",
       "description": "uyguyguyg",
       "regionId": "west",
-      "photo": "",
+      "photo": [],
       "id": 10
     },
     {
@@ -95,7 +95,7 @@
       "categorieId": "4",
       "description": "This is a thing that does awesome shit with wine. You should totally buy this thing. $100/obo",
       "regionId": "middle",
-      "photo": "",
+      "photo": [],
       "id": 11
     },
     {
@@ -106,7 +106,7 @@
       "categorieId": "3",
       "description": "This is a tractor. You can't see it, but it's a tractor. Buy this tractor for $2",
       "regionId": "middle",
-      "photo": "",
+      "photo": [],
       "id": 12
     },
     {
@@ -117,7 +117,7 @@
       "categorieId": "1",
       "description": "this thing cost nothing",
       "regionId": "middle",
-      "photo": "",
+      "photo": [],
       "id": 13
     },
     {
@@ -128,7 +128,7 @@
       "categorieId": "2",
       "description": "things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things things of things ",
       "regionId": "middle",
-      "photo": "",
+      "photo": [],
       "id": 18
     },
     {
@@ -139,7 +139,7 @@
       "categorieId": "4",
       "description": "wine or free?",
       "regionId": "middle",
-      "photo": "",
+      "photo": [],
       "id": 19
     },
     {
@@ -184,6 +184,17 @@
         "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533056434/gwjg9hdd2f8x2xn3fkty.jpg"
       ],
       "id": 25
+    },
+    {
+      "userId": 1,
+      "title": "Free Thing",
+      "price": "$dollar",
+      "location": "nashville",
+      "categorieId": "1",
+      "description": "free thing",
+      "regionId": "middle",
+      "photo": [],
+      "id": 26
     }
   ],
   "categories": [

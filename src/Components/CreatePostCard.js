@@ -45,34 +45,67 @@ export default class MakePostCard extends Component {
         const { classes } = props;
     }
     render() {
-
-        return (
-            // <Grid item>
-            <Link to={`/viewPost/${this.props.card.id}`} style={{textDecoration:"none"}}>
-            <div id={this.props.card.id}>
-                <Card style={styles.card}>
-                        <CardMedia style={styles.image} image={(this.props.card.photo) ? this.props.card.photo[0] : "https://images.unsplash.com/photo-1491924778227-f225b115dd5f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9cf2d396b2e5cb94bc449e2d91412ffe&auto=format&fit=crop&w=1350&q=80"} />
-                    <CardContent>
-                        <Typography variant="headline" style={styles.hideOver}>
-                            {this.props.card.title}
+        if (this.props.card.categorieId === "1"){
+            return (
+                // <Grid item>
+                <Link to={`/viewPost/${this.props.card.id}`} style={{ textDecoration: "none" }}>
+                    <div id={this.props.card.id}>
+                        <Card style={styles.card}>
+                            <CardMedia style={styles.image} image={(this.props.card.photo.length) ? this.props.card.photo[0] : "https://images.unsplash.com/photo-1491924778227-f225b115dd5f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9cf2d396b2e5cb94bc449e2d91412ffe&auto=format&fit=crop&w=1350&q=80"} />
+                            <CardContent>
+                                <Typography variant="headline" style={styles.hideOver}>
+                                    {this.props.card.title}
+                                </Typography>
+                                <Typography variant="title" component="h2" style={styles.hideOver}>
+                                    Free
                         </Typography>
-                            <Typography variant="title" component="h2" style={styles.hideOver}>
-                            ${this.props.card.price}
-                        </Typography>
-                            <Typography color="textSecondary" style={styles.hideOver}>
-                            {this.props.card.location}
-                        </Typography>
-                        {/* <Typography color="textSecondary">
+                                <Typography color="textSecondary" style={styles.hideOver}>
+                                    {this.props.card.location}
+                                </Typography>
+                                {/* <Typography color="textSecondary">
                             {this.props.card.category}
                         </Typography>
                         <Typography component="p" style={{overflow: "wrap"}}>
                             {this.props.card.description}
                         </Typography> */}
-                    </CardContent>
-                </Card>
-            </div >
-            </Link>
-            // </Grid>
-        )
+                            </CardContent>
+                        </Card>
+                    </div >
+                </Link>
+
+                // </Grid>
+            )
+        }
+        else {
+            return (
+                // <Grid item>
+                <Link to={`/viewPost/${this.props.card.id}`} style={{ textDecoration: "none" }}>
+                    <div id={this.props.card.id}>
+                        <Card style={styles.card}>
+                            <CardMedia style={styles.image} image={(this.props.card.photo.length) ? this.props.card.photo[0] : "https://images.unsplash.com/photo-1491924778227-f225b115dd5f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9cf2d396b2e5cb94bc449e2d91412ffe&auto=format&fit=crop&w=1350&q=80"} />
+                            <CardContent>
+                                <Typography variant="headline" style={styles.hideOver}>
+                                    {this.props.card.title}
+                                </Typography>
+                                <Typography variant="title" component="h2" style={styles.hideOver}>
+                                    {this.props.card.price}
+                        </Typography>
+                                <Typography color="textSecondary" style={styles.hideOver}>
+                                    {this.props.card.location}
+                                </Typography>
+                                {/* <Typography color="textSecondary">
+                            {this.props.card.category}
+                        </Typography>
+                        <Typography component="p" style={{overflow: "wrap"}}>
+                            {this.props.card.description}
+                        </Typography> */}
+                            </CardContent>
+                        </Card>
+                    </div >
+                </Link>
+
+                // </Grid>
+            )
+        }
     }
 }
