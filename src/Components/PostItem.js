@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom"
 import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button } from "@material-ui/core"
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
+import PhotoPreview from "./PhotoPreview"
 
 const cloudUpPreset = "qamybs5i"
 const cloudUpAddr = "https://api.cloudinary.com/v1_1/tvos-marketplace/upload"
@@ -17,7 +18,8 @@ export default class PostItem extends Component {
         location: "",
         redirect: false,
         category: "1",
-        pictureURL: ""
+        pictureURL: [],
+        photoArray: []
     }
 
     handleFieldChange = evt => {
@@ -44,18 +46,25 @@ export default class PostItem extends Component {
 
     submitPost = (e) => {
         e.preventDefault()
-        api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.pictureURL).then(response => {
+        api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.photoArray).then(response => {
             alert("Post Successful!")
             this.setState({ redirect: true })
         })
     }
 
     onImageDrop(files) {
-        this.setState({
-            pictureURL: files[0]
-        })
+        // console.log(files[0])
+        this.setState(({ pictureURL }) => ({
+            pictureURL: this.state.pictureURL.concat(files)
+        }))
+        // this.state.pictureURL.map(picture => {this.handleImageUpload(picture)})
+    }
 
-        this.handleImageUpload(files[0])
+    uploadImages = () => {
+        this.state.pictureURL.map(photo => {
+            console.log("MAPPING")
+           this.handleImageUpload(photo)
+        })
     }
 
     handleImageUpload(file) {
@@ -69,9 +78,9 @@ export default class PostItem extends Component {
             }
 
             if (response.body.secure_url !== '') {
-                this.setState({
-                    pictureURL: response.body.secure_url
-                });
+                this.setState(({ photoArray }) => ({
+                    photoArray: this.state.photoArray.concat(response.body.secure_url)
+                }))
             }
         });
     }
@@ -116,16 +125,18 @@ export default class PostItem extends Component {
                         </Grid>
                         <Grid item md align="center">
                             <Dropzone style={{height:100, width:200, border:"1px dashed grey"}}
-                                multiple={false}
+                                multiple
                                 accept="image/*"
                                 onDrop={this.onImageDrop.bind(this)}>
-                                <Typography variant="caption">Drop an image or click to select a file to upload.</Typography>
+                                <Typography variant="caption" style={{paddingTop:"15%"}}>Drop an image or click to select a file to upload.</Typography>
                             </Dropzone>
                             <div>
-                                {this.state.pictureURL === '' ? null :
+                                {this.state.pictureURL === [] ? null :
                                     <div>
-                                        <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/>
+                                        {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
+                                        {this.state.pictureURL.map(photo => {return <PhotoPreview url={photo.preview}/>})}
                                     </div>}
+                                    <Button variant="outlined" onClick={this.uploadImages}>Upload Photos</Button>
                             </div>
                         </Grid>
                         <Grid item sm align="center">
