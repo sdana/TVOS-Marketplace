@@ -134,7 +134,7 @@ export default class PostItem extends Component {
         return (
             <React.Fragment>
                 <div style={{ backgroundColor: "rgba(255, 255, 255, .5)", width: "60vw", height: "auto", margin: "auto", padding: 50 }}>
-                    <Typography variant="display3" align="center">Post A New Item</Typography>
+                    <Typography variant="display3" align="center" style={{color:"white", marginBottom:40}}>Post A New Item</Typography>
                     <Grid container xs={12} direction="column" justify="center">
                         <form onSubmit={(e) => this.submitPost(e)}>
                             <Grid item sm align="center" style={style.bottomMargin}>
@@ -175,9 +175,9 @@ export default class PostItem extends Component {
                             </Dropzone>
                             <div>
                                 {this.state.pictureURL === [] ? null :
-                                    <div>
+                                        <div style={{display: "flex", direction:"row", justifyContent:"flex-start", flexWrap:"wrap"}}>
                                         {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
-                                        {this.state.pictureURL.map(photo => { return <div style={{ marginTop: 30 }}><PhotoPreview url={photo.preview} /></div> })}
+                                        {this.state.pictureURL.map(photo => { return <div style={{ margin: "5px 15px"}}><PhotoPreview url={photo.preview} /></div> })}
                                     </div>}
                                 <Button variant="outlined" onClick={this.uploadImages} style={{ marginTop: 20, marginBottom:40 }}>Upload Photos</Button>
                             </div>

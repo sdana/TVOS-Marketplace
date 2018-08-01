@@ -4,7 +4,7 @@ import { Carousel } from 'react-responsive-carousel'
 import api from "./Api"
 import Typography from "@material-ui/core/Typography"
 // import ReturnImg from "./ReturnImg"
-// import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Grid from "@material-ui/core/Grid"
 
 

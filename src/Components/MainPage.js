@@ -57,10 +57,10 @@ getSpecRegionPosts = (region, order) => {
                         <Typography variant="display3" style={{color:"White"}}>TVOS Marketplace</Typography>
                         <Typography variant="headline">{`Posts from ${this.state.region} TN`}</Typography>
                     </Grid>
-                    <Grid container xs={24} direction="row" justify="center">
+                    <Grid container xs={12} direction="row" justify="center">
                         <Grid item align="center">
                             <InputLabel htmlFor="region" style={{ marginRight: 20 }}>Select Region:</InputLabel>
-                            <Select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={this.state.region}>
+                            <Select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={(this.state.region) ? this.state.region : null}>
                                 <MenuItem value="east">East</MenuItem>
                                 <MenuItem value="middle">Middle</MenuItem>
                                 <MenuItem value="west">West</MenuItem>
@@ -75,7 +75,7 @@ getSpecRegionPosts = (region, order) => {
                         </Grid>
                     </Grid>
                     <Grid container lg={12} direction="row" justify="flex-start">
-                        {this.state.allPosts.map(post => <Grid item xs={12} sm={6} lg={4} xl={2}><CreatePostCard key={post.id} card={post} /></Grid>)}
+                        {this.state.allPosts.map(post => <Grid item xs={12} sm={6} lg={4} xl={2} key={post.id} ><CreatePostCard  card={post} /></Grid>)}
                     </Grid>
                 </React.Fragment>
             )
