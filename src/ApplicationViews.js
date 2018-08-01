@@ -6,6 +6,8 @@ import PostItem from "./Components/PostItem"
 import Dashboard from "./Components/Dashboard"
 import MainPage from "./Components/MainPage"
 import Register from "./Components/Registration"
+import ViewPost from "./Components/viewPost"
+
 
 export default class ApplicationViews extends Component {
     state = {
@@ -48,6 +50,9 @@ export default class ApplicationViews extends Component {
                         }
                         }
                     />
+                    <Route path="/viewPost/:postId" render={ props => {
+                        return (<ViewPost {...props}/>)
+                    }}/>
                 </React.Fragment>
             )
         }

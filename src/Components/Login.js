@@ -19,7 +19,15 @@ const style = {
     },
     button: {
         marginRight: 50,
-    }
+    },
+    background: {
+        backgroundImage: "url(https://images.unsplash.com/photo-1464788061904-b026adb5422b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4a6aa5b3608cb4e7f5a6f5d0be6e45e1&auto=format&fit=crop&w=1950&q=80)",
+        width: "100%",
+        height: "auto"
+    },
+    fullHeight: {
+        height: "100vw"
+    },
 }
 
 export default class Login extends Component {
@@ -64,46 +72,52 @@ export default class Login extends Component {
         } else {
             return (
                 <React.Fragment>
-                    <Grid container direction="column" alignContent="center" alignItems="center" grid-xs-12 justify="space-between">
-                    <form onSubmit={this.handleLogin}>
-                        <Typography variant="display4" align="center" color="default" gutterBottom={true}>Please sign in</Typography>
-                        <Grid item align="center">
-                        <Input
-                            onChange={this.handleFieldChange}
-                            type="text"
-                            id="username"
-                            placeholder="Username"
-                            required
-                            autoFocus
-                            style={style.input}
-                        />
-                        </Grid>
-                        {/* <label htmlFor="email">E-mail</label> */}
-                        <Grid item align="center">
-                        <Input
-                            onChange={this.handleFieldChange}
-                            type="email"
-                            id="email"
-                            placeholder="Email"
-                            required
-                            style={style.input}
-                        />
-                        </Grid>
-                        {/* <label htmlFor="password">Password</label> */}
-                        <Grid item align="center">
-                        <Input
-                            onChange={this.handleFieldChange}
-                            type="password"
-                            id="password"
-                            placeholder="Password"
-                            required
-                            style={style.input}
-                        />
-                        </Grid>
-                        <Grid item align="center">
-                            <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="text" size="small"><h4>New User?</h4></Button></Link>
-                        </Grid>
-                    </form>
+                    <Grid container direction="column" alignContent="center" alignItems="center" grid-xs-12 justify="center">
+                    <form onSubmit={this.handleLogin} style={{height: "50vh"}}>
+                        <Typography variant="display3" align="center" color="inherit" gutterBottom={true} style={{color: "white", marginBottom:100, marginTop:80}}>Welcome to TVOS Marketplace</Typography>
+                            <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", height: "auto", margin: "auto",paddingLeft: 20, paddingRight: 80, paddingTop: 20, paddingBottom: 20 }}>
+                                <Typography variant="display1" align="center" color="default" gutterBottom={true}>Please sign in</Typography>
+                                <Grid item align="center">
+                                <TextField
+                                    onChange={this.handleFieldChange}
+                                    type="text"
+                                    id="username"
+                                    label="Username"
+                                    required
+                                    autoFocus
+                                    style={style.input}
+                                    fullWidth
+                                />
+                                </Grid>
+                                {/* <label htmlFor="email">E-mail</label> */}
+                                <Grid item align="center">
+                                <TextField
+                                    onChange={this.handleFieldChange}
+                                    type="email"
+                                    id="email"
+                                    label="Email"
+                                    required
+                                    style={style.input}
+                                    fullWidth
+                                />
+                                </Grid>
+                                {/* <label htmlFor="password">Password</label> */}
+                                <Grid item align="center">
+                                <TextField
+                                    onChange={this.handleFieldChange}
+                                    type="password"
+                                    id="password"
+                                    label="Password"
+                                    required
+                                    style={style.input}
+                                    fullWidth
+                                />
+                                </Grid>
+                                <Grid item align="center">
+                                    <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="flat" size="small"><h4>New User?</h4></Button></Link>
+                                </Grid>
+                            </div>
+                        </form>
                     </Grid>
                 </React.Fragment>
             )

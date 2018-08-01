@@ -48,6 +48,20 @@
       "password": "testing",
       "region": "east",
       "id": 7
+    },
+    {
+      "username": "skgilmore",
+      "email": "skg.gilmore@gmail.com",
+      "password": "password",
+      "region": "middle",
+      "id": 8
+    },
+    {
+      "username": "cardkd12",
+      "email": "cardkeisha@gmail.com",
+      "password": "Offtherails0",
+      "region": "middle",
+      "id": 9
     }
   ],
   "posts": [
@@ -59,52 +73,8 @@
       "categorieId": "1",
       "description": "oaiejfoiajef",
       "regionId": "east",
-      "photo": "",
+      "photo": [],
       "id": 4
-    },
-    {
-      "userId": 1,
-      "title": "Wine stuff",
-      "price": "a millino",
-      "location": "nashville",
-      "categorieId": "4",
-      "description": "get drunk",
-      "regionId": "middle",
-      "photo": "",
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "title": "jens stuff",
-      "price": "Free",
-      "location": "nss",
-      "categorieId": "1",
-      "description": "its not ten, its free",
-      "regionId": "middle",
-      "photo": "",
-      "id": 7
-    },
-    {
-      "userId": 1,
-      "title": "newest item",
-      "price": "oiajef",
-      "location": "oiajeifoj",
-      "categorieId": "3",
-      "description": "aeoifjaoiejf",
-      "regionId": "middle",
-      "photo": "",
-      "id": 8
-    },
-    {
-      "userId": 1,
-      "title": "Newer than new",
-      "price": "very new, very expensive",
-      "location": "ca$hville",
-      "categorieId": "1",
-      "description": "",
-      "regionId": "middle",
-      "photo": "",
-      "id": 9
     },
     {
       "userId": 6,
@@ -114,8 +84,117 @@
       "categorieId": "3",
       "description": "uyguyguyg",
       "regionId": "west",
-      "photo": "",
+      "photo": [],
       "id": 10
+    },
+    {
+      "userId": 1,
+      "title": "Wine Thing",
+      "price": "100/obo",
+      "location": "Nashville",
+      "categorieId": "4",
+      "description": "This is a thing that does awesome shit with wine. You should totally buy this thing. $100/obo",
+      "regionId": "middle",
+      "photo": [],
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "title": "Testing",
+      "price": "8",
+      "location": "nowhere",
+      "categorieId": "1",
+      "description": "Photos!",
+      "regionId": "middle",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533055775/saow8h6dxfmeqayz01qh.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533055776/epcggj0g6htcwd4qxibd.jpg"
+      ],
+      "id": 23
+    },
+    {
+      "userId": 1,
+      "title": "Check it out",
+      "price": "50",
+      "location": "Nashville",
+      "categorieId": "3",
+      "description": "photos!",
+      "regionId": "middle",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533055991/f8x06hb4lanzthynnmtw.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533055991/mvz1ow8rj1xliilowksl.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533055991/o0uimk5ue40fiaz2ixnt.jpg"
+      ],
+      "id": 24
+    },
+    {
+      "userId": 1,
+      "title": "A Few More Pictures",
+      "price": "100",
+      "location": "There",
+      "categorieId": "2",
+      "description": "",
+      "regionId": "middle",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533056434/h3cl83wy0fwovbrmpd1j.png",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533056434/gwjg9hdd2f8x2xn3fkty.jpg"
+      ],
+      "id": 25
+    },
+    {
+      "userId": 1,
+      "title": "Free Thing",
+      "price": "dollar",
+      "location": "nashville",
+      "categorieId": "1",
+      "description": "free thing",
+      "regionId": "middle",
+      "photo": [],
+      "id": 26
+    },
+    {
+      "userId": 1,
+      "title": "This is damn good wine!",
+      "price": "45",
+      "location": "Nashville",
+      "categorieId": "4",
+      "description": "Good wine to drink to get drunk on",
+      "regionId": "middle",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533063761/nkdwuhuefzsodlbwv3qp.jpg"
+      ],
+      "id": 27
+    },
+    {
+      "userId": 1,
+      "title": "no photo test",
+      "price": "10",
+      "location": "nash",
+      "categorieId": "4",
+      "description": "just another test again",
+      "regionId": "middle",
+      "photo": [],
+      "email": "",
+      "phone": "",
+      "id": 29
+    },
+    {
+      "userId": 1,
+      "title": "Contact Test",
+      "price": "50,000",
+      "location": "South Nashville",
+      "categorieId": "4",
+      "description": "This is a bunch of grapes for sale. I have many types of grapes, Malbec, Cab Sauv, Shiraz, etc. Literally any type of grape your ass could ever possibly want. So what's stopping you, hit me up right now and grab some of this dope shit. Make some badass wine out of it so your lame ass can make some new friends to get drunk with. DO IT!",
+      "regionId": "middle",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533134178/u7tmdm60ul8ekms2n88x.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533134178/nh0utb3hyuhqkph6hakf.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533134178/uhftniwwqibe8qsluv9l.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533134178/iotnu5cwxhv97l9ya3zn.jpg"
+      ],
+      "email": "seth.dana@gmail.com",
+      "phone": "615-496-6754",
+      "id": 30
     }
   ],
   "categories": [
