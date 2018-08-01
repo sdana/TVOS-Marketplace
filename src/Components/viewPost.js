@@ -42,6 +42,7 @@ export default class ViewPost extends Component {
                 </Carousel>
                 </Grid>
                 <Typography variant="display1">{this.state.post.description}</Typography>
+                <Typography variant="headline" style={{marginTop:30}}>Contact: <Typography variant="subheading">{(this.state.post.email) ? this.state.post.email : "No Email"}</Typography> <Typography variant="subheading">{(this.state.post.phone) ? this.state.post.phone : "No Phone Number"}</Typography></Typography>
             </div>
             </Grid>
             </React.Fragment>

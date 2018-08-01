@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import CreatePostCard from "./CreatePostCard"
-import { Grid, Typography, Select, InputLabel, MenuItem } from "@material-ui/core"
+import { Grid, Typography, Select, InputLabel, MenuItem, TextField, InputAdornment } from "@material-ui/core"
+import Icon from "@material-ui/core/Icon"
+import Search from "@material-ui/icons/Search"
 
 const style= {
     card: {
@@ -16,6 +18,12 @@ export default class MainPage extends Component {
         allPosts: [],
         user: {},
         order: "desc"
+    }
+
+    handleFieldChange = evt => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
     }
 
     componentDidMount() {
@@ -42,30 +50,67 @@ getSpecRegionPosts = (region, order) => {
 }
 
     render() {
-        return(
-            <React.Fragment>
-            <Grid item align="center">
-                <Typography variant="display3">TVOS Marketplace</Typography>
-                <Typography variant="headline">{`All posts from ${this.state.region} TN`}</Typography>
-            </Grid>
-            <Grid item align="center">
-                <InputLabel htmlFor="region" style={{marginRight:20}}>Select Region:</InputLabel>
-                <Select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={this.state.region}>
-                    <MenuItem value="east">East</MenuItem>
-                    <MenuItem value="middle">Middle</MenuItem>
-                    <MenuItem value="west">West</MenuItem>
-                    <MenuItem value="all">All</MenuItem>
-                </Select>
-                <InputLabel htmlFor="order" style={{marginRight:20, marginLeft: 30}}>Show:</InputLabel>
-                <Select id="order" onChange={(e) => this.getSpecRegionPosts(this.state.region, e.target.value)} defaultValue="desc" value={this.state.order}>
-                    <MenuItem value="desc">Newest First</MenuItem>
-                    <MenuItem value="asc">Oldest First</MenuItem>
-                </Select>
-                </Grid>
-                <Grid container lg={12} direction="row" justify="flex-start">
-                    {this.state.allPosts.map(post => <Grid item xs={12} sm={6} lg={4} xl={2}><CreatePostCard key={post.id} card={post} /></Grid>)}
-                </Grid>
-            </React.Fragment>
-        )
+        if (!this.state.searchString){
+            return (
+                <React.Fragment>
+                    <Grid item align="center">
+                        <Typography variant="display3">TVOS Marketplace</Typography>
+                        <Typography variant="headline">{`All posts from ${this.state.region} TN`}</Typography>
+                    </Grid>
+                    <Grid container xs={24} direction="row" justify="center">
+                        <Grid item align="center">
+                            <InputLabel htmlFor="region" style={{ marginRight: 20 }}>Select Region:</InputLabel>
+                            <Select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={this.state.region}>
+                                <MenuItem value="east">East</MenuItem>
+                                <MenuItem value="middle">Middle</MenuItem>
+                                <MenuItem value="west">West</MenuItem>
+                                <MenuItem value="all">All</MenuItem>
+                            </Select>
+                            <InputLabel htmlFor="order" style={{ marginRight: 20, marginLeft: 30 }}>Show:</InputLabel>
+                            <Select id="order" onChange={(e) => this.getSpecRegionPosts(this.state.region, e.target.value)} defaultValue="desc" value={this.state.order}>
+                                <MenuItem value="desc">Newest First</MenuItem>
+                                <MenuItem value="asc">Oldest First</MenuItem>
+                            </Select>
+                            <div style={{ display: "inline-block", marginLeft: 30 }}><Grid><TextField id="searchString" label="Search" style={{ marginTop: 20 }} onChange={this.handleFieldChange}></TextField></Grid></div>
+                        </Grid>
+                    </Grid>
+                    <Grid container lg={12} direction="row" justify="flex-start">
+                        {this.state.allPosts.map(post => <Grid item xs={12} sm={6} lg={4} xl={2}><CreatePostCard key={post.id} card={post} /></Grid>)}
+                    </Grid>
+                </React.Fragment>
+            )
+        }
+        else {
+            let searchArray = this.state.allPosts.filter((post) => { console.log(post.title == this.state.searchString);return post.title.toLowerCase().match(this.state.searchString)})
+            console.log(searchArray)
+            return (
+                <React.Fragment>
+                    <Grid item align="center">
+                        <Typography variant="display3">TVOS Marketplace</Typography>
+                        <Typography variant="headline">{`All posts from ${this.state.region} TN`}</Typography>
+                    </Grid>
+                    <Grid container xs={24} direction="row" justify="center">
+                        <Grid item align="center">
+                            <InputLabel htmlFor="region" style={{ marginRight: 20 }}>Select Region:</InputLabel>
+                            <Select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={this.state.region}>
+                                <MenuItem value="east">East</MenuItem>
+                                <MenuItem value="middle">Middle</MenuItem>
+                                <MenuItem value="west">West</MenuItem>
+                                <MenuItem value="all">All</MenuItem>
+                            </Select>
+                            <InputLabel htmlFor="order" style={{ marginRight: 20, marginLeft: 30 }}>Show:</InputLabel>
+                            <Select id="order" onChange={(e) => this.getSpecRegionPosts(this.state.region, e.target.value)} defaultValue="desc" value={this.state.order}>
+                                <MenuItem value="desc">Newest First</MenuItem>
+                                <MenuItem value="asc">Oldest First</MenuItem>
+                            </Select>
+                            <div style={{ display: "inline-block", marginLeft: 30 }}><Grid><TextField id="searchString" label="Search" style={{ marginTop: 20 }} onChange={this.handleFieldChange}></TextField></Grid></div>
+                        </Grid>
+                    </Grid>
+                    <Grid container lg={12} direction="row" justify="flex-start">
+                            {searchArray.map(post => <Grid item xs={12} sm={6} lg={4} xl={2}><CreatePostCard key={post.id} card={post} /></Grid>)}
+                    </Grid>
+                </React.Fragment>
+            )
+        }
     }
 }
