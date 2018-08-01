@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { render } from "react-dom"
+// import { render } from "react-dom"
 import { Carousel } from 'react-responsive-carousel'
 import api from "./Api"
 import Typography from "@material-ui/core/Typography"
-import ReturnImg from "./ReturnImg"
-import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
+// import ReturnImg from "./ReturnImg"
+// import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Grid from "@material-ui/core/Grid"
 
 
@@ -35,7 +35,7 @@ export default class ViewPost extends Component {
                     {this.state.post.photo.map(photo => {
                         return (
                             <div>
-                                <img src={photo}/>
+                                <img src={photo} alt="post photos"/>
                             </div>
                         )
                     })}

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import { Redirect } from "react-router-dom"
-import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button, FormControl } from "@material-ui/core"
+import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button } from "@material-ui/core"
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
 import PhotoPreview from "./PhotoPreview"
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { withStyles } from '@material-ui/core/styles';
+// import { withStyles } from '@material-ui/core/styles';
 
 
 const cloudUpPreset = "qamybs5i"
@@ -20,12 +20,12 @@ const style = {
     }
 }
 
-const styles = theme => ({
-    close: {
-        width: theme.spacing.unit * 4,
-        height: theme.spacing.unit * 4,
-    },
-});
+// const styles = theme => ({
+//     close: {
+//         width: theme.spacing.unit * 4,
+//         height: theme.spacing.unit * 4,
+//     },
+// });
 
 export default class PostItem extends Component {
     state = {
@@ -72,20 +72,20 @@ export default class PostItem extends Component {
         this.setState({ open: false });
     };
 
-    componentDidUpdate() {
-        if (this.state.categorie === "1") {
-            let disablePrice = true
-        }
-    }
+    // componentDidUpdate() {
+    //     if (this.state.categorie === "1") {
+    //         let disablePrice = true
+    //     }
+    // }
 
     submitPost = (e) => {
         e.preventDefault()
-        if (this.state.category === "1"){
-            let price = "Free"
-        }
-        else {
-            let price = this.state.price
-        }
+        // if (this.state.category === "1"){
+        //     let price = "Free"
+        // }
+        // else {
+        //     let price = this.state.price
+        // }
         api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.photoArray, this.state.email, this.state.phone).then(response => {
             alert("Post Successful!")
             this.setState({ redirect: true })
@@ -101,7 +101,6 @@ export default class PostItem extends Component {
 
     uploadImages = () => {
         this.state.pictureURL.map(photo => {
-            console.log("MAPPING")
             this.handleImageUpload(photo)
         })
     }
@@ -151,7 +150,7 @@ export default class PostItem extends Component {
                                 <TextField onChange={this.handleFieldChange} id="location" type="text" required label="Specific Location" />
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
-                                <InputLabel htmlFor="category" style={style.bottomMargin, {marginRight: 40}}>Item Category: </InputLabel>
+                                <InputLabel htmlFor="category" style={{marginBottom:40, marginRight: 40}}>Item Category: </InputLabel>
                             <Select ref="category" id="category" onChange={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} value={this.state.category}>
                                 <MenuItem value="1">Free</MenuItem>
                                 <MenuItem value="2">Produce</MenuItem>
@@ -180,7 +179,7 @@ export default class PostItem extends Component {
                                         {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
                                         {this.state.pictureURL.map(photo => { return <div style={{ marginTop: 30 }}><PhotoPreview url={photo.preview} /></div> })}
                                     </div>}
-                                <Button variant="outlined" onClick={this.uploadImages} style={{ marginTop: 20 }, style.bottomMargin}>Upload Photos</Button>
+                                <Button variant="outlined" onClick={this.uploadImages} style={{ marginTop: 20, marginBottom:40 }}>Upload Photos</Button>
                             </div>
                     </Grid>
                     <Grid item sm align="center">

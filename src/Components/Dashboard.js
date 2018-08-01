@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import api from "./Api"
-import PostCard from "./CreatePostCard"
+// import PostCard from "./CreatePostCard"
 import EnableEdit from "./EnableEdit"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"

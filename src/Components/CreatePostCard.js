@@ -1,14 +1,14 @@
 
 import React, { Component } from 'react'
-import { Grid } from "@material-ui/core"
+// import { Grid } from "@material-ui/core"
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardMedia from "@material-ui/core/CardMedia"
-import { withStyles } from '@material-ui/core/styles';
-import SvgIcon from "@material-ui/core/SvgIcon"
-import AttachMoney from "@material-ui/icons/AttachMoney"
-import Done from "@material-ui/icons/Done"
+// import { withStyles } from '@material-ui/core/styles';
+// import SvgIcon from "@material-ui/core/SvgIcon"
+// import AttachMoney from "@material-ui/icons/AttachMoney"
+// import Done from "@material-ui/icons/Done"
 import { Link } from "react-router-dom"
 
 
@@ -41,10 +41,7 @@ const styles = {
 };
 
 export default class MakePostCard extends Component {
-    constructor(props) {
-        super(props)
-        const { classes } = props;
-    }
+
     render() {
         if (this.props.card.categorieId === "1"){
             return (

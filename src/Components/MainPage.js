@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import CreatePostCard from "./CreatePostCard"
-import { Grid, Typography, Select, InputLabel, MenuItem, TextField, InputAdornment } from "@material-ui/core"
-import Icon from "@material-ui/core/Icon"
-import Search from "@material-ui/icons/Search"
+import { Grid, Typography, Select, InputLabel, MenuItem, TextField } from "@material-ui/core"
+// import Icon from "@material-ui/core/Icon"
+// import Search from "@material-ui/icons/Search"
 
-const style= {
-    card: {
-        minWidth: 275,
-        margin: 40,
-        maxHeight: 361
-    }
-}
+// const style= {
+//     card: {
+//         minWidth: 275,
+//         margin: 40,
+//         maxHeight: 361
+//     }
+// }
 
 export default class MainPage extends Component {
     state = {
@@ -54,8 +54,8 @@ getSpecRegionPosts = (region, order) => {
             return (
                 <React.Fragment>
                     <Grid item align="center">
-                        <Typography variant="display3">TVOS Marketplace</Typography>
-                        <Typography variant="headline">{`All posts from ${this.state.region} TN`}</Typography>
+                        <Typography variant="display3" style={{color:"White"}}>TVOS Marketplace</Typography>
+                        <Typography variant="headline">{`Posts from ${this.state.region} TN`}</Typography>
                     </Grid>
                     <Grid container xs={24} direction="row" justify="center">
                         <Grid item align="center">
@@ -87,7 +87,7 @@ getSpecRegionPosts = (region, order) => {
                 <React.Fragment>
                     <Grid item align="center">
                         <Typography variant="display3">TVOS Marketplace</Typography>
-                        <Typography variant="headline">{`All posts from ${this.state.region} TN`}</Typography>
+                        <Typography variant="headline">Search Results</Typography>
                     </Grid>
                     <Grid container xs={24} direction="row" justify="center">
                         <Grid item align="center">

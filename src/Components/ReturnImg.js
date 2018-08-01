@@ -1,7 +1,7 @@
-import React from 'react'
+// import React from 'react'
 
-const ReturnImg = (props) => {
-    return <img src={props.photo} />
-}
+// const ReturnImg = (props) => {
+//     return <img src={props.photo} />
+// }
 
-export default ReturnImg
+// export default ReturnImg

@@ -2,12 +2,12 @@ import React, { Component } from "react"
 import { Link, Redirect } from "react-router-dom"
 import api from "./Api"
 import Button from "@material-ui/core/Button"
-import Input from "@material-ui/core/Input"
-import InputAdornment from "@material-ui/core/InputAdornment"
+// import Input from "@material-ui/core/Input"
+// import InputAdornment from "@material-ui/core/InputAdornment"
 import Grid from "@material-ui/core/Grid"
 import { Typography } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/styles';
+// import { withStyles } from '@material-ui/core/styles';
 import bcrypt from "bcrypt-nodejs"
 
 
