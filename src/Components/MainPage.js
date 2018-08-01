@@ -81,7 +81,7 @@ getSpecRegionPosts = (region, order) => {
             )
         }
         else {
-            let searchArray = this.state.allPosts.filter((post) => { console.log(post.title == this.state.searchString);return post.title.toLowerCase().match(this.state.searchString)})
+            let searchArray = this.state.allPosts.filter((post) => { return post.title.toLowerCase().match(this.state.searchString) || post.categorie.cat.toLowerCase().match(this.state.searchString) || post.location.toLowerCase().match(this.state.searchString) || post.description.toLowerCase().match(this.state.searchString)})
             console.log(searchArray)
             return (
                 <React.Fragment>
