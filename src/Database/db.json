@@ -62,6 +62,20 @@
       "password": "Offtherails0",
       "region": "middle",
       "id": 9
+    },
+    {
+      "username": "seth.dana",
+      "email": "seth@yahoo.com",
+      "password": "$2a$10$oOn56qnu7I21tweC3AJNOOi9pCyr4OevGucfUccSCSiBGnBliSgse",
+      "region": "west",
+      "id": 10
+    },
+    {
+      "username": "testAgain",
+      "email": "testtest@test.com",
+      "password": "$2a$10$YKDUNiOmppKnfTrtm9o7.e0tphs/oKMujmCSSfZax2VFKw1.t33dW",
+      "region": "east",
+      "id": 11
     }
   ],
   "posts": [

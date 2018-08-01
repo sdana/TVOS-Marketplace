@@ -9,6 +9,8 @@ import { Typography } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import InputLabel from "@material-ui/core/InputLabel"
 import Select from "@material-ui/core/Select"
+import bcrypt from "bcrypt-nodejs"
+
 
 const style = {
     input: {
@@ -43,7 +45,8 @@ export default class Registration extends Component {
                 //Check to see if username or email are already registered
                 if (nameResponse.length === 0 && emailResponse.length === 0) {
                     //if not, then register the user
-                    api.registerUser(this.state.username, this.state.email, this.state.password, this.state.region).then((response) => {
+                    let passHash = bcrypt.hashSync(this.state.password)
+                    api.registerUser(this.state.username, this.state.email, passHash, this.state.region).then((response) => {
                         // sessionStorage.setItem("credentials", response.id)
                         this.setState({redirect: true})
                         //Call login function to set state in parent component

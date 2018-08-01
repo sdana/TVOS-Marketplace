@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid"
 import { Typography } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import bcrypt from "bcrypt-nodejs"
 
 
 const style = {
@@ -51,17 +52,16 @@ export default class Login extends Component {
         e.preventDefault()
         api.checkUserThing("username", this.state.username).then(nameResponse => {
             api.checkUserThing("email", this.state.email).then(emailResponse => {
-                api.checkUserThing("password", this.state.password).then(passwordResponse => {
                     //Check to see if username or email are already registered
-                    console.log(nameResponse, emailResponse)
-                    if (nameResponse.length === 0 || emailResponse.length === 0 || passwordResponse.length === 0) {
+                    console.log(emailResponse)
+                console.log(bcrypt.compareSync(this.state.password, emailResponse[0].password))
+                    if (nameResponse.length === 0 || emailResponse.length === 0 || !bcrypt.compareSync(this.state.password, emailResponse[0].password)) {
                         alert("Username, Email, or Password incorrect")
                     }
                     else {
                         sessionStorage.setItem("credentials", emailResponse[0].id)
                         this.props.loginUser(emailResponse[0].id)
                     }
-                })
             })
         })
     }
