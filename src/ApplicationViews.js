@@ -67,7 +67,11 @@ export default class ApplicationViews extends Component {
 
                     }
                     />
-                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/register" render={props => {
+                        return (
+                            <Register loginUser={this.loginUser} />
+                        )
+                    }} />
                 </React.Fragment>
             )
         }

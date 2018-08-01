@@ -75,6 +75,11 @@ export default class MakePostCard extends Component {
             )
         }
         else {
+            let hasDollarSign = false
+            if (this.props.card.price.slice(0, 1)){
+                 hasDollarSign = true
+            }
+            console.log(hasDollarSign)
             return (
                 // <Grid item>
                 <Link to={`/viewPost/${this.props.card.id}`} style={{ textDecoration: "none" }}>
@@ -86,7 +91,7 @@ export default class MakePostCard extends Component {
                                     {this.props.card.title}
                                 </Typography>
                                 <Typography variant="title" component="h2" style={styles.hideOver}>
-                                    ${this.props.card.price}
+                                    {(hasDollarSign) ? this.props.card.price : "$"+this.props.card.price}
                         </Typography>
                                 <Typography color="textSecondary" style={styles.hideOver}>
                                     {this.props.card.location}

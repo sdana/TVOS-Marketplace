@@ -86,7 +86,7 @@ getSpecRegionPosts = (region, order) => {
             return (
                 <React.Fragment>
                     <Grid item align="center">
-                        <Typography variant="display3">TVOS Marketplace</Typography>
+                        <Typography variant="display3" style={{color:"white"}}>TVOS Marketplace</Typography>
                         <Typography variant="headline">Search Results</Typography>
                     </Grid>
                     <Grid container xs={24} direction="row" justify="center">

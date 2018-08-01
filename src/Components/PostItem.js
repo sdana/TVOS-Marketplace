@@ -143,7 +143,7 @@ export default class PostItem extends Component {
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
                                 {/* <InputLabel htmlFor="price">Price: $</InputLabel> */}
-                                <TextField onChange={this.handleFieldChange} id="price" type="text" label="Price" />
+                                <TextField onChange={this.handleFieldChange} id="price" type="text" label="Price"/>
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
                                 {/* <InputLabel htmlFor="location">Specific Location: </InputLabel> */}

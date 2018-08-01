@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import api from "./Api"
 import {Redirect} from "react-router-dom"
 import Button from "@material-ui/core/Button"
-import Input from "@material-ui/core/Input"
+// import Input from "@material-ui/core/Input"
 // import InputAdornment from "@material-ui/core/InputAdornment"
 import Grid from "@material-ui/core/Grid"
 import { Typography } from "@material-ui/core";
-// import TextField from '@material-ui/core/TextField';
+import TextField from '@material-ui/core/TextField';
 import InputLabel from "@material-ui/core/InputLabel"
 import Select from "@material-ui/core/Select"
 import bcrypt from "bcrypt-nodejs"
@@ -47,11 +47,10 @@ export default class Registration extends Component {
                     //if not, then register the user
                     let passHash = bcrypt.hashSync(this.state.password)
                     api.registerUser(this.state.username, this.state.email, passHash, this.state.region).then((response) => {
-                        // sessionStorage.setItem("credentials", response.id)
-                        this.setState({redirect: true})
+                        sessionStorage.setItem("credentials", response.id)
                         //Call login function to set state in parent component
-                        // this.props.logUserIn()
-                    })
+                    }).then(() => this.setState({ redirect: true })
+)
                 }
                 else {
                     //if username or email are already registered, throw an error
@@ -79,13 +78,13 @@ export default class Registration extends Component {
 
                 <form onSubmit={(e) => {this.registerUser(e)}}>
                     <Grid item align="center" style={style.input}>
-                        <Input onChange={this.handleFieldChange} id="username" type="text" placeholder="Username" required autoFocus autoComplete="off" fullWidth/>
+                        <TextField onChange={this.handleFieldChange} id="username" type="text" label="Username" required autoFocus autoComplete="off" fullWidth/>
                     </Grid>
                         <Grid item align="center" style={style.input}>
-                            <Input onChange={this.handleFieldChange} id="email" type="email" placeholder="E-mail Address" required autoComplete="off" fullWidth/>
+                            <TextField onChange={this.handleFieldChange} id="email" type="email" label="E-mail Address" required autoComplete="off" fullWidth/>
                     </Grid>
                         <Grid item align="center" style={style.input}>
-                            <Input onChange={this.handleFieldChange} id="password" type="password" placeholder="Password" required autoComplete="off" fullWidth />
+                            <TextField onChange={this.handleFieldChange} id="password" type="password" label="Password" required autoComplete="off" fullWidth />
                     </Grid>
                     {/* <label htmlFor="region">
                         Region

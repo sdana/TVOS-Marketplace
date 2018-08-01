@@ -76,6 +76,20 @@
       "password": "$2a$10$YKDUNiOmppKnfTrtm9o7.e0tphs/oKMujmCSSfZax2VFKw1.t33dW",
       "region": "east",
       "id": 11
+    },
+    {
+      "username": "brett",
+      "email": "brett@brett.com",
+      "password": "$2a$10$RRUFpI6ElV40YKwR3WgSp.XaSKsZ2HC8WyFtne/LXbFjjHLvM//JW",
+      "region": "middle",
+      "id": 12
+    },
+    {
+      "username": "tmdana",
+      "email": "tmdana@gmail.com",
+      "password": "$2a$10$C5Euhq5pi.oIGSlVJAw4Y.zrbMjv0VlYuA/d/Aowx7H4fJ6C8fePu",
+      "region": "east",
+      "id": 13
     }
   ],
   "posts": [
@@ -209,6 +223,23 @@
       "email": "seth.dana@gmail.com",
       "phone": "615-496-6754",
       "id": 30
+    },
+    {
+      "userId": 13,
+      "title": "Huge John Deere Tractor",
+      "price": "$25k",
+      "location": "Mid-town Knoxville",
+      "categorieId": "3",
+      "description": "This is a super badass John Deere tractor that will literally do anything including defeat the BORG. Price negotiable",
+      "regionId": "east",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533154799/rgc5fu0efexphj6xxlp9.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533154799/yec0cpzvsn8wz1arp2q5.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533154799/uhurctanx7cbmzpyakis.jpg"
+      ],
+      "email": "tmdana@gmail.com",
+      "phone": "615-Cal-LlME",
+      "id": 31
     }
   ],
   "categories": [
