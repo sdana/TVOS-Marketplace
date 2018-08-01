@@ -73,17 +73,19 @@ export default class Registration extends Component {
             <React.Fragment>
             <Grid container direction="column" alignContent="center" justify="center">
                 <Grid item sm align="center">
-                    <Typography variant="display3" style={{marginBottom:40}}>Register for TVOS Marketplace</Typography>
+                    <Typography variant="display3" style={{marginBottom:40, color:"white", paddingTop:80}}>Register for TVOS Marketplace</Typography>
                 </Grid>
+                    <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", height: "auto", margin: "auto", paddingLeft: 20, paddingRight: 80, paddingTop: 20, paddingBottom: 20 }}>
+
                 <form onSubmit={(e) => {this.registerUser(e)}}>
                     <Grid item align="center" style={style.input}>
-                        <Input onChange={this.handleFieldChange} id="username" type="text" placeholder="Username" required autoFocus autoComplete="off"/>
+                        <Input onChange={this.handleFieldChange} id="username" type="text" placeholder="Username" required autoFocus autoComplete="off" fullWidth/>
                     </Grid>
                         <Grid item align="center" style={style.input}>
-                            <Input onChange={this.handleFieldChange} id="email" type="email" placeholder="E-mail Address" required autoComplete="off"/>
+                            <Input onChange={this.handleFieldChange} id="email" type="email" placeholder="E-mail Address" required autoComplete="off" fullWidth/>
                     </Grid>
                         <Grid item align="center" style={style.input}>
-                            <Input onChange={this.handleFieldChange} id="password" type="password" placeholder="Password" required autoComplete="off" />
+                            <Input onChange={this.handleFieldChange} id="password" type="password" placeholder="Password" required autoComplete="off" fullWidth />
                     </Grid>
                     {/* <label htmlFor="region">
                         Region
@@ -112,6 +114,7 @@ export default class Registration extends Component {
                     <Button variant="contained" color="primary" type="submit">Register</Button>
                     </Grid>
                 </form>
+                </div>
                 </Grid>
             </React.Fragment>
         )

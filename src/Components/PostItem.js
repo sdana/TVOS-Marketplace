@@ -5,6 +5,11 @@ import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button, Form
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
 import PhotoPreview from "./PhotoPreview"
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import { withStyles } from '@material-ui/core/styles';
+
 
 const cloudUpPreset = "qamybs5i"
 const cloudUpAddr = "https://api.cloudinary.com/v1_1/tvos-marketplace/upload"
@@ -14,6 +19,13 @@ const style = {
         marginBottom: 40
     }
 }
+
+const styles = theme => ({
+    close: {
+        width: theme.spacing.unit * 4,
+        height: theme.spacing.unit * 4,
+    },
+});
 
 export default class PostItem extends Component {
     state = {
@@ -51,6 +63,14 @@ export default class PostItem extends Component {
             })
         }
     }
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ open: false });
+    };
 
     componentDidUpdate() {
         if (this.state.categorie === "1") {
@@ -98,7 +118,8 @@ export default class PostItem extends Component {
 
             if (response.body.secure_url !== '') {
                 this.setState(({ photoArray }) => ({
-                    photoArray: this.state.photoArray.concat(response.body.secure_url)
+                    photoArray: this.state.photoArray.concat(response.body.secure_url),
+                    open: true
                 }))
             }
         });
@@ -168,6 +189,33 @@ export default class PostItem extends Component {
                     </form>
                 </Grid>
                 </div >
+                    (this.state.open) ? (<div>
+                        <Button onClick={this.handleClick}>Open simple snackbar</Button>
+                        <Snackbar
+                        variant="success"
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            open={this.state.open}
+                            autoHideDuration={4000}
+                            onClose={this.handleClose}
+                            ContentProps={{
+                                'aria-describedby': 'message-id',
+                            }}
+                            message={<span id="message-id">Photos Successfully Uploaded!</span>}
+                            action={[
+                                <IconButton
+                                    key="close"
+                                    aria-label="Close"
+                                    color="inherit"
+                                    onClick={this.handleClose}
+                                >
+                                    <CloseIcon />
+                                </IconButton>,
+                            ]}
+                        />
+                    </div>) : null
             </React.Fragment >
         )
     }
