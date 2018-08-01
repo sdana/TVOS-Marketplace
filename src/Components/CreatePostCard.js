@@ -76,7 +76,7 @@ export default class MakePostCard extends Component {
         }
         else {
             let hasDollarSign = false
-            if (this.props.card.price.slice(0, 1)){
+            if (this.props.card.price.slice(0, 1) == "$"){
                  hasDollarSign = true
             }
             console.log(hasDollarSign)
