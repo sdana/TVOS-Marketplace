@@ -84,6 +84,7 @@ export default class EnableEdit extends Component {
         else {
             return (
                 <React.Fragment key={this.props.post.id}>
+                    <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: 395, height: "auto", margin: "auto", paddingLeft: 20, paddingRight: 80, paddingTop: 20, paddingBottom: 20 }}>
                     <Grid container xs={24} direction="column" justify="flex-start">
                     <div id={this.props.post.id}>
                         <div className="post-card" id={this.props.post.id}>
@@ -126,6 +127,7 @@ export default class EnableEdit extends Component {
                         </div>
                     </div>
                     </Grid>
+                    </div>
                 </React.Fragment>
             )
         }
