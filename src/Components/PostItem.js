@@ -13,6 +13,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import "./PhotoPreviewCSS.css"
 // import { withStyles } from '@material-ui/core/styles';
 
 
@@ -192,7 +193,7 @@ export default class PostItem extends Component {
                                 {this.state.pictureURL === [] ? null :
                                         <div style={{display: "flex", direction:"row", justifyContent:"flex-start", flexWrap:"wrap"}}>
                                         {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
-                                        {this.state.pictureURL.map(photo => { return <div style={{ margin: "5px 15px"}}><PhotoPreview url={photo.preview} /></div> })}
+                                        {this.state.pictureURL.map(photo => { return <div style={{ margin: "5px 15px"}}><div className="tooltip"><span className="tooltiptext">Click To Delete</span><PhotoPreview url={photo.preview} /></div></div> })}
                                     </div>}
                                 <Button variant="outlined" onClick={this.uploadImages} style={{ marginTop: 20, marginBottom:40 }}>Upload Photos</Button>
                             </div>
