@@ -213,7 +213,15 @@ export default class PostItem extends Component {
                             </div>
                     </Grid>
                     <Grid item sm align="center">
-                        <Button variant="raised" color="primary" onClick={this.submitPost} ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
+                        <Button variant="raised" color="primary" onClick={(e) => {
+                            if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
+                                    alert("You have photos that have not been uploaded")
+                                    return
+                                }
+                                else {
+                                    this.submitPost(e)
+                                    }
+                                    }} ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
                     </Grid>
                     </form>
                 </Grid>
