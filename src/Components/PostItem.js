@@ -140,6 +140,19 @@ export default class PostItem extends Component {
         });
     }
 
+    removePhoto = (e) => {
+        console.log(e.target)
+        let photoId = parseInt(e.target.id)
+        let newArray = this.state.pictureURL
+        newArray.splice(photoId, 1)
+        debugger
+        this.setState({ pictureURL: newArray})
+        // console.log(newArray)
+        // e.target.parentNode.parentNode.remove()
+
+    }
+
+
 
     render() {
         if (this.state.redirect) {
@@ -193,7 +206,8 @@ export default class PostItem extends Component {
                                 {this.state.pictureURL === [] ? null :
                                         <div style={{display: "flex", direction:"row", justifyContent:"flex-start", flexWrap:"wrap"}}>
                                         {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
-                                        {this.state.pictureURL.map(photo => { return <div style={{ margin: "5px 15px"}}><div className="tooltip"><span className="tooltiptext">Click To Delete</span><PhotoPreview url={photo.preview} /></div></div> })}
+                                            {this.state.pictureURL.map((photo, index) => {
+                                                return <div style={{ margin: "5px 15px" }}><div className="tooltip"><span className="tooltiptext" id={index} onClick={e => this.removePhoto(e)}>Click To Delete</span><PhotoPreview key={index} url={photo.preview} id={index}/></div></div> })}
                                     </div>}
                                 <Button variant="outlined" onClick={this.uploadImages} style={{ marginTop: 20, marginBottom:40 }}>Upload Photos</Button>
                             </div>

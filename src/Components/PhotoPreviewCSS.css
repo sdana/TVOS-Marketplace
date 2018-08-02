@@ -5,15 +5,15 @@
 
 .tooltip {
     position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    display: block;
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
-    background-color: black;
+    height: 99%;
+    width: 100%;
+    background-color: rgba(255, 0, 0, .5);
     color: #fff;
     text-align: center;
     padding: 5px 0;
