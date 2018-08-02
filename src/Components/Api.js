@@ -79,7 +79,6 @@ class Api {
                 location: location,
                 categorieId: category,
                 description: description,
-                photo: ""
             })
         }).then(e => e.json());
     }

@@ -8,6 +8,11 @@ import PhotoPreview from "./PhotoPreview"
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 // import { withStyles } from '@material-ui/core/styles';
 
 
@@ -48,6 +53,15 @@ export default class PostItem extends Component {
         this.setState(stateToChange)
     }
 
+    // handleClickOpen = () => {
+    //     this.setState({ openDialog: true });
+    // };
+
+    handleDialogClose = () => {
+        this.setState({ openDialog: false });
+        this.setState({ redirect: true })
+    };
+
 
     componentDidMount() {
         if (!sessionStorage.getItem("credentials")) {
@@ -87,8 +101,9 @@ export default class PostItem extends Component {
         //     let price = this.state.price
         // }
         api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.photoArray, this.state.email, this.state.phone).then(response => {
-            alert("Post Successful!")
-            this.setState({ redirect: true })
+            // alert("Post Successful!")
+            this.setState({ openDialog: true });
+            // this.setState({ redirect: true })
         })
     }
 
@@ -188,8 +203,7 @@ export default class PostItem extends Component {
                     </form>
                 </Grid>
                 </div >
-                    (this.state.open) ? (<div>
-                        <Button onClick={this.handleClick}>Open simple snackbar</Button>
+                    {(this.state.open) ? <div>
                         <Snackbar
                         variant="success"
                             anchorOrigin={{
@@ -214,7 +228,29 @@ export default class PostItem extends Component {
                                 </IconButton>,
                             ]}
                         />
-                    </div>) : null
+                    </div> : <div />}
+                {(this.state.openDialog) ? (
+                        <div style={{width:700}}>
+                            <Dialog
+                                open={this.state.openDialog}
+                                onClose={this.handleDialogClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                        <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                Your item has been posted!
+                             </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleDialogClose} color="primary">
+                                Close
+                        </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+                    ) : <div />}
             </React.Fragment >
         )
     }

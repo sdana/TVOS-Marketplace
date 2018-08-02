@@ -223,23 +223,6 @@
       "email": "seth.dana@gmail.com",
       "phone": "615-496-6754",
       "id": 30
-    },
-    {
-      "userId": 13,
-      "title": "Huge John Deere Tractor",
-      "price": "$25k",
-      "location": "Mid-town Knoxville",
-      "categorieId": "3",
-      "description": "This is a super badass John Deere tractor that will literally do anything including defeat the BORG. Price negotiable",
-      "regionId": "east",
-      "photo": [
-        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533154799/rgc5fu0efexphj6xxlp9.jpg",
-        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533154799/yec0cpzvsn8wz1arp2q5.jpg",
-        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533154799/uhurctanx7cbmzpyakis.jpg"
-      ],
-      "email": "tmdana@gmail.com",
-      "phone": "615-Cal-LlME",
-      "id": 31
     }
   ],
   "categories": [
