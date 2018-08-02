@@ -90,6 +90,20 @@
       "password": "$2a$10$C5Euhq5pi.oIGSlVJAw4Y.zrbMjv0VlYuA/d/Aowx7H4fJ6C8fePu",
       "region": "east",
       "id": 13
+    },
+    {
+      "username": "jenn",
+      "email": "jenniferlawson000@gmail.com",
+      "password": "$2a$10$LDPhYSjQr0VqbiS8oJFrH.Ef9275ETI4bBVx9C6UwZIC3EsXDwWNW",
+      "region": "east",
+      "id": 14
+    },
+    {
+      "username": "MattK",
+      "email": "mkonabike@gmail.com",
+      "password": "$2a$10$NLJ/H1StNe3oRJtHHttyyeUUkSNUzr8oMBTBbzeaYHkyC7DiG9z1O",
+      "region": "middle",
+      "id": 15
     }
   ],
   "posts": [

@@ -40,6 +40,7 @@ export default class MainPage extends Component {
 
             }
             else if (sessionStorage.getItem("region") === "all"){
+                this.setState({region: "all"})
                 api.getAllPosts(this.state.order).then(response => this.setState({ allPosts: response}))
             }
             else {
