@@ -30,12 +30,31 @@ export default class MainPage extends Component {
         const userId = sessionStorage.getItem("credentials")
         api.checkUserThing("id", userId).then(response => {
             this.setState({user: response[0]})
-            this.setState({region: response[0].region})
-            this.getAllRegionalPosts(this.state.order)
+            if (!sessionStorage.getItem("region")){
+                this.setState({region: this.state.user.region})
+                this.getAllRegionalPosts(this.state.order)
+
+            }
+            else if (sessionStorage.getItem("region") === "all"){
+                api.getAllPosts(this.state.order).then(response => this.setState({ allPosts: response}))
+            }
+            else {
+                let selectedRegion = sessionStorage.getItem("region")
+                this.setState({region: selectedRegion})
+                this.getAllRegionalPosts(this.state.order)
+
+            }
         })
     }
 getAllRegionalPosts = (order) => {
-    api.getRegionalPosts(this.state.region, order).then(response => this.setState({allPosts: response}))
+    if (!sessionStorage.getItem("region")){
+        api.getRegionalPosts(this.state.region, order).then(response => this.setState({ allPosts: response }))
+
+    }
+    else {
+        let selectedRegion = sessionStorage.getItem("region")
+        api.getRegionalPosts(selectedRegion, order).then(response => this.setState({ allPosts: response }))
+    }
 }
 
 getSpecRegionPosts = (region, order) => {
@@ -60,7 +79,7 @@ getSpecRegionPosts = (region, order) => {
                     <Grid container xs={12} direction="row" justify="center">
                         <Grid item align="center">
                             <InputLabel htmlFor="region" style={{ marginRight: 20 }}>Select Region:</InputLabel>
-                            <Select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={(this.state.region) ? this.state.region : null}>
+                            <Select onChange={(e) => { sessionStorage.setItem("region", e.target.value); this.getSpecRegionPosts(e.target.value, this.state.order)}} value={(sessionStorage.getItem("region")) ? sessionStorage.getItem("region") : this.state.region}>
                                 <MenuItem value="east">East</MenuItem>
                                 <MenuItem value="middle">Middle</MenuItem>
                                 <MenuItem value="west">West</MenuItem>
@@ -92,7 +111,7 @@ getSpecRegionPosts = (region, order) => {
                     <Grid container xs={24} direction="row" justify="center">
                         <Grid item align="center">
                             <InputLabel htmlFor="region" style={{ marginRight: 20 }}>Select Region:</InputLabel>
-                            <Select onChange={(e) => this.getSpecRegionPosts(e.target.value, this.state.order)} value={this.state.region}>
+                            <Select onChange={(e) => {sessionStorage.setItem("region", e.target.value); this.getSpecRegionPosts(e.target.value, this.state.order)}} value={this.state.region}>
                                 <MenuItem value="east">East</MenuItem>
                                 <MenuItem value="middle">Middle</MenuItem>
                                 <MenuItem value="west">West</MenuItem>
