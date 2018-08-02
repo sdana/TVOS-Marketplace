@@ -30,6 +30,10 @@ export default class MainPage extends Component {
         const userId = sessionStorage.getItem("credentials")
         api.checkUserThing("id", userId).then(response => {
             this.setState({user: response[0]})
+            if (sessionStorage.getItem("order")){
+                let selectedOrder = sessionStorage.getItem("order")
+                this.setState({order: selectedOrder})
+            }
             if (!sessionStorage.getItem("region")){
                 this.setState({region: this.state.user.region})
                 this.getAllRegionalPosts(this.state.order)
@@ -86,7 +90,7 @@ getSpecRegionPosts = (region, order) => {
                                 <MenuItem value="all">All</MenuItem>
                             </Select>
                             <InputLabel htmlFor="order" style={{ marginRight: 20, marginLeft: 30 }}>Show:</InputLabel>
-                            <Select id="order" onChange={(e) => this.getSpecRegionPosts(this.state.region, e.target.value)} defaultValue="desc" value={this.state.order}>
+                            <Select id="order" onChange={(e) => {sessionStorage.setItem("order", e.target.value); this.getSpecRegionPosts(this.state.region, e.target.value)}} defaultValue="desc" value={this.state.order}>
                                 <MenuItem value="desc">Newest First</MenuItem>
                                 <MenuItem value="asc">Oldest First</MenuItem>
                             </Select>
