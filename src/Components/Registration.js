@@ -10,6 +10,13 @@ import TextField from '@material-ui/core/TextField';
 import InputLabel from "@material-ui/core/InputLabel"
 import Select from "@material-ui/core/Select"
 import bcrypt from "bcrypt-nodejs"
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+// import InputLabel from '@material-ui/core/InputLabel';
 
 
 const style = {
@@ -28,7 +35,8 @@ export default class Registration extends Component {
         email: "",
         password: "",
         region: "east",
-        redirect: false
+        redirect: false,
+        showPassword: false
     }
 
     handleFieldChange = evt => {
@@ -62,6 +70,10 @@ export default class Registration extends Component {
 
     }
 
+    handleClickShowPassword = () => {
+        this.setState(state => ({ showPassword: !state.showPassword }));
+    };
+
     render () {
         if (this.state.redirect) {
             return (
@@ -84,7 +96,28 @@ export default class Registration extends Component {
                             <TextField onChange={this.handleFieldChange} id="email" type="email" label="E-mail Address" required autoComplete="off" fullWidth/>
                     </Grid>
                         <Grid item align="center" style={style.input}>
-                            <TextField onChange={this.handleFieldChange} id="password" type="password" label="Password" required autoComplete="off" fullWidth />
+                            {/* <TextField onChange={this.handleFieldChange} id="password" type="password" label="Password" required autoComplete="off" fullWidth /> */}
+                                <FormControl style={{ width: "100%" }}>
+                                    <InputLabel htmlFor="password">Password</InputLabel>
+                                    <Input
+                                        id="password"
+                                        required
+                                        style={style.input}
+                                        type={this.state.showPassword ? 'text' : 'password'}
+                                        value={this.state.password}
+                                        onChange={this.handleFieldChange}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="Toggle password visibility"
+                                                    onClick={this.handleClickShowPassword}
+                                                >
+                                                    {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        }
+                                    />
+                                </FormControl>
                     </Grid>
                     {/* <label htmlFor="region">
                         Region

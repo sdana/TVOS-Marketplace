@@ -2,13 +2,18 @@ import React, { Component } from "react"
 import { Link, Redirect } from "react-router-dom"
 import api from "./Api"
 import Button from "@material-ui/core/Button"
-// import Input from "@material-ui/core/Input"
-// import InputAdornment from "@material-ui/core/InputAdornment"
 import Grid from "@material-ui/core/Grid"
 import { Typography } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
-// import { withStyles } from '@material-ui/core/styles';
 import bcrypt from "bcrypt-nodejs"
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+
 
 
 const style = {
@@ -37,7 +42,8 @@ export default class Login extends Component {
         username: "",
         email: "",
         password: "",
-        redirect: false
+        redirect: false,
+        showPassword: false
     }
 
     // Update state whenever an input field is edited
@@ -65,6 +71,10 @@ export default class Login extends Component {
             })
         })
     }
+
+    handleClickShowPassword = () => {
+        this.setState(state => ({ showPassword: !state.showPassword }));
+    };
 
     render() {
         if (this.state.redirect) {
@@ -103,15 +113,47 @@ export default class Login extends Component {
                                 </Grid>
                                 {/* <label htmlFor="password">Password</label> */}
                                 <Grid item align="center">
-                                <TextField
+                                {/* <TextField
                                     onChange={this.handleFieldChange}
-                                    type="password"
+                                    type={this.state.showPassword ? 'text' : 'password'}
                                     id="password"
                                     label="Password"
                                     required
                                     style={style.input}
                                     fullWidth
-                                />
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="Toggle password visibility"
+                                                    onClick={this.handleClickShowPassword}
+                                                    onMouseDown={this.handleMouseDownPassword}
+                                                >
+                                                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        }
+                                /> */}
+                                    <FormControl style={{width:"100%"}}>
+                                        <InputLabel htmlFor="password">Password</InputLabel>
+                                        <Input
+                                            id="password"
+                                            required
+                                            style={style.input}
+                                            type={this.state.showPassword ? 'text' : 'password'}
+                                            value={this.state.password}
+                                            onChange={this.handleFieldChange}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="Toggle password visibility"
+                                                        onClick={this.handleClickShowPassword}
+                                                    >
+                                                        {this.state.showPassword ? <Visibility /> : <VisibilityOff/>}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                        />
+                                    </FormControl>
                                 </Grid>
                                 <Grid item align="center">
                                     <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="flat" size="small"><h4>New User?</h4></Button></Link>
