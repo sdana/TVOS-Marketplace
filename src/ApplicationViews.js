@@ -7,7 +7,8 @@ import Dashboard from "./Components/Dashboard"
 import MainPage from "./Components/MainPage"
 import Register from "./Components/Registration"
 import ViewPost from "./Components/viewPost"
-
+// import UserSettings from "./Components/UserSettings"
+import "./index.css"
 
 export default class ApplicationViews extends Component {
     state = {
@@ -50,6 +51,13 @@ export default class ApplicationViews extends Component {
                         }
                         }
                     />
+                    {/* <Route exact path="/settings" render={props => {
+                        return (
+                            <UserSettings userId={this.state.auth} />
+                        )
+                    }
+                    }
+                    /> */}
                     <Route path="/viewPost/:postId" render={ props => {
                         return (<ViewPost {...props}/>)
                     }}/>

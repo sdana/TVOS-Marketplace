@@ -114,6 +114,7 @@ class MenuAppBar extends React.Component {
                                 >
                                     <MenuItem onClick={this.handleClose}><Link to="/post" style={styles.noLink}>Post New Item</Link></MenuItem>
                                     <MenuItem onClick={this.handleClose}><Link to="/dashboard" style={styles.noLink}>My Items</Link></MenuItem>
+                                    {/* <MenuItem onClick={this.handleClose}><Link to="/settings" style={styles.noLink}>Settings</Link></MenuItem> */}
                                 <MenuItem onClick={() => { this.handleClose(); this.logUserOut() }}><Link to="/" style={styles.noLink}>Logout</Link></MenuItem>
                                 </Menu>
                             </div>
