@@ -240,11 +240,11 @@
     },
     {
       "userId": 13,
-      "title": "",
-      "price": "",
-      "location": "",
+      "title": "Stuff",
+      "price": "40",
+      "location": "Knoxville",
       "categorieId": "1",
-      "description": "",
+      "description": "Edited thing",
       "regionId": "east",
       "photo": [
         "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533242851/cfgaxes2ga4xjyqde9lx.jpg"

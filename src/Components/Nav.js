@@ -40,8 +40,9 @@ const styles = {
         marginRight: 20,
     },
     noLink: {
-        textDecoration: "none"
-    }
+        textDecoration: "none",
+        color: "rgb(63, 81, 181)"
+    },
 };
 
 class MenuAppBar extends React.Component {
@@ -70,6 +71,8 @@ class MenuAppBar extends React.Component {
 
     logUserOut = () => {
         sessionStorage.removeItem("credentials")
+        sessionStorage.removeItem("region")
+        sessionStorage.removeItem("order")
     }
 
     render() {
