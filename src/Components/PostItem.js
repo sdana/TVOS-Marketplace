@@ -180,7 +180,7 @@ export default class PostItem extends Component {
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
                                 <InputLabel htmlFor="category" style={{marginBottom:40, marginRight: 40}}>Item Category: </InputLabel>
-                            <Select ref="category" id="category" onChange={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} value={this.state.category}>
+                            <Select ref="category" id="category" onChange={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} value={this.state.category} required>
                                 <MenuItem value="1">Free</MenuItem>
                                 <MenuItem value="2">Produce</MenuItem>
                                 <MenuItem value="3">Farm Equipment</MenuItem>
@@ -193,7 +193,7 @@ export default class PostItem extends Component {
                                     <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "60%" }} />
                         </Grid>
                         <Grid item sm align="center" style={style.bottomMargin}>
-                            <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" style={{marginRight:40}} /><TextField onChange={this.handleFieldChange} id="phone" label="Phone Number" type="phone" />
+                            <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" required style={{marginRight:40}} /><TextField onChange={this.handleFieldChange} id="phone" label="Phone Number" type="phone" />
                         </Grid>
                         <Grid item md align="center" style={style.bottomMargin}>
                             <Dropzone style={{ height: 100, width: 200, border: "1px dashed grey" }}
