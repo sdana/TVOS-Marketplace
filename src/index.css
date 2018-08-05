@@ -10,7 +10,7 @@ body {
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #FFEDA1;
+  background-color: rgba(255, 238, 161, 0.253);
 }
 
 #root {
