@@ -67,7 +67,6 @@ export default class PostItem extends Component {
     componentDidMount() {
         if (!sessionStorage.getItem("credentials")) {
             api.checkUserThing("id", this.props.userId).then(user => {
-                console.log(user)
                 this.setState({ user: user[0] })
             })
         }
@@ -109,7 +108,6 @@ export default class PostItem extends Component {
     }
 
     onImageDrop(files) {
-        // console.log(files[0])
         this.setState(({ pictureURL }) => ({
             pictureURL: this.state.pictureURL.concat(files)
         }))
@@ -141,14 +139,11 @@ export default class PostItem extends Component {
     }
 
     removePhoto = (e) => {
-        console.log(e.target)
         let photoId = parseInt(e.target.id)
         let newArray = this.state.pictureURL
         newArray.splice(photoId, 1)
         debugger
         this.setState({ pictureURL: newArray})
-        // console.log(newArray)
-        // e.target.parentNode.parentNode.remove()
 
     }
 

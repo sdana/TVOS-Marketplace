@@ -59,8 +59,6 @@ export default class Login extends Component {
         api.checkUserThing("username", this.state.username).then(nameResponse => {
             api.checkUserThing("email", this.state.email).then(emailResponse => {
                     //Check to see if username or email are already registered
-                    console.log(emailResponse)
-                console.log(bcrypt.compareSync(this.state.password, emailResponse[0].password))
                     if (nameResponse.length === 0 || emailResponse.length === 0 || !bcrypt.compareSync(this.state.password, emailResponse[0].password)) {
                         alert("Username, Email, or Password incorrect")
                     }
@@ -85,7 +83,7 @@ export default class Login extends Component {
                     <Grid container direction="column" alignContent="center" alignItems="center" grid-xs-12 justify="center">
                     <form onSubmit={this.handleLogin} style={{height: "50vh"}}>
                         <Typography variant="display3" align="center" color="inherit" gutterBottom={true} style={{color: "white", marginBottom:100, marginTop:80}}>Welcome to TVOS Marketplace</Typography>
-                            <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", height: "auto", margin: "auto",paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
+                            <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", maxHeight: "100vh", overflowY:"scroll", overflowX:"hidden", margin: "auto",paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
                                 <Typography variant="display1" align="center" color="default" gutterBottom={true}>Please sign in</Typography>
                                 <Grid item align="center">
                                 <TextField

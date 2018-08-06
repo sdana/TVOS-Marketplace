@@ -29,7 +29,6 @@ export default class ApplicationViews extends Component {
 
     wallpaperChange = () => {
         let newURL = backgrounds[Math.floor(Math.random()*backgrounds.length)]
-        console.log("Background URL", newURL)
         this.setState({wallpaper: newURL})
     }
 
@@ -40,7 +39,6 @@ export default class ApplicationViews extends Component {
     componentDidMount(){
         if (sessionStorage.getItem("credentials")){
             const userId = sessionStorage.getItem("credentials")
-            console.log(userId)
             this.setState({auth: userId})
         }
         setInterval(() =>{

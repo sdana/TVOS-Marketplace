@@ -47,7 +47,6 @@ export default class Registration extends Component {
 
     registerUser = (e) => {
         e.preventDefault()
-        console.log("func called")
         api.checkUserThing("username", this.state.username).then(nameResponse => {
             api.checkUserThing("email", this.state.email).then(emailResponse => {
                 //Check to see if username or email are already registered
@@ -86,7 +85,7 @@ export default class Registration extends Component {
                 <Grid item sm align="center">
                     <Typography variant="display3" style={{marginBottom:40, color:"white", paddingTop:80}}>Register for TVOS Marketplace</Typography>
                 </Grid>
-                    <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", height: "auto", margin: "auto", paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
+                    <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", maxHeight: "100vh", overflowY: "scroll", overflowX: "hidden", margin: "auto", paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
 
                 <form onSubmit={(e) => {this.registerUser(e)}}>
                     <Grid item align="center" style={style.input}>

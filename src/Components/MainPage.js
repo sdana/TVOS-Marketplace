@@ -13,6 +13,9 @@ import { Grid, Typography, Select, InputLabel, MenuItem, TextField, Tooltip, Fad
 //     }
 // }
 
+let regionString
+
+
 export default class MainPage extends Component {
     state = {
         allPosts: [],
@@ -51,6 +54,7 @@ export default class MainPage extends Component {
             }
         })
     }
+
 getAllRegionalPosts = (order) => {
     if (!sessionStorage.getItem("region")){
         api.getRegionalPosts(this.state.region, order).then(response => this.setState({ allPosts: response }))
@@ -63,7 +67,6 @@ getAllRegionalPosts = (order) => {
 }
 
 getSpecRegionPosts = (region, order) => {
-    console.log(region, order)
     this.setState({region: region})
     if (region === "all"){
         api.getAllPosts(order).then(response => this.setState({allPosts: response, order: order}))
@@ -79,7 +82,7 @@ getSpecRegionPosts = (region, order) => {
                 <React.Fragment>
                     <Grid item align="center">
                         <Typography variant="display3" style={{color:"White"}}>TVOS Marketplace</Typography>
-                        <Typography variant="headline">{`Posts from ${this.state.region} TN`}</Typography>
+                        <Typography variant="headline">{`Posts from ${regionString} TN`}</Typography>
                     </Grid>
                     <Grid container xs={12} direction="row" justify="center">
                         <Grid item align="center">
@@ -109,7 +112,6 @@ getSpecRegionPosts = (region, order) => {
         }
         else {
             let searchArray = this.state.allPosts.filter((post) => { return post.title.toLowerCase().match(this.state.searchString) || post.categorie.cat.toLowerCase().match(this.state.searchString) || post.location.toLowerCase().match(this.state.searchString) || post.description.toLowerCase().match(this.state.searchString)})
-            console.log(searchArray)
             return (
                 <React.Fragment>
                     <Grid item align="center">

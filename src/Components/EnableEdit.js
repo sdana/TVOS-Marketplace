@@ -53,7 +53,6 @@ export default class EnableEdit extends Component {
     }
 
     deletePost = (e) => {
-        console.log("PARENT", e.target.parentNode)
         const postId = e.target.parentNode.id
         api.deleteUserPost(postId).then(() => {
             this.props.updatePostList(this.props.post.userId)
@@ -61,7 +60,6 @@ export default class EnableEdit extends Component {
     }
 
     render() {
-        console.log(this.props.post)
         if (!this.state.editMode) {
             return (
                 <React.Fragment key={this.props.post.id}>
