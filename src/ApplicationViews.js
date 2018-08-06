@@ -62,7 +62,7 @@ export default class ApplicationViews extends Component {
         if (this.isAuthenticated()){
             return (
                 <React.Fragment>
-                    <div style={{ width: "100%", height: "100vh", backgroundRepeat: "repeat-y", backgroundPosition: "center center", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundImage: `url(${this.state.wallpaper})` }}>
+                    <div style={{ width: "100%", height: "100vh", backgroundRepeat: "no-repeat", overflowY:"scroll", overflowX:"hidden", backgroundPosition: "center center", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundImage: `url(${this.state.wallpaper})` }}>
                     <Route path="/" component={Nav} />
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/post" render={props => {
