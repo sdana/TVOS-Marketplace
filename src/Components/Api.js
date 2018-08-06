@@ -9,7 +9,7 @@ class Api {
         return fetch(`http://67.187.101.105:3030/users/?email=${email}`).then(e => e.json())
     }
 
-    registerUser (name, email, password, region) {
+    registerUser (name, email, password, region, displayName) {
         return fetch("http://67.187.101.105:3030/users", {
             method: "POST",
             headers: {
@@ -19,7 +19,21 @@ class Api {
                 username: name,
                 email: email,
                 password: password,
-                region: region
+                region: region,
+                displayName: name
+            })
+        }).then(e => e.json());
+    }
+
+    editUserInfo (userId, thingToChange, changeValue) {
+        console.log(userId, thingToChange, changeValue)
+        return fetch(`http://67.187.101.105:3030/users/${userId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                [thingToChange]: changeValue
             })
         }).then(e => e.json());
     }
