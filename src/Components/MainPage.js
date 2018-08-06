@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import CreatePostCard from "./CreatePostCard"
-import { Grid, Typography, Select, InputLabel, MenuItem, TextField } from "@material-ui/core"
+import { Grid, Typography, Select, InputLabel, MenuItem, TextField, Tooltip, Fade } from "@material-ui/core"
 // import Icon from "@material-ui/core/Icon"
 // import Search from "@material-ui/icons/Search"
 
@@ -95,7 +95,10 @@ getSpecRegionPosts = (region, order) => {
                                 <MenuItem value="desc">Newest First</MenuItem>
                                 <MenuItem value="asc">Oldest First</MenuItem>
                             </Select>
+                            <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Search for post title, category, location, or description">
+                                {/* <Button>Fade</Button> */}
                             <div style={{ display: "inline-block", marginLeft: 30 }}><Grid><TextField id="searchString" label="Search" style={{ marginTop: 20 }} onChange={this.handleFieldChange}></TextField></Grid></div>
+                            </Tooltip>
                         </Grid>
                     </Grid>
                     <Grid container lg={12} direction="row" justify="flex-start">
