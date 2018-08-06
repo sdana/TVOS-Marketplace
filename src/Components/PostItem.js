@@ -162,7 +162,7 @@ export default class PostItem extends Component {
         }
         return (
             <React.Fragment>
-                <div style={{ backgroundColor: "rgba(250, 250, 250, .9)", width: "60vw", height: "auto", margin: "auto", padding: 50 }}>
+                <div style={{ backgroundColor: "rgba(250, 250, 250, .9)", width: "60vw", maxHeight: "80vh", overflowY:"scroll", overflowX:"hidden", margin: "auto", padding: 50 }}>
                     <Typography variant="display3" align="center" style={{color:"white", marginBottom:40, textShadow:"1px 1px 3px grey"}}>Post A New Item</Typography>
                     <Grid container xs={12} direction="column" justify="center">
                         <form onSubmit={(e) => this.submitPost(e)}>

@@ -130,7 +130,9 @@ getSpecRegionPosts = (region, order) => {
                                 <MenuItem value="desc">Newest First</MenuItem>
                                 <MenuItem value="asc">Oldest First</MenuItem>
                             </Select>
+                            <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Search for post title, category, location, or description">
                             <div style={{ display: "inline-block", marginLeft: 30 }}><Grid><TextField id="searchString" label="Search" style={{ marginTop: 20 }} onChange={this.handleFieldChange}></TextField></Grid></div>
+                            </Tooltip>
                         </Grid>
                     </Grid>
                     <Grid container lg={12} direction="row" justify="flex-start">
