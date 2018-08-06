@@ -21,9 +21,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+// import Switch from '@material-ui/core/Switch';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import api from "./Api"
@@ -40,8 +40,9 @@ const styles = {
         marginRight: 20,
     },
     noLink: {
-        textDecoration: "none"
-    }
+        textDecoration: "none",
+        color: "rgb(63, 81, 181)"
+    },
 };
 
 class MenuAppBar extends React.Component {
@@ -68,9 +69,15 @@ class MenuAppBar extends React.Component {
         this.setState({ anchorEl: null });
     };
 
+    logUserOut = () => {
+        sessionStorage.removeItem("credentials")
+        sessionStorage.removeItem("region")
+        sessionStorage.removeItem("order")
+    }
+
     render() {
         const { classes } = this.props;
-        const { auth, anchorEl } = this.state;
+        const { anchorEl } = this.state;
         const open = Boolean(anchorEl);
 
         return (
@@ -107,6 +114,8 @@ class MenuAppBar extends React.Component {
                                 >
                                     <MenuItem onClick={this.handleClose}><Link to="/post" style={styles.noLink}>Post New Item</Link></MenuItem>
                                     <MenuItem onClick={this.handleClose}><Link to="/dashboard" style={styles.noLink}>My Items</Link></MenuItem>
+                                    {/* <MenuItem onClick={this.handleClose}><Link to="/settings" style={styles.noLink}>Settings</Link></MenuItem> */}
+                                <MenuItem onClick={() => { this.handleClose(); this.logUserOut() }}><Link to="/" style={styles.noLink}>Logout</Link></MenuItem>
                                 </Menu>
                             </div>
 

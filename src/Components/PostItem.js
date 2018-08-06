@@ -1,10 +1,21 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import { Redirect } from "react-router-dom"
-import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button, FormControl } from "@material-ui/core"
+import { TextField, Typography, InputLabel, Grid, Select, MenuItem, Button } from "@material-ui/core"
 import Dropzone from 'react-dropzone'
 import request from 'superagent'
 import PhotoPreview from "./PhotoPreview"
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import "./PhotoPreviewCSS.css"
+// import { withStyles } from '@material-ui/core/styles';
+
 
 const cloudUpPreset = "qamybs5i"
 const cloudUpAddr = "https://api.cloudinary.com/v1_1/tvos-marketplace/upload"
@@ -14,6 +25,13 @@ const style = {
         marginBottom: 40
     }
 }
+
+// const styles = theme => ({
+//     close: {
+//         width: theme.spacing.unit * 4,
+//         height: theme.spacing.unit * 4,
+//     },
+// });
 
 export default class PostItem extends Component {
     state = {
@@ -36,6 +54,15 @@ export default class PostItem extends Component {
         this.setState(stateToChange)
     }
 
+    // handleClickOpen = () => {
+    //     this.setState({ openDialog: true });
+    // };
+
+    handleDialogClose = () => {
+        this.setState({ openDialog: false });
+        this.setState({ redirect: true })
+    };
+
 
     componentDidMount() {
         if (!sessionStorage.getItem("credentials")) {
@@ -52,23 +79,32 @@ export default class PostItem extends Component {
         }
     }
 
-    componentDidUpdate() {
-        if (this.state.categorie === "1") {
-            let disablePrice = true
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
         }
-    }
+
+        this.setState({ open: false });
+    };
+
+    // componentDidUpdate() {
+    //     if (this.state.categorie === "1") {
+    //         let disablePrice = true
+    //     }
+    // }
 
     submitPost = (e) => {
         e.preventDefault()
-        if (this.state.category === "1"){
-            let price = "Free"
-        }
-        else {
-            let price = this.state.price
-        }
+        // if (this.state.category === "1"){
+        //     let price = "Free"
+        // }
+        // else {
+        //     let price = this.state.price
+        // }
         api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.photoArray, this.state.email, this.state.phone).then(response => {
-            alert("Post Successful!")
-            this.setState({ redirect: true })
+            // alert("Post Successful!")
+            this.setState({ openDialog: true });
+            // this.setState({ redirect: true })
         })
     }
 
@@ -81,7 +117,6 @@ export default class PostItem extends Component {
 
     uploadImages = () => {
         this.state.pictureURL.map(photo => {
-            console.log("MAPPING")
             this.handleImageUpload(photo)
         })
     }
@@ -98,11 +133,25 @@ export default class PostItem extends Component {
 
             if (response.body.secure_url !== '') {
                 this.setState(({ photoArray }) => ({
-                    photoArray: this.state.photoArray.concat(response.body.secure_url)
+                    photoArray: this.state.photoArray.concat(response.body.secure_url),
+                    open: true
                 }))
             }
         });
     }
+
+    removePhoto = (e) => {
+        console.log(e.target)
+        let photoId = parseInt(e.target.id)
+        let newArray = this.state.pictureURL
+        newArray.splice(photoId, 1)
+        debugger
+        this.setState({ pictureURL: newArray})
+        // console.log(newArray)
+        // e.target.parentNode.parentNode.remove()
+
+    }
+
 
 
     render() {
@@ -113,8 +162,8 @@ export default class PostItem extends Component {
         }
         return (
             <React.Fragment>
-                <div style={{ backgroundColor: "rgba(255, 255, 255, .5)", width: "60vw", height: "auto", margin: "auto", padding: 50 }}>
-                    <Typography variant="display3" align="center">Post A New Item</Typography>
+                <div style={{ backgroundColor: "rgba(250, 250, 250, .9)", width: "60vw", maxHeight: "80vh", overflowY:"scroll", overflowX:"hidden", margin: "auto", padding: 50 }}>
+                    <Typography variant="display3" align="center" style={{color:"white", marginBottom:40, textShadow:"1px 1px 3px grey"}}>Post A New Item</Typography>
                     <Grid container xs={12} direction="column" justify="center">
                         <form onSubmit={(e) => this.submitPost(e)}>
                             <Grid item sm align="center" style={style.bottomMargin}>
@@ -123,15 +172,15 @@ export default class PostItem extends Component {
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
                                 {/* <InputLabel htmlFor="price">Price: $</InputLabel> */}
-                                <TextField onChange={this.handleFieldChange} id="price" type="text" label="Price" />
+                                <TextField onChange={this.handleFieldChange} id="price" type="text" label="Price"/>
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
                                 {/* <InputLabel htmlFor="location">Specific Location: </InputLabel> */}
                                 <TextField onChange={this.handleFieldChange} id="location" type="text" required label="Specific Location" />
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
-                                <InputLabel htmlFor="category" style={style.bottomMargin, {marginRight: 40}}>Item Category: </InputLabel>
-                            <Select ref="category" id="category" onChange={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} value={this.state.category}>
+                                <InputLabel htmlFor="category" style={{marginBottom:40, marginRight: 40}}>Item Category: </InputLabel>
+                            <Select ref="category" id="category" onChange={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} value={this.state.category} required>
                                 <MenuItem value="1">Free</MenuItem>
                                 <MenuItem value="2">Produce</MenuItem>
                                 <MenuItem value="3">Farm Equipment</MenuItem>
@@ -144,7 +193,7 @@ export default class PostItem extends Component {
                                     <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "60%" }} />
                         </Grid>
                         <Grid item sm align="center" style={style.bottomMargin}>
-                            <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" style={{marginRight:40}} /><TextField onChange={this.handleFieldChange} id="phone" label="Phone Number" type="phone" />
+                            <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" required style={{marginRight:40}} /><TextField onChange={this.handleFieldChange} id="phone" label="Phone Number" type="phone" />
                         </Grid>
                         <Grid item md align="center" style={style.bottomMargin}>
                             <Dropzone style={{ height: 100, width: 200, border: "1px dashed grey" }}
@@ -155,19 +204,76 @@ export default class PostItem extends Component {
                             </Dropzone>
                             <div>
                                 {this.state.pictureURL === [] ? null :
-                                    <div>
+                                        <div style={{display: "flex", direction:"row", justifyContent:"flex-start", flexWrap:"wrap"}}>
                                         {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
-                                        {this.state.pictureURL.map(photo => { return <div style={{ marginTop: 30 }}><PhotoPreview url={photo.preview} /></div> })}
+                                            {this.state.pictureURL.map((photo, index) => {
+                                                return <div style={{ margin: "5px 15px" }}><div className="tooltip"><span className="tooltiptext" id={index} onClick={e => this.removePhoto(e)}>Click To Delete</span><PhotoPreview key={index} url={photo.preview} id={index}/></div></div> })}
                                     </div>}
-                                <Button variant="outlined" onClick={this.uploadImages} style={{ marginTop: 20 }, style.bottomMargin}>Upload Photos</Button>
+                                <Button variant="outlined" onClick={this.uploadImages} style={{ marginTop: 20, marginBottom:40 }}>Upload Photos</Button>
                             </div>
                     </Grid>
                     <Grid item sm align="center">
-                        <Button variant="raised" color="primary" onClick={this.submitPost} ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
+                        <Button variant="raised" color="primary" onClick={(e) => {
+                            if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
+                                    alert("You have photos that have not been uploaded")
+                                    return
+                                }
+                                else {
+                                    this.submitPost(e)
+                                    }
+                                    }} ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
                     </Grid>
                     </form>
                 </Grid>
                 </div >
+                    {(this.state.open) ? <div>
+                        <Snackbar
+                        variant="success"
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            open={this.state.open}
+                            autoHideDuration={4000}
+                            onClose={this.handleClose}
+                            ContentProps={{
+                                'aria-describedby': 'message-id',
+                            }}
+                            message={<span id="message-id">Photos Successfully Uploaded!</span>}
+                            action={[
+                                <IconButton
+                                    key="close"
+                                    aria-label="Close"
+                                    color="inherit"
+                                    onClick={this.handleClose}
+                                >
+                                    <CloseIcon />
+                                </IconButton>,
+                            ]}
+                        />
+                    </div> : <div />}
+                {(this.state.openDialog) ? (
+                        <div style={{width:700}}>
+                            <Dialog
+                                open={this.state.openDialog}
+                                onClose={this.handleDialogClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                        <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                Your item has been posted!
+                             </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleDialogClose} color="primary">
+                                Close
+                        </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+                    ) : <div />}
             </React.Fragment >
         )
     }

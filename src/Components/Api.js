@@ -1,16 +1,16 @@
 class Api {
     getUsers() {
-        return fetch("http://localhost:5002/users").then(e => e.json());
+        return fetch("http://67.187.101.105:3030/users").then(e => e.json());
     }
     checkUserThing(thing, otherThing) {
-        return fetch(`http://localhost:5002/users/?${thing}=${otherThing}`).then(e => e.json())
+        return fetch(`http://67.187.101.105:3030/users/?${thing}=${otherThing}`).then(e => e.json())
     }
     checkEmail(email) {
-        return fetch(`http://localhost:5002/users/?email=${email}`).then(e => e.json())
+        return fetch(`http://67.187.101.105:3030/users/?email=${email}`).then(e => e.json())
     }
 
     registerUser (name, email, password, region) {
-        return fetch("http://localhost:5002/users", {
+        return fetch("http://67.187.101.105:3030/users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -25,7 +25,7 @@ class Api {
     }
     //////////////////////////////////////////////////////////////////////          GENERAL POSTS              /////////////////////////////////////////////
     postItem(userId, title, price, location, category, description, region, photoURL, email, phone){
-        return fetch("http://localhost:5002/posts", {
+        return fetch("http://67.187.101.105:3030/posts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -45,30 +45,30 @@ class Api {
         }).then(e => e.json());
     }
     getAllPosts(order){
-        return fetch(`http://localhost:5002/posts?_expand=categorie&_sort=id&_order=${order}`).then(e => e.json())
+        return fetch(`http://67.187.101.105:3030/posts?_expand=categorie&_sort=id&_order=${order}`).then(e => e.json())
     }
 
     getPost(postId) {
-        return fetch(`http://localhost:5002/posts/${postId}`).then(e => e.json())
+        return fetch(`http://67.187.101.105:3030/posts/${postId}`).then(e => e.json())
     }
 
     getRegionalPosts(regionId, order){
-        return fetch(`http://localhost:5002/posts?regionId=${regionId}&_expand=categorie&_sort=id&_order=${order}`).then(e => e.json())
+        return fetch(`http://67.187.101.105:3030/posts?regionId=${regionId}&_expand=categorie&_sort=id&_order=${order}`).then(e => e.json())
     }
     ///////////////////////////////////////////////////////////////////          USERS POSTS                //////////////////////////////////////////////////
     getUserPosts(userId){
-        return fetch(`http://localhost:5002/posts?userId=${userId}&_expand=categorie&_sort=id&_order=desc`).then(e => e.json())
+        return fetch(`http://67.187.101.105:3030/posts?userId=${userId}&_expand=categorie&_sort=id&_order=desc`).then(e => e.json())
     }
 
     deleteUserPost(postId){
-        return fetch(`http://localhost:5002/posts/${postId}`,
+        return fetch(`http://67.187.101.105:3030/posts/${postId}`,
             {
             method: "DELETE"
         })
     }
 
     editPost(postId, title, price, location, category, description) {
-        return fetch(`http://localhost:5002/posts/${postId}`, {
+        return fetch(`http://67.187.101.105:3030/posts/${postId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -79,7 +79,6 @@ class Api {
                 location: location,
                 categorieId: category,
                 description: description,
-                photo: ""
             })
         }).then(e => e.json());
     }

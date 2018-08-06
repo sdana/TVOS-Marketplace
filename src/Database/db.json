@@ -62,6 +62,48 @@
       "password": "Offtherails0",
       "region": "middle",
       "id": 9
+    },
+    {
+      "username": "seth.dana",
+      "email": "seth@yahoo.com",
+      "password": "$2a$10$oOn56qnu7I21tweC3AJNOOi9pCyr4OevGucfUccSCSiBGnBliSgse",
+      "region": "west",
+      "id": 10
+    },
+    {
+      "username": "testAgain",
+      "email": "testtest@test.com",
+      "password": "$2a$10$YKDUNiOmppKnfTrtm9o7.e0tphs/oKMujmCSSfZax2VFKw1.t33dW",
+      "region": "east",
+      "id": 11
+    },
+    {
+      "username": "brett",
+      "email": "brett@brett.com",
+      "password": "$2a$10$RRUFpI6ElV40YKwR3WgSp.XaSKsZ2HC8WyFtne/LXbFjjHLvM//JW",
+      "region": "middle",
+      "id": 12
+    },
+    {
+      "username": "tmdana",
+      "email": "tmdana@gmail.com",
+      "password": "$2a$10$C5Euhq5pi.oIGSlVJAw4Y.zrbMjv0VlYuA/d/Aowx7H4fJ6C8fePu",
+      "region": "east",
+      "id": 13
+    },
+    {
+      "username": "jenn",
+      "email": "jenniferlawson000@gmail.com",
+      "password": "$2a$10$LDPhYSjQr0VqbiS8oJFrH.Ef9275ETI4bBVx9C6UwZIC3EsXDwWNW",
+      "region": "east",
+      "id": 14
+    },
+    {
+      "username": "MattK",
+      "email": "mkonabike@gmail.com",
+      "password": "$2a$10$NLJ/H1StNe3oRJtHHttyyeUUkSNUzr8oMBTBbzeaYHkyC7DiG9z1O",
+      "region": "middle",
+      "id": 15
     }
   ],
   "posts": [
@@ -195,6 +237,21 @@
       "email": "seth.dana@gmail.com",
       "phone": "615-496-6754",
       "id": 30
+    },
+    {
+      "userId": 13,
+      "title": "Stuff",
+      "price": "40",
+      "location": "Knoxville",
+      "categorieId": "1",
+      "description": "Edited thing",
+      "regionId": "east",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1533242851/cfgaxes2ga4xjyqde9lx.jpg"
+      ],
+      "email": "",
+      "phone": "",
+      "id": 31
     }
   ],
   "categories": [

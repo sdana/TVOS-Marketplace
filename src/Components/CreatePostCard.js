@@ -1,14 +1,14 @@
 
 import React, { Component } from 'react'
-import { Grid } from "@material-ui/core"
+// import { Grid } from "@material-ui/core"
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardMedia from "@material-ui/core/CardMedia"
-import { withStyles } from '@material-ui/core/styles';
-import SvgIcon from "@material-ui/core/SvgIcon"
-import AttachMoney from "@material-ui/icons/AttachMoney"
-import Done from "@material-ui/icons/Done"
+// import { withStyles } from '@material-ui/core/styles';
+// import SvgIcon from "@material-ui/core/SvgIcon"
+// import AttachMoney from "@material-ui/icons/AttachMoney"
+// import Done from "@material-ui/icons/Done"
 import { Link } from "react-router-dom"
 
 
@@ -41,10 +41,7 @@ const styles = {
 };
 
 export default class MakePostCard extends Component {
-    constructor(props) {
-        super(props)
-        const { classes } = props;
-    }
+
     render() {
         if (this.props.card.categorieId === "1"){
             return (
@@ -78,6 +75,11 @@ export default class MakePostCard extends Component {
             )
         }
         else {
+            let hasDollarSign = false
+            if (this.props.card.price.slice(0, 1) == "$"){
+                 hasDollarSign = true
+            }
+            console.log(hasDollarSign)
             return (
                 // <Grid item>
                 <Link to={`/viewPost/${this.props.card.id}`} style={{ textDecoration: "none" }}>
@@ -89,7 +91,7 @@ export default class MakePostCard extends Component {
                                     {this.props.card.title}
                                 </Typography>
                                 <Typography variant="title" component="h2" style={styles.hideOver}>
-                                    ${this.props.card.price}
+                                    {(hasDollarSign) ? this.props.card.price : "$"+this.props.card.price}
                         </Typography>
                                 <Typography color="textSecondary" style={styles.hideOver}>
                                     {this.props.card.location}
