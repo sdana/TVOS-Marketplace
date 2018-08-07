@@ -134,7 +134,7 @@ export default class Login extends Component {
                                     </FormControl>
                                 </Grid>
                                 <Grid item align="center">
-                                    <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="flat" size="small"><h4>New User?</h4></Button></Link>
+                                    <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="flat" size="small"><h4>New User?</h4></Button></Link><a href="mailto:seth.dana@gmail.com?subject=Please Reset My TVOS Marketplace Password" style={{textDecoration:"none"}}><Button variant="flat" size="small"><h4>Forgot Password?</h4></Button></a>
                                 </Grid>
                             </div>
                         </form>

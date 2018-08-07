@@ -45,7 +45,9 @@ export default class PostItem extends Component {
         pictureURL: [],
         photoArray: [],
         email: "",
-        phone: ""
+        phone: "",
+        phoneDialog: false,
+        photoDialog: false
     }
 
     handleFieldChange = evt => {
@@ -58,9 +60,9 @@ export default class PostItem extends Component {
     //     this.setState({ openDialog: true });
     // };
 
-    handleDialogClose = () => {
-        this.setState({ openDialog: false });
-        this.setState({ redirect: true })
+    handleDialogClose = (which, redirectBool) => {
+        this.setState({ [which]: false });
+        this.setState({ redirect: redirectBool })
     };
 
 
@@ -163,7 +165,8 @@ export default class PostItem extends Component {
                         <form onSubmit={(e) => {
                             e.preventDefault()
                             if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
-                                alert("You have photos that have not been uploaded")
+                                // alert("You have photos that have not been uploaded")
+                                this.setState({photoDialog: true})
                                 return
                             }
                             else if (this.state.phone){
@@ -172,7 +175,8 @@ export default class PostItem extends Component {
                                     this.submitPost(e)
                                 }
                                 else {
-                                    alert("Please enter a valid 10-digit phone number")
+                                    // alert("Please enter a valid 10-digit phone number")
+                                    this.setState({phoneDialog: true})
                                 }
                             }
                             else {
@@ -281,13 +285,57 @@ export default class PostItem extends Component {
                              </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={this.handleDialogClose} color="primary">
+                            <Button onClick={() => this.handleDialogClose("openDialog", true)} color="primary">
                                 Close
                         </Button>
                         </DialogActions>
                     </Dialog>
                 </div>
                     ) : <div />}
+                {(this.state.phoneDialog) ? (
+                    <div style={{ width: 700 }}>
+                        <Dialog
+                            open={this.state.phoneDialog}
+                            onClose={this.handleDialogClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Please enter a valid 10-digit phone number
+                             </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => this.handleDialogClose("phoneDialog", false)} color="primary">
+                                    Close
+                        </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                ) : <div />}
+                {(this.state.photoDialog) ? (
+                    <div style={{ width: 700 }}>
+                        <Dialog
+                            open={this.state.photoDialog}
+                            onClose={this.handleDialogClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    You have photos that have not been uploaded! Please click the <em>Upload Photos</em> button.
+                             </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => this.handleDialogClose("photoDialog", false)} color="primary">
+                                    Close
+                        </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                ) : <div />}
             </React.Fragment >
         )
     }
