@@ -25,7 +25,12 @@ export default class MainPage extends Component {
     defineRegion= () => {
         let regionString
             (sessionStorage.getItem("region")) ? regionString = sessionStorage.getItem("region") : regionString = this.state.region
-            let newString = regionString.charAt(0).toUpperCase() + regionString.slice(1)
+            let newString
+            if (regionString) {
+                let newString = regionString.charAt(0).toUpperCase() + regionString.slice(1)
+                regionString = newString
+                return regionString
+            }
             regionString = newString
             return regionString
     }
