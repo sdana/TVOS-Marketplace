@@ -84,7 +84,7 @@ export default class Login extends Component {
                     <Grid container direction="column" alignContent="center" alignItems="center" grid-xs-12 justify="center">
                     <form onSubmit={this.handleLogin} style={{height: "50vh"}}>
                         <Typography id="headline" variant="display3" align="center" color="inherit" gutterBottom={true}>Welcome to TVOS Marketplace</Typography>
-                            <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", maxHeight: "90vh", overflowY:"scroll", overflowX:"hidden", margin: "auto",paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
+                            <div id="main-div" style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", maxHeight: "90vh", overflowY:"scroll", overflowX:"hidden", margin: "auto",paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
                                 <Typography id="second-line" variant="display1" align="center" color="default" gutterBottom={true}>Please sign in</Typography>
                                 <Grid item align="center">
                                 <TextField

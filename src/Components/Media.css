@@ -4,6 +4,25 @@
     margin-top: 80px;
 }
 
+@media screen and (max-width : 530px) {
+    #headline {
+        font-size: 1.4em;
+        margin-top: 1.5px;
+        margin-bottom: 2px;
+    }
+    #second-line {
+        font-size: 1.2em;
+    }
+    #main-div {
+        height: 320px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    #root {
+        overflow: hidden;
+    }
+}
+
 @media screen and (max-width : 480px) {
     #headline {
         font-size: 1.7em;
