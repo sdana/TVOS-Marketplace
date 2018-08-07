@@ -14,7 +14,10 @@ export default class UserSettings extends Component {
     state = {
         userRegion: "",
         displayName: "",
-        openDialog: false
+        openDialog: false,
+        oldPasswordDialog: false,
+        newPasswordDialog: false,
+        passwordSuccessDialog: false
     }
 
     componentDidMount(){
@@ -41,26 +44,34 @@ export default class UserSettings extends Component {
                 if (this.state.newPassword === this.state.againPassword){
                     const passHash = bcrypt.hashSync(this.state.newPassword)
                     api.editUserInfo(userId, "password", passHash).then(response => {
-                        alert("Password Successfully Changed")
+                        // alert("Password Successfully Changed")
+                        this.setState({ passwordSuccessDialog: true, currentPassword: "", newPassword: "", againPassword: "" })
+                        // this.setState({ currentPassword: "", newPassword: "", againPassword: "" })
                         return
                     })
                 }
                 else {
-                    alert("New passwords do not match")
+                    // alert("New passwords do not match")
+                    this.setState({newPasswordDialog: true})
                     return
                 }
             }
             else {
-                alert("Current Password Incorrect")
+                // alert("Current Password Incorrect")
+                this.setState({oldPasswordDialog: true})
             }
 
         })
     }
 
-    handleDialogClose = () => {
-        this.setState({ openDialog: false })
+    // handleDialogClose = () => {
+    //     this.setState({ openDialog: false })
+    // }
+    handleDialogClose = (which, redirectBool) => {
+        this.setState({ [which]: false });
+        this.setState({ redirect: redirectBool })
         this.props.showChanges(this.state.displayName)
-    }
+    };
 
     render(){
         // let root = document.querySelector("root")
@@ -84,17 +95,18 @@ export default class UserSettings extends Component {
                         <Button variant="raised" color="primary" onClick={() => this.submitChanges("region", this.state.userRegion)}>Submit</Button>
                     </div>
                     <div style={{ marginTop: 60 }} align="center">
+                <form onSubmit={(e) => {e.preventDefault(); this.changePassword()}}>
                 Change Password:
                     <br />
-                        <TextField id="currentPassword" type="password" label="Current Password" style={{ marginRight: 10, marginBottom: 20, marginTop:10 }} onChange={this.handleFieldChange} />
+                        <TextField id="currentPassword" type="password" label="Current Password" value={this.state.currentPassword} style={{ marginRight: 10, marginBottom: 20, marginTop:10 }} onChange={this.handleFieldChange} />
                         <br />
-                        <TextField id="newPassword" type="password" label="New Password" style={{ marginRight: 10, marginBottom: 20 }} onChange={this.handleFieldChange} />
+                        <TextField id="newPassword" type="password" label="New Password" value={this.state.newPassword} style={{ marginRight: 10, marginBottom: 20 }} onChange={this.handleFieldChange} />
                         <br />
-                        <TextField id="againPassword" type="password" label="Current Password Again" style={{ marginRight: 10, marginBottom: 20 }} onChange={this.handleFieldChange} />
+                        <TextField id="againPassword" type="password" label="Current Password Again" value={this.state.againPassword} style={{ marginRight: 10, marginBottom: 20 }} onChange={this.handleFieldChange} />
                         <br />
-                        <Button variant="raised" color="primary" onClick={() => this.changePassword()}>Submit</Button>
+                        <Button variant="raised" color="primary" type="submit" ref="passwordSubmit">Submit</Button>
+                        </form>
                         </div>
-
                 </div>
                 {(this.state.openDialog) ? (
                     <div style={{ width: 700 }}>
@@ -111,7 +123,73 @@ export default class UserSettings extends Component {
                              </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                                <Button onClick={this.handleDialogClose} color="primary">
+                                <Button onClick={() => this.handleDialogClose("openDialog", false)} color="primary">
+                                    Close
+                        </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                ) : <div />}
+                {(this.state.oldPasswordDialog) ? (
+                    <div style={{ width: 700 }}>
+                        <Dialog
+                            open={this.state.oldPasswordDialog}
+                            onClose={this.handleDialogClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Current password incorrect
+                             </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => this.handleDialogClose("oldPasswordDialog", false)} color="primary">
+                                    Close
+                        </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                ) : <div />}
+                {(this.state.newPasswordDialog) ? (
+                    <div style={{ width: 700 }}>
+                        <Dialog
+                            open={this.state.newPasswordDialog}
+                            onClose={this.handleDialogClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    New passwords do not match
+                             </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => this.handleDialogClose("newPasswordDialog", false)} color="primary">
+                                    Close
+                        </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                ) : <div />}
+                {(this.state.passwordSuccessDialog) ? (
+                    <div style={{ width: 700 }}>
+                        <Dialog
+                            open={this.state.passwordSuccessDialog}
+                            onClose={this.handleDialogClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Password successfully changed
+                             </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => this.handleDialogClose("passwordSuccessDialog", false)} color="primary">
                                     Close
                         </Button>
                             </DialogActions>
