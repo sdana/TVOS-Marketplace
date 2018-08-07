@@ -13,7 +13,6 @@ import { Grid, Typography, Select, InputLabel, MenuItem, TextField, Tooltip, Fad
 //     }
 // }
 
-let regionString
 
 
 export default class MainPage extends Component {
@@ -21,6 +20,12 @@ export default class MainPage extends Component {
         allPosts: [],
         user: {},
         order: "desc"
+    }
+
+    defineRegion= () => {
+        let regionString
+            (sessionStorage.getItem("region")) ? regionString = sessionStorage.getItem("region") : regionString = this.state.region
+            return regionString
     }
 
     handleFieldChange = evt => {
@@ -82,7 +87,7 @@ getSpecRegionPosts = (region, order) => {
                 <React.Fragment>
                     <Grid item align="center">
                         <Typography variant="display3" style={{color:"White"}}>TVOS Marketplace</Typography>
-                        <Typography variant="headline">{`Posts from ${regionString} TN`}</Typography>
+                        <Typography variant="headline">{`Posts from ${this.defineRegion()} TN`}</Typography>
                     </Grid>
                     <Grid container xs={12} direction="row" justify="center">
                         <Grid item align="center">
