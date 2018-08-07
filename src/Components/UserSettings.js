@@ -102,7 +102,7 @@ export default class UserSettings extends Component {
                         <br />
                         <TextField id="newPassword" type="password" label="New Password" value={this.state.newPassword} style={{ marginRight: 10, marginBottom: 20 }} onChange={this.handleFieldChange} />
                         <br />
-                        <TextField id="againPassword" type="password" label="Current Password Again" value={this.state.againPassword} style={{ marginRight: 10, marginBottom: 20 }} onChange={this.handleFieldChange} />
+                        <TextField id="againPassword" type="password" label="New Password Again" value={this.state.againPassword} style={{ marginRight: 10, marginBottom: 20 }} onChange={this.handleFieldChange} />
                         <br />
                         <Button variant="raised" color="primary" type="submit" ref="passwordSubmit">Submit</Button>
                         </form>

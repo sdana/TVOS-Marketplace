@@ -56,6 +56,7 @@ class MenuAppBar extends React.Component {
         sessionStorage.removeItem("credentials")
         sessionStorage.removeItem("region")
         sessionStorage.removeItem("order")
+        this.props.userChanges("")
     }
 
     render() {
