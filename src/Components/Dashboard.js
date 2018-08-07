@@ -38,7 +38,7 @@ export default class Dashboard extends Component {
             <React.Fragment>
             <Typography variant="display3" align="center" style={{color:"white"}}>My Items</Typography>
             <Grid container direction="row" xs={24}>
-            {this.state.posts.map(post => <Grid item xs={12} sm={6} lg={4} xl={3}><EnableEdit key={post.id} post={post} updatePostList={this.updatePostList}/></Grid>)}
+            {this.state.posts.map(post =>  <Grid item xs={12} sm={6} lg={4} xl={3}><EnableEdit key={post.id} post={post} updatePostList={this.updatePostList}/></Grid>)}
             </Grid>
             </React.Fragment>
         )
