@@ -160,7 +160,24 @@ export default class PostItem extends Component {
                 <div style={{ backgroundColor: "rgba(250, 250, 250, .9)", width: "60vw", maxHeight: "80vh", overflowY:"scroll", overflowX:"hidden", margin: "auto", padding: 50 }}>
                     <Typography variant="display3" align="center" style={{color:"white", textShadow:"1px 1px .5px black", marginBottom:40}}>Post A New Item</Typography>
                     <Grid container xs={12} direction="column" justify="center">
-                        <form onSubmit={(e) => this.submitPost(e)}>
+                        <form onSubmit={(e) => {
+                            e.preventDefault()
+                            if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
+                                alert("You have photos that have not been uploaded")
+                                return
+                            }
+                            else if (this.state.phone){
+                                let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+                                if (this.state.phone.match(phoneno)){
+                                    this.submitPost(e)
+                                }
+                                else {
+                                    alert("Please enter a valid 10-digit phone number")
+                                }
+                            }
+                            else {
+                                this.submitPost(e)
+                            }}}>
                             <Grid item sm align="center" style={style.bottomMargin}>
                                 {/* <InputLabel htmlFor="title">Title: </InputLabel> */}
                                 <TextField onChange={this.handleFieldChange} id="title" type="text" required autoFocus label="Title" />
@@ -188,7 +205,7 @@ export default class PostItem extends Component {
                                     <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "60%" }} />
                         </Grid>
                         <Grid item sm align="center" style={style.bottomMargin}>
-                            <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" required style={{marginRight:40}} /><TextField onChange={this.handleFieldChange} id="phone" label="Phone Number" type="phone" />
+                                <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" required style={{ marginRight: 40 }} /><TextField onChange={this.handleFieldChange} id="phone" ref="phoneInput" label="Phone Number" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
                         </Grid>
                         <Grid item md align="center" style={style.bottomMargin}>
                             <Dropzone style={{ height: 100, width: 200, border: "1px dashed grey" }}
@@ -208,15 +225,17 @@ export default class PostItem extends Component {
                             </div>
                     </Grid>
                     <Grid item sm align="center">
-                        <Button variant="raised" color="primary" onClick={(e) => {
-                            if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
-                                    alert("You have photos that have not been uploaded")
-                                    return
-                                }
-                                else {
-                                    this.submitPost(e)
-                                    }
-                                    }} ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
+                        <Button variant="raised" color="primary"  type="submit"
+                        // onSubmit={(e) => {
+                        //     if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
+                        //             alert("You have photos that have not been uploaded")
+                        //             return
+                        //         }
+                        //         else {
+                        //             // this.submitPost(e)
+                        //             }
+                        //             }}
+                                    ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
                     </Grid>
                     </form>
                 </Grid>
