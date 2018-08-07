@@ -9,6 +9,7 @@ import Register from "./Components/Registration"
 import ViewPost from "./Components/viewPost"
 import UserSettings from "./Components/UserSettings"
 import api from "./Components/Api"
+import EditPostPage from "./Components/EditPostPage"
 import "./index.css"
 
 const backgrounds = ["https://images.unsplash.com/photo-1445216978101-0b05a9c8da3d?ixlib=rb-0.3.5&s=028d47aec09c1fae0ac7bbdde206d991&auto=format&fit=crop&w=1591&q=80",
@@ -92,6 +93,9 @@ export default class ApplicationViews extends Component {
                     />
                     <Route path="/viewPost/:postId" render={ props => {
                         return (<ViewPost {...props}/>)
+                    }}/>
+                    <Route path="/editPost/:postId" render={ props => {
+                        return (<EditPostPage {...props}/>)
                     }}/>
                     </div>
                 </React.Fragment>

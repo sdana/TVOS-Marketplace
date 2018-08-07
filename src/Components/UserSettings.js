@@ -44,29 +44,22 @@ export default class UserSettings extends Component {
                 if (this.state.newPassword === this.state.againPassword){
                     const passHash = bcrypt.hashSync(this.state.newPassword)
                     api.editUserInfo(userId, "password", passHash).then(response => {
-                        // alert("Password Successfully Changed")
                         this.setState({ passwordSuccessDialog: true, currentPassword: "", newPassword: "", againPassword: "" })
-                        // this.setState({ currentPassword: "", newPassword: "", againPassword: "" })
                         return
                     })
                 }
                 else {
-                    // alert("New passwords do not match")
                     this.setState({newPasswordDialog: true})
                     return
                 }
             }
             else {
-                // alert("Current Password Incorrect")
                 this.setState({oldPasswordDialog: true})
             }
 
         })
     }
 
-    // handleDialogClose = () => {
-    //     this.setState({ openDialog: false })
-    // }
     handleDialogClose = (which, redirectBool) => {
         this.setState({ [which]: false });
         this.setState({ redirect: redirectBool })
@@ -74,7 +67,6 @@ export default class UserSettings extends Component {
     };
 
     render(){
-        // let root = document.querySelector("root")
         return (
             <React.Fragment>
                 <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", height: "90vh", overflowY:"scroll", overflowX:"hidden", margin: "auto", paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>

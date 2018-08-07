@@ -1,18 +1,8 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import CreatePostCard from "./CreatePostCard"
+import { Link } from "react-router-dom"
 import { Grid, Typography, Select, InputLabel, MenuItem, TextField, Tooltip, Fade } from "@material-ui/core"
-// import Icon from "@material-ui/core/Icon"
-// import Search from "@material-ui/icons/Search"
-
-// const style= {
-//     card: {
-//         minWidth: 275,
-//         margin: 40,
-//         maxHeight: 361
-//     }
-// }
-
 
 
 export default class MainPage extends Component {
@@ -111,13 +101,12 @@ getSpecRegionPosts = (region, order) => {
                                 <MenuItem value="asc">Oldest First</MenuItem>
                             </Select>
                             <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Search for post title, category, location, or description">
-                                {/* <Button>Fade</Button> */}
                             <div style={{ display: "inline-block", marginLeft: 30 }}><Grid><TextField id="searchString" label="Search" style={{ marginTop: 20 }} onChange={this.handleFieldChange}></TextField></Grid></div>
                             </Tooltip>
                         </Grid>
                     </Grid>
                     <Grid container lg={12} direction="row" justify="flex-start">
-                        {this.state.allPosts.map(post => <Grid item xs={12} sm={6} lg={4} xl={2} key={post.id} ><CreatePostCard  card={post} /></Grid>)}
+                        {this.state.allPosts.map(post => <Link to={`/viewPost/${post.id}`} style={{ textDecoration: "none" }}><Grid item xs={12} sm={6} lg={4} xl={2} key={post.id} ><CreatePostCard  card={post} /></Grid></Link>)}
                     </Grid>
                 </React.Fragment>
             )
@@ -150,7 +139,7 @@ getSpecRegionPosts = (region, order) => {
                         </Grid>
                     </Grid>
                     <Grid container lg={12} direction="row" justify="flex-start" style={{overflowY:"scroll", overflowX:"hidden"}}>
-                            {searchArray.map(post => <Grid item xs={12} sm={6} lg={4} xl={2}><CreatePostCard key={post.id} card={post} /></Grid>)}
+                        {searchArray.map(post => <Link to={`/viewPost/${post.id}`} style={{ textDecoration: "none" }}><Grid item xs={12} sm={6} lg={4} xl={2}><CreatePostCard key={post.id} card={post} /></Grid></Link>)}
                     </Grid>
                 </React.Fragment>
             )
