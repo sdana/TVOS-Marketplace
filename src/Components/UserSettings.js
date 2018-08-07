@@ -7,6 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import bcrypt from "bcrypt-nodejs"
 
 export default class UserSettings extends Component {
 
@@ -33,6 +34,29 @@ export default class UserSettings extends Component {
             this.setState({openDialog: true})})
     }
 
+    changePassword(){
+        const userId = String(sessionStorage.getItem("credentials"))
+        api.checkUserThing("id", userId ).then(response => {
+            if (bcrypt.compareSync(this.state.currentPassword, response[0].password)){
+                if (this.state.newPassword === this.state.againPassword){
+                    const passHash = bcrypt.hashSync(this.state.newPassword)
+                    api.editUserInfo(userId, "password", passHash).then(response => {
+                        alert("Password Successfully Changed")
+                        return
+                    })
+                }
+                else {
+                    alert("New passwords do not match")
+                    return
+                }
+            }
+            else {
+                alert("Current Password Incorrect")
+            }
+
+        })
+    }
+
     handleDialogClose = () => {
         this.setState({ openDialog: false })
         this.props.showChanges(this.state.displayName)
@@ -44,10 +68,12 @@ export default class UserSettings extends Component {
             <React.Fragment>
                 <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", height: "90vh", overflowY:"scroll", overflowX:"hidden", margin: "auto", paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
                 <Typography variant="display3" align="center" style={{color:"white", textShadow:"1px 1px .5px black"}}>Account Settings</Typography>
+                    <div style={{ marginTop: 40 }} align="center">
                     <TextField id="displayName" type="text" label="Change Display Name" style={{marginRight:10}} onChange={this.handleFieldChange}/>
                     <Button variant="raised" color="primary" onClick={() => this.submitChanges("displayName", this.state.displayName)}>Submit</Button>
+                    </div>
                 <br/>
-                    <div style={{ marginTop: 40 }}>
+                    <div style={{ marginTop: 40 }} align="center">
                 Change Default Region:
                     <Select value={this.state.userRegion} style={{marginLeft:20, marginRight:20}} onChange={e => this.setState({userRegion: e.target.value})}>
                             <MenuItem value="east">East</MenuItem>
@@ -57,6 +83,18 @@ export default class UserSettings extends Component {
                         </Select>
                         <Button variant="raised" color="primary" onClick={() => this.submitChanges("region", this.state.userRegion)}>Submit</Button>
                     </div>
+                    <div style={{ marginTop: 60 }} align="center">
+                Change Password:
+                    <br />
+                        <TextField id="currentPassword" type="password" label="Current Password" style={{ marginRight: 10, marginBottom: 20, marginTop:10 }} onChange={this.handleFieldChange} />
+                        <br />
+                        <TextField id="newPassword" type="password" label="New Password" style={{ marginRight: 10, marginBottom: 20 }} onChange={this.handleFieldChange} />
+                        <br />
+                        <TextField id="againPassword" type="password" label="Current Password Again" style={{ marginRight: 10, marginBottom: 20 }} onChange={this.handleFieldChange} />
+                        <br />
+                        <Button variant="raised" color="primary" onClick={() => this.changePassword()}>Submit</Button>
+                        </div>
+
                 </div>
                 {(this.state.openDialog) ? (
                     <div style={{ width: 700 }}>
