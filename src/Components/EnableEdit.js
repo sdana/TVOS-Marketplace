@@ -67,7 +67,7 @@ export default class EnableEdit extends Component {
                 <React.Fragment key={this.props.post.id}>
                     <div>
                         <div style={styles.div} id={this.props.post.id}>
-                            <PostCard key={this.props.post.id} card={this.props.post} />
+                            <Link to={`/viewPost/${this.props.post.id}`} style={{ textDecoration: "none" }}><PostCard key={this.props.post.id} card={this.props.post} /></Link>
                             <Grid container direction="row" justify="space-evenly">
                                 <Grid item>
                                     <Link to={`/editPost/${this.props.post.id}`} style={{ textDecoration: "none" }}><Button style={styles.button} variant="raised" color="primary">Edit Post</Button></Link>
