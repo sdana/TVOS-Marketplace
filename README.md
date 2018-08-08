@@ -1,12 +1,14 @@
 TVOS Marketplace
-==================
+--------------------
 An online marketplace emphasised for Tennessee Viticultural and Oenological Society members to post and request items pertaining to winemaking activities.
 
---------------------------------
-###Visit TVOS Marketplace
+======================================
+Visit TVOS Marketplace
+--------------------------------------
 TVOS Marketplace is currently deployed at http://tvos-marketplace.s3-website.us-east-2.amazonaws.com/ for testing purposes.
 
-###Testing Locally
+Testing Locally
+----------------------------------------
 If you would like to test locally:
     1. git clone this repo
     2. `npm or yarn install` to pull in all dependencies
