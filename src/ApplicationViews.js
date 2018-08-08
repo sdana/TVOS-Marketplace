@@ -7,7 +7,9 @@ import Dashboard from "./Components/Dashboard"
 import MainPage from "./Components/MainPage"
 import Register from "./Components/Registration"
 import ViewPost from "./Components/viewPost"
-// import UserSettings from "./Components/UserSettings"
+import UserSettings from "./Components/UserSettings"
+import api from "./Components/Api"
+import EditPostPage from "./Components/EditPostPage"
 import "./index.css"
 
 const backgrounds = ["https://images.unsplash.com/photo-1445216978101-0b05a9c8da3d?ixlib=rb-0.3.5&s=028d47aec09c1fae0ac7bbdde206d991&auto=format&fit=crop&w=1591&q=80",
@@ -23,13 +25,12 @@ const bodyElement = document.querySelector("body")
 
 export default class ApplicationViews extends Component {
     state = {
-        // auth: 0
+        updates: false,
         wallpaper: "https://images.unsplash.com/photo-1464788061904-b026adb5422b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4a6aa5b3608cb4e7f5a6f5d0be6e45e1&auto=format&fit=crop&w=1950&q=80"
     }
 
     wallpaperChange = () => {
         let newURL = backgrounds[Math.floor(Math.random()*backgrounds.length)]
-        console.log("Background URL", newURL)
         this.setState({wallpaper: newURL})
     }
 
@@ -40,7 +41,7 @@ export default class ApplicationViews extends Component {
     componentDidMount(){
         if (sessionStorage.getItem("credentials")){
             const userId = sessionStorage.getItem("credentials")
-            console.log(userId)
+            api.checkUserThing("id", userId).then(response => this.setState({ displayName: response[0].displayName }))
             this.setState({auth: userId})
         }
         setInterval(() =>{
@@ -48,10 +49,9 @@ export default class ApplicationViews extends Component {
         }, 60000)
     }
 
-    // componentDidUpdate(){
-    //     console.log("body", bodyElement)
-    //     // document.querySelector("body").style = this.state.wallpaper
-    // }
+    userChanges = (newName) => {
+        this.setState({displayName: newName})
+    }
 
     isAuthenticated = () => {
         return sessionStorage.getItem("credentials")
@@ -63,7 +63,12 @@ export default class ApplicationViews extends Component {
             return (
                 <React.Fragment>
                     <div style={{ width: "100%", height: "100vh", backgroundRepeat: "no-repeat", overflowY:"scroll", overflowX:"hidden", backgroundPosition: "center center", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundImage: `url(${this.state.wallpaper})` }}>
-                    <Route path="/" component={Nav} />
+                    <Route path="/" render={props => {
+                        return (
+                            <Nav displayName={this.state.displayName} userChanges={this.userChanges}/>
+                        )
+                    }
+                    } />
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/post" render={props => {
                         return (
@@ -79,15 +84,18 @@ export default class ApplicationViews extends Component {
                         }
                         }
                     />
-                    {/* <Route exact path="/settings" render={props => {
+                    <Route exact path="/settings" render={props => {
                         return (
-                            <UserSettings userId={this.state.auth} />
+                            <UserSettings userId={this.state.auth} showChanges={this.userChanges}/>
                         )
                     }
                     }
-                    /> */}
+                    />
                     <Route path="/viewPost/:postId" render={ props => {
                         return (<ViewPost {...props}/>)
+                    }}/>
+                    <Route path="/editPost/:postId" render={ props => {
+                        return (<EditPostPage {...props}/>)
                     }}/>
                     </div>
                 </React.Fragment>

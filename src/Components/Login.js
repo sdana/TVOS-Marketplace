@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import "./Media.css"
 
 
 
@@ -59,8 +60,6 @@ export default class Login extends Component {
         api.checkUserThing("username", this.state.username).then(nameResponse => {
             api.checkUserThing("email", this.state.email).then(emailResponse => {
                     //Check to see if username or email are already registered
-                    console.log(emailResponse)
-                console.log(bcrypt.compareSync(this.state.password, emailResponse[0].password))
                     if (nameResponse.length === 0 || emailResponse.length === 0 || !bcrypt.compareSync(this.state.password, emailResponse[0].password)) {
                         alert("Username, Email, or Password incorrect")
                     }
@@ -84,9 +83,9 @@ export default class Login extends Component {
                 <React.Fragment>
                     <Grid container direction="column" alignContent="center" alignItems="center" grid-xs-12 justify="center">
                     <form onSubmit={this.handleLogin} style={{height: "50vh"}}>
-                        <Typography variant="display3" align="center" color="inherit" gutterBottom={true} style={{color: "white", marginBottom:100, marginTop:80}}>Welcome to TVOS Marketplace</Typography>
-                            <div style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", height: "auto", margin: "auto",paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
-                                <Typography variant="display1" align="center" color="default" gutterBottom={true}>Please sign in</Typography>
+                        <Typography id="headline" variant="display3" align="center" color="inherit" gutterBottom={true}>Welcome to TVOS Marketplace</Typography>
+                            <div id="main-div" style={{ backgroundColor: "rgba(255, 255, 255, .7)", width: "45vw", maxHeight: "90vh", overflowY:"scroll", overflowX:"hidden", margin: "auto",paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
+                                <Typography id="second-line" variant="display1" align="center" color="default" gutterBottom={true}>Please sign in</Typography>
                                 <Grid item align="center">
                                 <TextField
                                     onChange={this.handleFieldChange}
@@ -111,28 +110,7 @@ export default class Login extends Component {
                                     fullWidth
                                 />
                                 </Grid>
-                                {/* <label htmlFor="password">Password</label> */}
                                 <Grid item align="center">
-                                {/* <TextField
-                                    onChange={this.handleFieldChange}
-                                    type={this.state.showPassword ? 'text' : 'password'}
-                                    id="password"
-                                    label="Password"
-                                    required
-                                    style={style.input}
-                                    fullWidth
-                                        endAdornment={
-                                            <InputAdornment position="end">
-                                                <IconButton
-                                                    aria-label="Toggle password visibility"
-                                                    onClick={this.handleClickShowPassword}
-                                                    onMouseDown={this.handleMouseDownPassword}
-                                                >
-                                                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        }
-                                /> */}
                                     <FormControl style={{width:"100%"}}>
                                         <InputLabel htmlFor="password">Password</InputLabel>
                                         <Input
@@ -156,7 +134,7 @@ export default class Login extends Component {
                                     </FormControl>
                                 </Grid>
                                 <Grid item align="center">
-                                    <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="flat" size="small"><h4>New User?</h4></Button></Link>
+                                    <Button type="submit" variant="contained" color="primary" style={style.button}>Sign in</Button><Link to="/register" style={style.Link}><Button variant="flat" size="small"><h4>New User?</h4></Button></Link><a href="mailto:seth.dana@gmail.com?subject=Please Reset My TVOS Marketplace Password" style={{textDecoration:"none"}}><Button variant="flat" size="small"><h4>Forgot Password?</h4></Button></a>
                                 </Grid>
                             </div>
                         </form>

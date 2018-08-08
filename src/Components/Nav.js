@@ -1,17 +1,3 @@
-// import React, { Component } from "react"
-// import { Link } from "react-router-dom"
-// import "./nav.css"
-
-// export default class Nav extends Component {
-//     render() {
-//         return <nav>
-//             <Link to="/"><h2>TVOS Marketplace</h2></Link>
-//             <Link className="nav-link" to="/post">Post Item</Link>
-//             <Link className="nav-link" to="/dashboard">My Items</Link>
-//         </nav>
-//     }
-// }
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom"
@@ -21,9 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-// import Switch from '@material-ui/core/Switch';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import api from "./Api"
@@ -54,7 +37,7 @@ class MenuAppBar extends React.Component {
 
     componentDidMount() {
         const userId = sessionStorage.getItem("credentials")
-        api.checkUserThing("id", userId).then(response => this.setState({user: response[0]}))
+        api.checkUserThing("id", userId).then(response => this.setState({user: response[0], displayName: response[0].displayName}))
     }
 
     handleChange = (event, checked) => {
@@ -73,6 +56,7 @@ class MenuAppBar extends React.Component {
         sessionStorage.removeItem("credentials")
         sessionStorage.removeItem("region")
         sessionStorage.removeItem("order")
+        this.props.userChanges("")
     }
 
     render() {
@@ -89,7 +73,7 @@ class MenuAppBar extends React.Component {
             </Typography>
 
                             <div>
-                            <Typography variant="subheading" style={{display: "inline-block"}} color="inherit">{this.state.user.username}</Typography>
+                            <Typography variant="subheading" style={{display: "inline-block"}} color="inherit">{((!this.props.displayName) ? this.state.displayName : this.props.displayName)}</Typography>
                                 <IconButton
                                     aria-owns={open ? 'menu-appbar' : null}
                                     aria-haspopup="true"
@@ -114,7 +98,7 @@ class MenuAppBar extends React.Component {
                                 >
                                     <MenuItem onClick={this.handleClose}><Link to="/post" style={styles.noLink}>Post New Item</Link></MenuItem>
                                     <MenuItem onClick={this.handleClose}><Link to="/dashboard" style={styles.noLink}>My Items</Link></MenuItem>
-                                    {/* <MenuItem onClick={this.handleClose}><Link to="/settings" style={styles.noLink}>Settings</Link></MenuItem> */}
+                                    <MenuItem onClick={this.handleClose}><Link to="/settings" style={styles.noLink}>Settings</Link></MenuItem>
                                 <MenuItem onClick={() => { this.handleClose(); this.logUserOut() }}><Link to="/" style={styles.noLink}>Logout</Link></MenuItem>
                                 </Menu>
                             </div>

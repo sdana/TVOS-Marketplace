@@ -9,7 +9,7 @@ class Api {
         return fetch(`http://67.187.101.105:3030/users/?email=${email}`).then(e => e.json())
     }
 
-    registerUser (name, email, password, region) {
+    registerUser (name, email, password, region, displayName) {
         return fetch("http://67.187.101.105:3030/users", {
             method: "POST",
             headers: {
@@ -19,7 +19,21 @@ class Api {
                 username: name,
                 email: email,
                 password: password,
-                region: region
+                region: region,
+                displayName: name
+            })
+        }).then(e => e.json());
+    }
+
+    editUserInfo (userId, thingToChange, changeValue) {
+        console.log(userId, thingToChange, changeValue)
+        return fetch(`http://67.187.101.105:3030/users/${userId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                [thingToChange]: changeValue
             })
         }).then(e => e.json());
     }
@@ -66,7 +80,7 @@ class Api {
             method: "DELETE"
         })
     }
-
+///////////////////////////DEPRECATED/////////////////////////////////////
     editPost(postId, title, price, location, category, description) {
         return fetch(`http://67.187.101.105:3030/posts/${postId}`, {
             method: "PATCH",
@@ -82,6 +96,17 @@ class Api {
             })
         }).then(e => e.json());
     }
+/////////////////////////////////////////////////////////////////////////
+    editItem(postId, editedObject) {
+        return fetch(`http://67.187.101.105:3030/posts/${postId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedObject)
+        }).then(e => e.json());
+    }
+
 }
 
 const ApiManager = new Api()

@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid"
 import MenuItem from "@material-ui/core/MenuItem"
 import Select from "@material-ui/core/Select"
 import TextField from "@material-ui/core/TextField"
+import { Link } from "react-router-dom"
 // import ReturnImg from './ReturnImg';
 
 const styles = {
@@ -26,6 +27,7 @@ const styles = {
         padding: 15
     }
 }
+
 export default class EnableEdit extends Component {
     state = {
         editMode: false
@@ -53,7 +55,6 @@ export default class EnableEdit extends Component {
     }
 
     deletePost = (e) => {
-        console.log("PARENT", e.target.parentNode)
         const postId = e.target.parentNode.id
         api.deleteUserPost(postId).then(() => {
             this.props.updatePostList(this.props.post.userId)
@@ -61,16 +62,15 @@ export default class EnableEdit extends Component {
     }
 
     render() {
-        console.log(this.props.post)
         if (!this.state.editMode) {
             return (
                 <React.Fragment key={this.props.post.id}>
                     <div>
                         <div style={styles.div} id={this.props.post.id}>
-                            <PostCard key={this.props.post.id} card={this.props.post} />
+                            <Link to={`/viewPost/${this.props.post.id}`} style={{ textDecoration: "none" }}><PostCard key={this.props.post.id} card={this.props.post} /></Link>
                             <Grid container direction="row" justify="space-evenly">
                                 <Grid item>
-                                    <Button style={styles.button} onClick={this.editModeEnable} variant="raised" color="primary">Edit Post</Button>
+                                    <Link to={`/editPost/${this.props.post.id}`} style={{ textDecoration: "none" }}><Button style={styles.button} variant="raised" color="primary">Edit Post</Button></Link>
                                 </Grid>
                                 <Grid item>
                                     <Button id={this.props.post.id} style={styles.button} onClick={this.deletePost} variant="flat" color="secondary">Delete Post</Button>

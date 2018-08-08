@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
 import api from "./Api"
 import CreatePostCard from "./CreatePostCard"
+import { Link } from "react-router-dom"
 import { Grid, Typography, Select, InputLabel, MenuItem, TextField, Tooltip, Fade } from "@material-ui/core"
-// import Icon from "@material-ui/core/Icon"
-// import Search from "@material-ui/icons/Search"
 
-// const style= {
-//     card: {
-//         minWidth: 275,
-//         margin: 40,
-//         maxHeight: 361
-//     }
-// }
 
 export default class MainPage extends Component {
     state = {
         allPosts: [],
         user: {},
         order: "desc"
+    }
+
+    defineRegion= () => {
+        let regionString
+            (sessionStorage.getItem("region")) ? regionString = sessionStorage.getItem("region") : regionString = this.state.region
+            let newString
+            if (regionString) {
+                let newString = regionString.charAt(0).toUpperCase() + regionString.slice(1)
+                regionString = newString
+                return regionString
+            }
+            regionString = newString
+            return regionString
     }
 
     handleFieldChange = evt => {
@@ -51,6 +56,7 @@ export default class MainPage extends Component {
             }
         })
     }
+
 getAllRegionalPosts = (order) => {
     if (!sessionStorage.getItem("region")){
         api.getRegionalPosts(this.state.region, order).then(response => this.setState({ allPosts: response }))
@@ -63,7 +69,6 @@ getAllRegionalPosts = (order) => {
 }
 
 getSpecRegionPosts = (region, order) => {
-    console.log(region, order)
     this.setState({region: region})
     if (region === "all"){
         api.getAllPosts(order).then(response => this.setState({allPosts: response, order: order}))
@@ -79,7 +84,7 @@ getSpecRegionPosts = (region, order) => {
                 <React.Fragment>
                     <Grid item align="center">
                         <Typography variant="display3" style={{color:"White"}}>TVOS Marketplace</Typography>
-                        <Typography variant="headline">{`Posts from ${this.state.region} TN`}</Typography>
+                        <Typography variant="headline">{`Posts from ${this.defineRegion()} TN`}</Typography>
                     </Grid>
                     <Grid container xs={12} direction="row" justify="center">
                         <Grid item align="center">
@@ -96,20 +101,18 @@ getSpecRegionPosts = (region, order) => {
                                 <MenuItem value="asc">Oldest First</MenuItem>
                             </Select>
                             <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Search for post title, category, location, or description">
-                                {/* <Button>Fade</Button> */}
                             <div style={{ display: "inline-block", marginLeft: 30 }}><Grid><TextField id="searchString" label="Search" style={{ marginTop: 20 }} onChange={this.handleFieldChange}></TextField></Grid></div>
                             </Tooltip>
                         </Grid>
                     </Grid>
                     <Grid container lg={12} direction="row" justify="flex-start">
-                        {this.state.allPosts.map(post => <Grid item xs={12} sm={6} lg={4} xl={2} key={post.id} ><CreatePostCard  card={post} /></Grid>)}
+                        {this.state.allPosts.map(post => <Link to={`/viewPost/${post.id}`} style={{ textDecoration: "none" }}><Grid item xs={12} sm={6} lg={4} xl={2} key={post.id} ><CreatePostCard  card={post} /></Grid></Link>)}
                     </Grid>
                 </React.Fragment>
             )
         }
         else {
             let searchArray = this.state.allPosts.filter((post) => { return post.title.toLowerCase().match(this.state.searchString) || post.categorie.cat.toLowerCase().match(this.state.searchString) || post.location.toLowerCase().match(this.state.searchString) || post.description.toLowerCase().match(this.state.searchString)})
-            console.log(searchArray)
             return (
                 <React.Fragment>
                     <Grid item align="center">
@@ -136,7 +139,7 @@ getSpecRegionPosts = (region, order) => {
                         </Grid>
                     </Grid>
                     <Grid container lg={12} direction="row" justify="flex-start" style={{overflowY:"scroll", overflowX:"hidden"}}>
-                            {searchArray.map(post => <Grid item xs={12} sm={6} lg={4} xl={2}><CreatePostCard key={post.id} card={post} /></Grid>)}
+                        {searchArray.map(post => <Link to={`/viewPost/${post.id}`} style={{ textDecoration: "none" }}><Grid item xs={12} sm={6} lg={4} xl={2}><CreatePostCard key={post.id} card={post} /></Grid></Link>)}
                     </Grid>
                 </React.Fragment>
             )

@@ -45,7 +45,9 @@ export default class PostItem extends Component {
         pictureURL: [],
         photoArray: [],
         email: "",
-        phone: ""
+        phone: "",
+        phoneDialog: false,
+        photoDialog: false
     }
 
     handleFieldChange = evt => {
@@ -58,16 +60,15 @@ export default class PostItem extends Component {
     //     this.setState({ openDialog: true });
     // };
 
-    handleDialogClose = () => {
-        this.setState({ openDialog: false });
-        this.setState({ redirect: true })
+    handleDialogClose = (which, redirectBool) => {
+        this.setState({ [which]: false });
+        this.setState({ redirect: redirectBool })
     };
 
 
     componentDidMount() {
         if (!sessionStorage.getItem("credentials")) {
             api.checkUserThing("id", this.props.userId).then(user => {
-                console.log(user)
                 this.setState({ user: user[0] })
             })
         }
@@ -109,7 +110,6 @@ export default class PostItem extends Component {
     }
 
     onImageDrop(files) {
-        // console.log(files[0])
         this.setState(({ pictureURL }) => ({
             pictureURL: this.state.pictureURL.concat(files)
         }))
@@ -141,14 +141,11 @@ export default class PostItem extends Component {
     }
 
     removePhoto = (e) => {
-        console.log(e.target)
         let photoId = parseInt(e.target.id)
         let newArray = this.state.pictureURL
         newArray.splice(photoId, 1)
         debugger
         this.setState({ pictureURL: newArray})
-        // console.log(newArray)
-        // e.target.parentNode.parentNode.remove()
 
     }
 
@@ -163,9 +160,28 @@ export default class PostItem extends Component {
         return (
             <React.Fragment>
                 <div style={{ backgroundColor: "rgba(250, 250, 250, .9)", width: "60vw", maxHeight: "80vh", overflowY:"scroll", overflowX:"hidden", margin: "auto", padding: 50 }}>
-                    <Typography variant="display3" align="center" style={{color:"white", marginBottom:40, textShadow:"1px 1px 3px grey"}}>Post A New Item</Typography>
+                    <Typography variant="display3" align="center" style={{color:"white", textShadow:"1px 1px .5px black", marginBottom:40}}>Post A New Item</Typography>
                     <Grid container xs={12} direction="column" justify="center">
-                        <form onSubmit={(e) => this.submitPost(e)}>
+                        <form onSubmit={(e) => {
+                            e.preventDefault()
+                            if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
+                                // alert("You have photos that have not been uploaded")
+                                this.setState({photoDialog: true})
+                                return
+                            }
+                            else if (this.state.phone){
+                                let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+                                if (this.state.phone.match(phoneno)){
+                                    this.submitPost(e)
+                                }
+                                else {
+                                    // alert("Please enter a valid 10-digit phone number")
+                                    this.setState({phoneDialog: true})
+                                }
+                            }
+                            else {
+                                this.submitPost(e)
+                            }}}>
                             <Grid item sm align="center" style={style.bottomMargin}>
                                 {/* <InputLabel htmlFor="title">Title: </InputLabel> */}
                                 <TextField onChange={this.handleFieldChange} id="title" type="text" required autoFocus label="Title" />
@@ -193,7 +209,7 @@ export default class PostItem extends Component {
                                     <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "60%" }} />
                         </Grid>
                         <Grid item sm align="center" style={style.bottomMargin}>
-                            <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" required style={{marginRight:40}} /><TextField onChange={this.handleFieldChange} id="phone" label="Phone Number" type="phone" />
+                                <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" required style={{ marginRight: 40 }} /><TextField onChange={this.handleFieldChange} id="phone" ref="phoneInput" label="Phone Number" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
                         </Grid>
                         <Grid item md align="center" style={style.bottomMargin}>
                             <Dropzone style={{ height: 100, width: 200, border: "1px dashed grey" }}
@@ -213,15 +229,17 @@ export default class PostItem extends Component {
                             </div>
                     </Grid>
                     <Grid item sm align="center">
-                        <Button variant="raised" color="primary" onClick={(e) => {
-                            if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
-                                    alert("You have photos that have not been uploaded")
-                                    return
-                                }
-                                else {
-                                    this.submitPost(e)
-                                    }
-                                    }} ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
+                        <Button variant="raised" color="primary"  type="submit"
+                        // onSubmit={(e) => {
+                        //     if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
+                        //             alert("You have photos that have not been uploaded")
+                        //             return
+                        //         }
+                        //         else {
+                        //             // this.submitPost(e)
+                        //             }
+                        //             }}
+                                    ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
                     </Grid>
                     </form>
                 </Grid>
@@ -267,13 +285,57 @@ export default class PostItem extends Component {
                              </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={this.handleDialogClose} color="primary">
+                            <Button onClick={() => this.handleDialogClose("openDialog", true)} color="primary">
                                 Close
                         </Button>
                         </DialogActions>
                     </Dialog>
                 </div>
                     ) : <div />}
+                {(this.state.phoneDialog) ? (
+                    <div style={{ width: 700 }}>
+                        <Dialog
+                            open={this.state.phoneDialog}
+                            onClose={this.handleDialogClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Please enter a valid 10-digit phone number
+                             </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => this.handleDialogClose("phoneDialog", false)} color="primary">
+                                    Close
+                        </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                ) : <div />}
+                {(this.state.photoDialog) ? (
+                    <div style={{ width: 700 }}>
+                        <Dialog
+                            open={this.state.photoDialog}
+                            onClose={this.handleDialogClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    You have photos that have not been uploaded! Please click the <em>Upload Photos</em> button.
+                             </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => this.handleDialogClose("photoDialog", false)} color="primary">
+                                    Close
+                        </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                ) : <div />}
             </React.Fragment >
         )
     }
