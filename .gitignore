@@ -7,4 +7,5 @@
 .history
 DS_Store
 /dist
+/build
 node_modules
