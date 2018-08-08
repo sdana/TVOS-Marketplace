@@ -15,6 +15,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import "./PhotoPreviewCSS.css"
 
+const cloudUpPreset = "qamybs5i"
+const cloudUpAddr = "https://api.cloudinary.com/v1_1/tvos-marketplace/upload"
+
 const style = {
     bottomMargin: {
         marginBottom: 40
@@ -32,7 +35,7 @@ export default class EditPost extends Component {
         description: "",
         location: "",
         redirect: false,
-        category: "1",
+        category: "",
         pictureURL: [],
         photoArray: [],
         email: "",
@@ -40,9 +43,29 @@ export default class EditPost extends Component {
         phoneDialog: false,
         photoDialog: false
     }
-        componentDidMount() {
-            api.getPost(this.props.match.params.postId).then(response => this.setState({ post: response })).then(response => {this.setState({category: this.state.post.categorieId})})
+
+    componentDidMount() {
+        api.getPost(this.props.match.params.postId).then(response => this.setState({ post: response })).then(response => {this.setState({category: this.state.post.categorieId})})
+    }
+
+    handleFieldChange = evt => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
         }
+
+        this.setState({ open: false });
+    }
+
+    handleDialogClose = (which, redirectBool) => {
+        this.setState({ [which]: false });
+        this.setState({ redirect: redirectBool })
+    }
 
     onImageDrop(files) {
         this.setState(({ pictureURL }) => ({
@@ -60,7 +83,88 @@ export default class EditPost extends Component {
         let photoId = parseInt(e.target.id)
         let newArray = this.state.post.photo
         newArray.splice(photoId, 1)
-        this.setState({ post: {photo: newArray} })
+        let originalObject = this.state.post
+        originalObject.photo = newArray
+        this.setState({ post: originalObject})
+    }
+
+    removePhoto = (e) => {
+        let photoId = parseInt(e.target.id)
+        let newArray = this.state.pictureURL
+        newArray.splice(photoId, 1)
+        this.setState({ pictureURL: newArray })
+    }
+
+    uploadImages = () => {
+        this.setState(({photoArray}) => ({
+            photoArray: this.state.post.photo,
+        }))
+        this.state.pictureURL.map(photo => {
+            this.handleImageUpload(photo)
+        })
+    }
+
+    handleImageUpload(file) {
+        let upload = request.post(cloudUpAddr)
+            .field('upload_preset', cloudUpPreset)
+            .field('file', file);
+
+        upload.end((err, response) => {
+            if (err) {
+                console.error(err);
+            }
+
+            if (response.body.secure_url !== '') {
+                this.setState(({ photoArray }) => ({
+                    photoArray: this.state.photoArray.concat(response.body.secure_url),
+                    open: true
+                }))
+            }
+        });
+    }
+
+    checkValues(){
+        let title = (this.state.title) ? this.state.title : this.state.post.title
+        let price = (this.state.price) ? this.state.price : this.state.post.price
+        let location = (this.state.location) ? this.state.location : this.state.post.location
+        let category = (this.state.category) ? this.state.category : this.state.post.categorieId
+        let description = (this.state.description) ? this.state.description : this.state.post.description
+        // let photos = (this.state.photoArray.length) ? this.state.post.photo : this.state.photoArray
+        let email = (this.state.email) ? this.state.email : this.state.post.email
+        let phone = (this.state.phone) ? this.state.phone : this.state.post.phone
+        let photos = []
+        if (this.state.photoArray.length === 0){
+            photos = this.state.post.photo
+        }
+        else {
+            photos = this.state.photoArray
+        }
+        let editObject = {
+            userId: this.state.post.userId,
+            title: title,
+            price: price,
+            location: location,
+            categorieId: category,
+            description: description,
+            region: this.state.post.regionId,
+            photo: photos,
+            email: email,
+            phone: phone
+        }
+        console.log("OBJECT", editObject)
+        debugger
+
+        return editObject
+    }
+
+
+    submitEdits = (e) => {
+        e.preventDefault()
+        api.editItem(this.state.post.id, this.checkValues()).then(response => {
+            // alert("Post Successful!")
+            this.setState({ openDialog: true });
+            // this.setState({ redirect: true })
+        })
     }
 
     render() {
@@ -84,7 +188,7 @@ export default class EditPost extends Component {
                                     else if (this.state.phone) {
                                         let phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
                                         if (this.state.phone.match(phoneno)) {
-                                            this.submitPost(e)
+                                            this.submitEdits(e)
                                         }
                                         else {
                                             // alert("Please enter a valid 10-digit phone number")
@@ -92,7 +196,7 @@ export default class EditPost extends Component {
                                         }
                                     }
                                     else {
-                                        this.submitPost(e)
+                                        this.submitEdits(e)
                                     }
                                 }}>
                                     <Grid item sm align="center" style={style.bottomMargin}>
@@ -155,10 +259,10 @@ export default class EditPost extends Component {
                                         //             return
                                         //         }
                                         //         else {
-                                        //             // this.submitPost(e)
+                                        //             // this.submitEdits(e)
                                         //             }
                                         //             }}
-                                        ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
+                                        ><Typography variant="headline" style={{ color: "white" }}>Submit Edits</Typography></Button>
                                     </Grid>
                                 </form>
                             </Grid>
@@ -200,7 +304,7 @@ export default class EditPost extends Component {
                                     <DialogTitle id="alert-dialog-title">{"Post Item"}</DialogTitle>
                                     <DialogContent>
                                         <DialogContentText id="alert-dialog-description">
-                                            Your item has been posted!
+                                            Edits successful!
                              </DialogContentText>
                                     </DialogContent>
                                     <DialogActions>

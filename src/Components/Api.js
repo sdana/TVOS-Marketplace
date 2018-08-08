@@ -80,7 +80,7 @@ class Api {
             method: "DELETE"
         })
     }
-
+///////////////////////////DEPRECATED/////////////////////////////////////
     editPost(postId, title, price, location, category, description) {
         return fetch(`http://67.187.101.105:3030/posts/${postId}`, {
             method: "PATCH",
@@ -96,6 +96,17 @@ class Api {
             })
         }).then(e => e.json());
     }
+/////////////////////////////////////////////////////////////////////////
+    editItem(postId, editedObject) {
+        return fetch(`http://67.187.101.105:3030/posts/${postId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedObject)
+        }).then(e => e.json());
+    }
+
 }
 
 const ApiManager = new Api()
