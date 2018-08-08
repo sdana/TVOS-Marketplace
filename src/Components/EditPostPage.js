@@ -50,13 +50,21 @@ export default class EditPost extends Component {
         }))
     }
 
+    removePostedPhoto = (e) => {
+        // let photoIndex = parseInt(e.target.id)
+        // let photoArray = this.state.post.photo
+        // let newArray = photoArray.splice(photoIndex, 1)
+        // this.setState({ post: { photo: newArray } })
+        // debugger
+        // // console.log("PHOTO ARRAY", newArray)
+        let photoId = parseInt(e.target.id)
+        let newArray = this.state.post.photo
+        newArray.splice(photoId, 1)
+        this.setState({ post: {photo: newArray} })
+    }
+
     render() {
         if (this.state.post){
-        // return (
-        //     <React.Fragment>
-        //     <h1>{this.state.post.title}</h1>
-        //     </React.Fragment>
-        //)
                 if (this.state.redirect) {
                     return (
                         <Redirect to={"/Dashboard"} />
@@ -70,7 +78,6 @@ export default class EditPost extends Component {
                                 <form onSubmit={(e) => {
                                     e.preventDefault()
                                     if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
-                                        // alert("You have photos that have not been uploaded")
                                         this.setState({ photoDialog: true })
                                         return
                                     }
@@ -116,6 +123,11 @@ export default class EditPost extends Component {
                                     </Grid>
                                     <Grid item sm align="center" style={style.bottomMargin}>
                                         <TextField onChange={this.handleFieldChange} id="email" label="Email" type="email" required style={{ marginRight: 40 }} defaultValue={this.state.post.email}/><TextField onChange={this.handleFieldChange} id="phone" ref="phoneInput" label="Phone Number" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" defaultValue={(this.state.post.phone) ? this.state.post.phone : ""}/>
+                                    </Grid>
+                                    <Typography variant="display1" align="center" style={{marginBottom:15, width:"100%", borderBottom:".5px dashed grey"}}>Posted Photos</Typography>
+                                    <Grid container xs={12} direction="row" justify="flex-start">
+                                        {this.state.post.photo.map((photo, index) => {
+                                            return <div style={{ margin: "5px 15px" }}><div className="tooltip"><span className="tooltiptext" id={index} onClick={e => this.removePostedPhoto(e)}>Click To Delete</span><img src={`${photo}`} /></div></div>})}
                                     </Grid>
                                     <Grid item md align="center" style={style.bottomMargin}>
                                         <Dropzone style={{ height: 100, width: 200, border: "1px dashed grey" }}
