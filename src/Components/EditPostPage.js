@@ -41,7 +41,7 @@ export default class EditPost extends Component {
         photoDialog: false
     }
         componentDidMount() {
-            api.getPost(this.props.match.params.postId).then(response => this.setState({ post: response }))
+            api.getPost(this.props.match.params.postId).then(response => this.setState({ post: response })).then(response => {this.setState({category: this.state.post.categorieId})})
         }
 
     onImageDrop(files) {
@@ -102,7 +102,7 @@ export default class EditPost extends Component {
                                     </Grid>
                                     <Grid item sm align="center" style={style.bottomMargin}>
                                         <InputLabel htmlFor="category" style={{ marginBottom: 40, marginRight: 40 }}>Item Category: </InputLabel>
-                                        <Select ref="category" id="category" onChange={e => this.setState({ category: e.target.value })} defaultValue={this.state.category} value={this.state.category} required>
+                                        <Select ref="category" id="category" onChange={e => this.setState({ category: e.target.value })} defaultValue={this.state.post.categorieId} value={this.state.category} required>
                                             <MenuItem value="1">Free</MenuItem>
                                             <MenuItem value="2">Produce</MenuItem>
                                             <MenuItem value="3">Farm Equipment</MenuItem>
