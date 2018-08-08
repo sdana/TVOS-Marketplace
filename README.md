@@ -4,7 +4,7 @@ An online marketplace emphasised for Tennessee Viticultural and Oenological Soci
 
 Visit TVOS Marketplace
 --------------------------------------
-TVOS Marketplace is currently deployed at http://tvos-marketplace.s3-website.us-east-2.amazonaws.com/ for testing purposes.
+TVOS Marketplace is currently deployed at http://tvos-marketplace.tk for testing purposes.
 
 Testing Locally
 ----------------------------------------
