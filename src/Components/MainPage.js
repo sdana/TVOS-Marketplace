@@ -88,6 +88,7 @@ getSpecRegionPosts = (region, order) => {
                     </Grid>
                     <Grid container xs={12} direction="row" justify="center">
                         <Grid item align="center">
+                    <div style={{boxSizing:"border-box", background:"rgba(209, 215, 225, .6)",width:"100%",padding:10, paddingTop:0, margin:"auto", borderRadius:5}}>
                             <InputLabel htmlFor="region" style={{ marginRight: 20 }}>Select Region:</InputLabel>
                             <Select onChange={(e) => { sessionStorage.setItem("region", e.target.value); this.getSpecRegionPosts(e.target.value, this.state.order)}} value={(sessionStorage.getItem("region")) ? sessionStorage.getItem("region") : this.state.region}>
                                 <MenuItem value="east">East</MenuItem>
@@ -101,8 +102,9 @@ getSpecRegionPosts = (region, order) => {
                                 <MenuItem value="asc">Oldest First</MenuItem>
                             </Select>
                             <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Search for post title, category, location, or description">
-                            <div style={{ display: "inline-block", marginLeft: 30 }}><Grid><TextField id="searchString" label="Search" style={{ marginTop: 20 }} onChange={this.handleFieldChange}></TextField></Grid></div>
+                            <div style={{ display: "inline-block", marginLeft: 30 }}><Grid><TextField id="searchString" label="Search" onChange={this.handleFieldChange}></TextField></Grid></div>
                             </Tooltip>
+                    </div>
                         </Grid>
                     </Grid>
                     <Grid container lg={12} direction="row" justify="flex-start">
