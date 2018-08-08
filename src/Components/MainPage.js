@@ -41,7 +41,13 @@ export default class MainPage extends Component {
             }
             if (!sessionStorage.getItem("region")){
                 this.setState({region: this.state.user.region})
-                this.getAllRegionalPosts(this.state.order)
+                switch (this.state.user.region){
+                    case "all":
+                        api.getAllPosts(this.state.order).then(response => this.setState({ allPosts: response }))
+                        break
+                    default:
+                    this.getAllRegionalPosts(this.state.order)
+                }
 
             }
             else if (sessionStorage.getItem("region") === "all"){
