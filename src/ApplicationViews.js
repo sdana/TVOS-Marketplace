@@ -46,7 +46,7 @@ export default class ApplicationViews extends Component {
         }
         setInterval(() =>{
             this.wallpaperChange()
-        }, 60000)
+        }, 15000)
     }
 
     userChanges = (newName) => {

@@ -231,7 +231,7 @@ export default class EditPost extends Component {
                                     <Typography variant="display1" align="center" style={{marginBottom:15, width:"100%", borderBottom:".5px dashed grey"}}>Posted Photos</Typography>
                                     <Grid container xs={12} direction="row" justify="flex-start">
                                         {this.state.post.photo.map((photo, index) => {
-                                            return <div style={{ margin: "5px 15px" }}><div className="tooltip"><span className="tooltiptext" id={index} onClick={e => this.removePostedPhoto(e)}>Click To Delete</span><img src={`${photo}`} /></div></div>})}
+                                            return <div style={{ margin: "5px 15px", maxHeight:300; }}><div className="tooltip"><span className="tooltiptext" id={index} onClick={e => this.removePostedPhoto(e)}>Click To Delete</span><img src={`${photo}`} /></div></div>})}
                                     </Grid>
                                     <Grid item md align="center" style={style.bottomMargin}>
                                         <Dropzone style={{ height: 100, width: 200, border: "1px dashed grey" }}
