@@ -56,6 +56,24 @@
       "email": "thirdUser@3.com",
       "phone": "",
       "id": 2
+    },
+    {
+      "userId": 2,
+      "title": "John Deere Tractor",
+      "price": "25,000",
+      "location": "Dickson",
+      "categorieId": "3",
+      "description": "Mint condition 2018 John Deere tractor. Only used once.",
+      "regionId": "middle",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1534780677/ofzxq0dpt3ssmq3dlz6a.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1534780677/xoyqv6lhtfmeynsh18cc.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1534780678/ackjhkwm9etitw2sn9qx.jpg"
+      ],
+      "email": "test@test.com",
+      "phone": "",
+      "id": 3,
+      "region": "middle"
     }
   ],
   "categories": [
