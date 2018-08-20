@@ -5,7 +5,7 @@ const PhotoPreview = (props) => {
         <img id={props.id} onClick={e =>{
             e.target.remove()
             }}
-            src={props.url} alt="post photos" style={{ height: 300, width: "auto" }}/>
+            src={props.url} alt="post photos" style={{ maxHeight: 300, width: "auto" }}/>
     )
 }
 

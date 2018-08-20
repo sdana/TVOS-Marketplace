@@ -1,0 +1,97 @@
+{
+  "users": [
+    {
+      "username": "sdana",
+      "email": "seth.dana@gmail.com",
+      "password": "$2a$10$aajX2u8kpMAVsDwgcInX2evm6C97A1mqHs9PopO2S5yZiIK/z8tRq",
+      "region": "middle",
+      "displayName": "sdana",
+      "id": 1
+    },
+    {
+      "username": "test",
+      "email": "test@test.com",
+      "password": "$2a$10$4GfP0iV1.J4kBY4a39XC0.y.uGzvDXRxUcrGTs0dK3Pc0F4fRenaC",
+      "region": "middle",
+      "displayName": "test",
+      "id": 2
+    },
+    {
+      "username": "thirdUser",
+      "email": "3@3.com",
+      "password": "$2a$10$PVZ8/kKS9qMTfjMtLBnCxuNedOguAdaRMOvQsToJ4M2s5AwYZAKlu",
+      "region": "east",
+      "displayName": "thirdUser",
+      "id": 3
+    }
+  ],
+  "posts": [
+    {
+      "userId": 2,
+      "title": "Cabernet Grapes",
+      "price": "50/lb",
+      "location": "Nashville",
+      "categorieId": "4",
+      "description": "I have an abundance of Cabernet Sauvignon grapes from my recent harvest. High brix levels, excellent fruit. $50/lb of fruit.",
+      "regionId": "middle",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1534779391/dlglztnquiyuf32hppxj.jpg"
+      ],
+      "email": "nobody@nobody.com",
+      "phone": "615-555-4433",
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "title": "Eboulliometer",
+      "price": "1000",
+      "location": "Knoxville",
+      "categorieId": "4",
+      "description": "Perfectly functioning Eboulliometer. Easily check the alcohol content of your wine! Comes with everything in the pictures. ",
+      "regionId": "east",
+      "photo": [
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1534779948/nhzseyg8upz5y4xq0kzb.jpg",
+        "https://res.cloudinary.com/tvos-marketplace/image/upload/v1534779948/keo1hccvvc78qouhq9ov.jpg"
+      ],
+      "email": "thirdUser@3.com",
+      "phone": "",
+      "id": 2
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "cat": "free"
+    },
+    {
+      "id": 2,
+      "cat": "produce"
+    },
+    {
+      "id": 3,
+      "cat": "farm"
+    },
+    {
+      "id": 4,
+      "cat": "wine"
+    },
+    {
+      "id": 5,
+      "cat": "request"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "loc": "east"
+    },
+    {
+      "id": 2,
+      "loc": "middle"
+    },
+    {
+      "id": 3,
+      "loc": "west"
+    }
+  ]
+}
