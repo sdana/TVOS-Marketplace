@@ -98,7 +98,6 @@ export default class Login extends Component {
                                     fullWidth
                                 />
                                 </Grid>
-                                {/* <label htmlFor="email">E-mail</label> */}
                                 <Grid item align="center">
                                 <TextField
                                     onChange={this.handleFieldChange}

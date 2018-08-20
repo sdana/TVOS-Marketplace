@@ -74,12 +74,6 @@ export default class EditPost extends Component {
     }
 
     removePostedPhoto = (e) => {
-        // let photoIndex = parseInt(e.target.id)
-        // let photoArray = this.state.post.photo
-        // let newArray = photoArray.splice(photoIndex, 1)
-        // this.setState({ post: { photo: newArray } })
-        // debugger
-        // // console.log("PHOTO ARRAY", newArray)
         let photoId = parseInt(e.target.id)
         let newArray = this.state.post.photo
         newArray.splice(photoId, 1)
@@ -129,7 +123,6 @@ export default class EditPost extends Component {
         let location = (this.state.location) ? this.state.location : this.state.post.location
         let category = (this.state.category) ? this.state.category : this.state.post.categorieId
         let description = (this.state.description) ? this.state.description : this.state.post.description
-        // let photos = (this.state.photoArray.length) ? this.state.post.photo : this.state.photoArray
         let email = (this.state.email) ? this.state.email : this.state.post.email
         let phone = (this.state.phone) ? this.state.phone : this.state.post.phone
         let photos = []
@@ -152,7 +145,6 @@ export default class EditPost extends Component {
             phone: phone
         }
         console.log("OBJECT", editObject)
-        debugger
 
         return editObject
     }
@@ -161,9 +153,7 @@ export default class EditPost extends Component {
     submitEdits = (e) => {
         e.preventDefault()
         api.editItem(this.state.post.id, this.checkValues()).then(response => {
-            // alert("Post Successful!")
             this.setState({ openDialog: true });
-            // this.setState({ redirect: true })
         })
     }
 
@@ -191,7 +181,6 @@ export default class EditPost extends Component {
                                             this.submitEdits(e)
                                         }
                                         else {
-                                            // alert("Please enter a valid 10-digit phone number")
                                             this.setState({ phoneDialog: true })
                                         }
                                     }
@@ -200,15 +189,12 @@ export default class EditPost extends Component {
                                     }
                                 }}>
                                     <Grid item sm align="center" style={style.bottomMargin}>
-                                        {/* <InputLabel htmlFor="title">Title: </InputLabel> */}
                                         <TextField onChange={this.handleFieldChange} id="title" type="text" required autoFocus label="Title" defaultValue={this.state.post.title}/>
                                     </Grid>
                                     <Grid item sm align="center" style={style.bottomMargin}>
-                                        {/* <InputLabel htmlFor="price">Price: $</InputLabel> */}
                                         <TextField onChange={this.handleFieldChange} id="price" type="text" label="Price" defaultValue={this.state.post.price}/>
                                     </Grid>
                                     <Grid item sm align="center" style={style.bottomMargin}>
-                                        {/* <InputLabel htmlFor="location">Specific Location: </InputLabel> */}
                                         <TextField onChange={this.handleFieldChange} id="location" type="text" required label="Specific Location" defaultValue={this.state.post.location}/>
                                     </Grid>
                                     <Grid item sm align="center" style={style.bottomMargin}>
@@ -222,7 +208,6 @@ export default class EditPost extends Component {
                                         </Select>
                                     </Grid>
                                     <Grid item sm align="center" style={style.bottomMargin}>
-                                        {/* <InputLabel htmlFor="description">Description</InputLabel> */}
                                         <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "60%" }} defaultValue={this.state.post.description}/>
                                     </Grid>
                                     <Grid item sm align="center" style={style.bottomMargin}>
@@ -243,7 +228,6 @@ export default class EditPost extends Component {
                                         <div>
                                             {this.state.pictureURL === [] ? null :
                                                 <div style={{ display: "flex", direction: "row", justifyContent: "flex-start", flexWrap: "wrap" }}>
-                                                    {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
                                                     {this.state.pictureURL.map((photo, index) => {
                                                         return <div style={{ margin: "5px 15px" }}><div className="tooltip"><span className="tooltiptext" id={index} onClick={e => this.removePhoto(e)}>Click To Delete</span><PhotoPreview key={index} url={photo.preview} id={index} /></div></div>
                                                     })}
@@ -252,17 +236,7 @@ export default class EditPost extends Component {
                                         </div>
                                     </Grid>
                                     <Grid item sm align="center">
-                                        <Button variant="raised" color="primary" type="submit"
-                                        // onSubmit={(e) => {
-                                        //     if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
-                                        //             alert("You have photos that have not been uploaded")
-                                        //             return
-                                        //         }
-                                        //         else {
-                                        //             // this.submitEdits(e)
-                                        //             }
-                                        //             }}
-                                        ><Typography variant="headline" style={{ color: "white" }}>Submit Edits</Typography></Button>
+                                        <Button variant="raised" color="primary" type="submit"><Typography variant="headline" style={{ color: "white" }}>Submit Edits</Typography></Button>
                                     </Grid>
                                 </form>
                             </Grid>

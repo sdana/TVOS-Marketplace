@@ -1,18 +1,8 @@
 import React, { Component } from 'react'
 import api from "./Api"
-// import PostCard from "./CreatePostCard"
 import EnableEdit from "./EnableEdit"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
-
-// const styles = {
-//     card: {
-//         minWidth: 275,
-//         margin: 40,
-//         maxHeight: 361,
-//         overflow: "hidden"
-//     }
-// }
 
 export default class Dashboard extends Component {
     state = {

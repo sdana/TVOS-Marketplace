@@ -32,7 +32,6 @@ export default class UserSettings extends Component {
     }
 
     submitChanges(thingToChange, changeValue){
-        console.log(this.state.userId, thingToChange, changeValue)
         api.editUserInfo(this.state.userId, thingToChange, changeValue).then(response => {
             this.setState({openDialog: true})})
     }

@@ -26,7 +26,6 @@ class Api {
     }
 
     editUserInfo (userId, thingToChange, changeValue) {
-        console.log(userId, thingToChange, changeValue)
         return fetch(`https://tvosmarketplace.tk/users/${userId}`, {
             method: "PATCH",
             headers: {

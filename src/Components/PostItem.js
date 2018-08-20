@@ -14,7 +14,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import "./PhotoPreviewCSS.css"
-// import { withStyles } from '@material-ui/core/styles';
 
 
 const cloudUpPreset = "qamybs5i"
@@ -25,13 +24,6 @@ const style = {
         marginBottom: 40
     }
 }
-
-// const styles = theme => ({
-//     close: {
-//         width: theme.spacing.unit * 4,
-//         height: theme.spacing.unit * 4,
-//     },
-// });
 
 export default class PostItem extends Component {
     state = {
@@ -55,10 +47,6 @@ export default class PostItem extends Component {
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
-
-    // handleClickOpen = () => {
-    //     this.setState({ openDialog: true });
-    // };
 
     handleDialogClose = (which, redirectBool) => {
         this.setState({ [which]: false });
@@ -88,24 +76,10 @@ export default class PostItem extends Component {
         this.setState({ open: false });
     };
 
-    // componentDidUpdate() {
-    //     if (this.state.categorie === "1") {
-    //         let disablePrice = true
-    //     }
-    // }
-
     submitPost = (e) => {
         e.preventDefault()
-        // if (this.state.category === "1"){
-        //     let price = "Free"
-        // }
-        // else {
-        //     let price = this.state.price
-        // }
         api.postItem(this.state.user.id, this.state.title, this.state.price, this.state.location, this.state.category, this.state.description, this.state.user.region, this.state.photoArray, this.state.email, this.state.phone).then(response => {
-            // alert("Post Successful!")
             this.setState({ openDialog: true });
-            // this.setState({ redirect: true })
         })
     }
 
@@ -144,7 +118,6 @@ export default class PostItem extends Component {
         let photoId = parseInt(e.target.id)
         let newArray = this.state.pictureURL
         newArray.splice(photoId, 1)
-        debugger
         this.setState({ pictureURL: newArray})
 
     }
@@ -165,7 +138,6 @@ export default class PostItem extends Component {
                         <form onSubmit={(e) => {
                             e.preventDefault()
                             if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
-                                // alert("You have photos that have not been uploaded")
                                 this.setState({photoDialog: true})
                                 return
                             }
@@ -175,7 +147,6 @@ export default class PostItem extends Component {
                                     this.submitPost(e)
                                 }
                                 else {
-                                    // alert("Please enter a valid 10-digit phone number")
                                     this.setState({phoneDialog: true})
                                 }
                             }
@@ -183,15 +154,12 @@ export default class PostItem extends Component {
                                 this.submitPost(e)
                             }}}>
                             <Grid item sm align="center" style={style.bottomMargin}>
-                                {/* <InputLabel htmlFor="title">Title: </InputLabel> */}
                                 <TextField onChange={this.handleFieldChange} id="title" type="text" required autoFocus label="Title" />
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
-                                {/* <InputLabel htmlFor="price">Price: $</InputLabel> */}
                                 <TextField onChange={this.handleFieldChange} id="price" type="text" label="Price"/>
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
-                                {/* <InputLabel htmlFor="location">Specific Location: </InputLabel> */}
                                 <TextField onChange={this.handleFieldChange} id="location" type="text" required label="Specific Location" />
                             </Grid>
                             <Grid item sm align="center" style={style.bottomMargin}>
@@ -205,7 +173,6 @@ export default class PostItem extends Component {
                             </Select>
                         </Grid>
                         <Grid item sm align="center" style={style.bottomMargin}>
-                            {/* <InputLabel htmlFor="description">Description</InputLabel> */}
                                     <TextField fullWidth onChange={this.handleFieldChange} id="description" multiline rows="10" label="Item Description" style={{ width: "60%" }} />
                         </Grid>
                         <Grid item sm align="center" style={style.bottomMargin}>
@@ -221,7 +188,6 @@ export default class PostItem extends Component {
                             <div>
                                 {this.state.pictureURL === [] ? null :
                                         <div style={{display: "flex", direction:"row", justifyContent:"flex-start", flexWrap:"wrap"}}>
-                                        {/* <img src={this.state.pictureURL} style={{height:300, width:"auto"}}/> */}
                                             {this.state.pictureURL.map((photo, index) => {
                                                 return <div style={{ margin: "5px 15px" }}><div className="tooltip"><span className="tooltiptext" id={index} onClick={e => this.removePhoto(e)}>Click To Delete</span><PhotoPreview key={index} url={photo.preview} id={index}/></div></div> })}
                                     </div>}
@@ -229,17 +195,7 @@ export default class PostItem extends Component {
                             </div>
                     </Grid>
                     <Grid item sm align="center">
-                        <Button variant="raised" color="primary"  type="submit"
-                        // onSubmit={(e) => {
-                        //     if (this.state.photoArray.length === 0 && this.state.pictureURL.length !== 0) {
-                        //             alert("You have photos that have not been uploaded")
-                        //             return
-                        //         }
-                        //         else {
-                        //             // this.submitPost(e)
-                        //             }
-                        //             }}
-                                    ><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
+                        <Button variant="raised" color="primary"  type="submit"><Typography variant="headline" style={{ color: "white" }}>Post Item</Typography></Button>
                     </Grid>
                     </form>
                 </Grid>
